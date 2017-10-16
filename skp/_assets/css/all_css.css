@@ -1,0 +1,131 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 8, 2016, 1:04:05 PM
+    Author     : nurfadillah
+*/
+
+.panel .panel-body.profile {
+}
+.capaian {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 2px solid #000;
+    text-align: center;
+    height: 60px;
+    width: 60px;
+    line-height: 55px;
+}
+th {
+    text-align: center;
+}
+.block {
+    padding: 5px 0;
+}
+.form-horizontal .form-group {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.pagination.month > li > a {
+    padding: 5px 6px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    vertical-align: middle;
+}
+.table .table {
+    margin-bottom: 0;
+}
+.table.table-top td {
+    vertical-align: top;
+}
+table td, th {
+    padding: 2px 4px;
+}
+.panel-primary>.panel-heading {
+    color: #000;
+}
+.list-group-item img {
+    /*width: 30px;*/
+}
+.btn-group-icon > .btn .fa {
+    padding-top: 2px;
+    margin: 0;
+}
+.profile .profile-image img {
+    border-radius: 0;
+}
+.x-navigation li.xn-title {
+    padding: 5px 10px 5px 15px;
+    line-height: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #0f1725;
+    color: #ffffff;
+    text-align: center;
+}
+.x-navigation li.xn-title .fa {
+    margin-right: 10px;
+}
+.x-navigation li > a {
+    padding: 5px 10px;
+}
+.x-navigation.x-navigation-horizontal .xn-icon-button > a {
+    width: auto;
+}
+.x-navigation.x-navigation-horizontal {
+    background: #7ed0e8;
+}
+.profile .profile-data .profile-data-name {
+    font-size: 12px;
+}
+.login-container {
+    /*background: none !important;*/
+    background: url(img/bg.jpg);
+    background-size: cover;
+}
+html, body {
+    /*background: #66cbe9 url(img/bg.jpg);*/
+    background-size: cover;
+}
+.page-container .page-content {
+    background: #66cbe9;
+    background: url(img/background.jpg);
+    background-size: cover;
+}
+.login-container .login-box {
+    padding-top: 260px;
+}
+.login-container .login-box .login-body {
+    background: rgba(255, 255, 255, 0.8);
+}
+.login-container .login-box .login-body .login-title {
+    color: #000000;
+    margin-bottom: -10px;
+}
+.login-container .login-box .login-body .form-control {
+    color: #383838;
+}
+.login-container .login-box .login-footer {
+    color: #000;
+}
+.login-container .login-box .login-footer {
+    text-shadow: 0 0 3px #00a6ff;
+}
+.x-navigation > li.xn-openable:before {
+    top: 8px;
+}
+.x-navigation li > a .fa, .x-navigation li > a .glyphicon {
+    color: #ffffff;
+}
+.x-navigation > li > ul > li > a,
+.x-navigation > li > ul > li.active > a,
+.x-navigation > li > ul > li > a:hover {
+    padding: 5px 10px 5px 40px;
+}
