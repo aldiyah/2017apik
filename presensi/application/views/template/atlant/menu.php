@@ -63,6 +63,6 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
     ?>
     <?php echo $menu_item; ?>
     <li class="xn-title">Aplikasi Lain</li>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_presensi"><span class="fa fa-calendar"></span> Aplikasi Presensi</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aplikasi Aktivitas</span></a></li>'; ?>
         <?php echo '<li><a href="' . base_url() . 'back_end/home/to_ppk"><span class="fa fa-book"></span> Aplikasi SKP</span></a></li>'; ?>
 </ul>

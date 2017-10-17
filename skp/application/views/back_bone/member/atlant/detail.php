@@ -12,10 +12,11 @@ $model_user_attributes = isset($model_user_attributes) && array_have_value($mode
         <form enctype="multipart/form-data" method="POST" class="form-horizontal row-border">
             <div class="panel-body collapse in">
                 <?php echo load_partial("back_bone/shared/attention_message"); ?>
+                <?php echo $partial_form_view ? load_partial($partial_form_view) : ''; ?>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Username *</label>
                     <div class="col-sm-6">
-                        <input type="text" name="username" class="form-control" value="<?php echo $model_user_attributes ? $model_user_attributes['username'] : ""; ?>">
+                        <input type="text" name="username" class="form-control" readonly value="<?php echo $model_user_attributes ? $model_user_attributes['username'] : ""; ?>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,29 +31,20 @@ $model_user_attributes = isset($model_user_attributes) && array_have_value($mode
                         <input type="text" name="email_profil" class="form-control" value="<?php echo $model_user_attributes ? $model_user_attributes['email_profil'] : ""; ?>">
                     </div>
                 </div>
-                <?php echo $partial_form_view ? load_partial($partial_form_view) : ''; ?>
-
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Nama *</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nama_profil" class="form-control" value="<?php echo $model_user_attributes ? stripslashes($model_user_attributes['nama_profil']) : ""; ?>">
+                        <input type="text" name="nama_profil" class="form-control" readonly value="<?php echo $model_user_attributes ? stripslashes($model_user_attributes['nama_profil']) : ""; ?>">
                     </div>
                 </div>
                 <input type="hidden" name="pegawai_nip">
                 <input type="hidden" name="pegawai_nama">
-                <input type="hidden" name="kode_jabatan">
-                <input type="hidden" name="kode_organisasi">
-
             </div>
             <div class="panel-footer">
-                <!--                    <div class="row">
-                                        <div class="col-sm-6 col-sm-offset-3">-->
                 <div class="btn-toolbar">
                     <button type="submit" class="btn-primary btn pull-right">Simpan</button>
                     <a href="<?php echo base_url('back_bone/member/'); ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
-                <!--                        </div>
-                                    </div>-->
             </div>
         </form>
     </div>

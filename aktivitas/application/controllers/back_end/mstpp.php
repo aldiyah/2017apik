@@ -7,7 +7,7 @@ class Mstpp extends Back_end {
     public $model = 'model_master_tpp';
 
     public function __construct() {
-        parent::__construct('kelola_master_tpp', 'Master TPP');
+        parent::__construct('kelola_master_tpp', 'Daftar TPP');
         $this->load->model('model_master_pegawai');
     }
 

@@ -18,10 +18,9 @@
                 };
             },
             processResults: function (data, params) {
-
                 var data = $.map(data, function (obj) {
-                    obj.id = obj.id || obj.idIdentitas;
-                    obj.text = obj.text || obj.nip + " " + obj.namaLengkap;
+                    obj.id = obj.id || obj.id_identitas;
+                    obj.text = obj.text || obj.nip + " " + obj.nama;
                     return obj;
                 });
                 params.page = params.page || 1;
@@ -36,7 +35,7 @@
         escapeMarkup: function (markup) {
             return markup;
         }, // let our custom formatter work
-        minimumInputLength: 2
+        minimumInputLength: 4
     };
 
     $(document).ready(function () {
@@ -48,18 +47,17 @@
             });
 
             if (arrNamaPeg.length > 0) {
-                $("input[name=nama_profil]").val(arrNamaPeg[0].namaLengkap);
-                $("input[name=pegawai_nama]").val(arrNamaPeg[0].namaLengkap);
+                $("input[name=username]").val(arrNamaPeg[0].nip);
+                $("input[name=nama_profil]").val(arrNamaPeg[0].nama);
                 $("input[name=pegawai_nip]").val(arrNamaPeg[0].nip);
-                $("input[name=kode_jabatan]").val(arrNamaPeg[0].kdJabatan);
-                $("input[name=kode_organisasi]").val(arrNamaPeg[0].kdOrganisasi);
+                $("input[name=pegawai_nama]").val(arrNamaPeg[0].nama);
             }
             slc_pegawai_temp = [];
 //            $("input[name=nama_profil]").val(data.namaLengkap);
         });
 
-<?php if ($detail && $detail->id_pegawai != ""): ?>
-            $("#slc-nip").val(<?php echo $detail->id_pegawai ?>).trigger("change");
+<?php if ($detail && $detail->pegawai_id != ""): ?>
+            $("#slc-nip").val(<?php echo $detail->pegawai_id ?>).trigger("change");
 <?php endif; ?>
 
     });

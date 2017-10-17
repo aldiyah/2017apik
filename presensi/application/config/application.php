@@ -275,4 +275,4 @@ $config['modul_action_configuration'] = array(
  * digunakan untuk memberikan role secara otomatis pada PNS ketika menambahkan PNS pada referensi data PNS
  * karena ketika menambahkan PNS aplikasi membuatkan username dan password secara otomatis
  */
-$config['id_role_pegawai_negeri_sipil'] = 6;
+$config['id_role_pegawai_negeri_sipil'] = 5;

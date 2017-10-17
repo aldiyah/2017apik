@@ -3877,7 +3877,7 @@ td.dataTables_empty {
   float: left;
   width: 100%;
   min-height: 100%;
-  background: url("../img/bg.png") left top repeat #1e293d;
+/*  background: url("../img/bg.png") left top repeat #1e293d;*/
 }
 .login-container .login-box {
   width: 400px;

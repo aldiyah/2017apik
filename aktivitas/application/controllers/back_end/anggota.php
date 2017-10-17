@@ -2,17 +2,16 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CV MITRA INDOKOMP SEJAHTERA
+ * MIS DEVELOPER
+ * @autor Rinaldi <rinaldi79@gmail.com>
+ * 2017apik
+ * anggota.php
+ * September 16, 2017
  */
 
-/**
- * Description of anggota
- *
- * @author Rinaldi
- */
 class Anggota extends Back_end {
 
     protected $auto_load_model = FALSE;

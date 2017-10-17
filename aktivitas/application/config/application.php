@@ -31,7 +31,7 @@ $config['another_profil_tablename'] = "sc_akrifwz.master_pegawai";
 $config['another_profil_properties']['partial_form_view'] = "back_bone/member/atlant/tr_pegawai_profil";
 $config['another_profil_properties']['form_config'] = array(
     "using_select2" => TRUE,
-    "input_name" => "id_pegawai",
+    "input_name" => "pegawai_id",
     "input_type" => "select",
     "additional_js" => array(
         "back_bone/member/atlant/js/tr_pegawai_profil_js",
@@ -193,4 +193,4 @@ $config['modul_action_configuration'] = array(
  * digunakan untuk memberikan role secara otomatis pada PNS ketika menambahkan PNS pada referensi data PNS
  * karena ketika menambahkan PNS aplikasi membuatkan username dan password secara otomatis
  */
-$config['id_role_pegawai_negeri_sipil'] = 6;
+$config['id_role_pegawai_negeri_sipil'] =5;

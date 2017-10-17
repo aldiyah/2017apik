@@ -7,7 +7,7 @@ class Msaktifitas extends Back_end {
     public $model = 'model_master_aktifitas';
 
     public function __construct() {
-        parent::__construct('kelola_master_aktifitas', 'Master Aktifitas');
+        parent::__construct('kelola_master_aktifitas', 'Daftar Aktifitas');
     }
 
     public function index() {
