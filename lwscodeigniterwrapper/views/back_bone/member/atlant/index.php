@@ -24,21 +24,16 @@ $is_developer = isset($is_developer) ? $is_developer : TRUE;
                     <p>Gunakan Formulir ini untuk melakukan pencarian pada halaman ini.</p>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <span class="fa fa-search"></span>
-                                    </div>
                                     <input type="text" name="keyword" value="<?php echo $keyword; ?>" class="form-control" placeholder="Silahkan masukkan kata kunci disini"/>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-primary">Cari</button>
+                                        <button class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+                                        <a href="<?php echo backbone_url('member/detail'); ?>" class="btn btn-default">
+                                            <span class="fa fa-plus"></span> Tambah baru
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="<?php echo backbone_url('member/detail'); ?>" class="btn btn-success btn-block">
-                                    <span class="fa fa-plus"></span> Tambah baru
-                                </a>
                             </div>
                         </div>
                     </form>
@@ -46,7 +41,7 @@ $is_developer = isset($is_developer) ? $is_developer : TRUE;
                 <div class="block">
                     <div class="dataTables_wrapper no-footer">
                         <div class="table-responsive">
-                            <table class="table no-footer" id="DataTables_Table_0">
+                            <table class="table table-condensed table-bordered table-striped no-footer" id="DataTables_Table_0">
                                 <thead>
                                     <tr role="row">
                                         <th>
@@ -61,14 +56,14 @@ $is_developer = isset($is_developer) ? $is_developer : TRUE;
                                         <th>
                                             Email
                                         </th>
-                                        <th width="25%">Aksi</th>
+                                        <th width="180">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if ($records != FALSE): ?>
                                         <?php foreach ($records as $key => $record): ?>
                                             <tr>
-                                                <td>
+                                                <td class="text-right">
                                                     <?php echo $next_list_number; ?>
                                                 </td>
                                                 <td>
@@ -80,16 +75,16 @@ $is_developer = isset($is_developer) ? $is_developer : TRUE;
                                                 <td>
                                                     <?php echo beautify_str($record->email_profil); ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group btn-group-sm">
-                                                        <?php if($record_active_column_name): ?>
-                                                        <a class="btn btn-default user-non-activation" href="javascript:void(0)" rel="<?php echo backbone_url("member/update_status_active") . "/" . $record->username; ?>">
-                                                            <?php if ($record->{$record_active_column_name} == '1'): ?>
-                                                                Non Aktifkan
-                                                            <?php else: ?>
-                                                                Aktifkan
-                                                            <?php endif; ?>
-                                                        </a>
+                                                        <?php if ($record_active_column_name): ?>
+                                                            <a class="btn btn-default user-non-activation" href="javascript:void(0)" rel="<?php echo backbone_url("member/update_status_active") . "/" . $record->username; ?>">
+                                                                <?php if ($record->{$record_active_column_name} == '1'): ?>
+                                                                    Non Aktifkan
+                                                                <?php else: ?>
+                                                                    Aktifkan
+                                                                <?php endif; ?>
+                                                            </a>
                                                         <?php endif; ?>
                                                         <?php if ($is_developer): ?>
                                                             <a class="btn btn-default" href="<?php echo backbone_url("user/role") . "/" . $record->id_user; ?>">
