@@ -59,11 +59,11 @@ $status = array('Draft', 'Pengajuan', 'Proses', 'Selesai');
                                             <td class="text-center"><?php echo $row->skpt_waktu; ?></td>
                                             <td class="text-center"><?php echo $row->real_kuantitas . '/' . $row->kuantitas; ?></td>
                                             <td class="text-right"><?php echo _format_number($row->real_biaya, 0) . '/' . _format_number($row->biaya, 0); ?></td>
-                                            <td class="text-center"><?php echo $row->kualitas / $row->skpt_waktu; ?></td>
+                                            <td class="text-center"><?php echo number_format($row->kualitas / $row->skpt_waktu, 2, ',', '.'); ?></td>
                                             <td class="text-center"><?php echo $status[$row->skpt_status]; ?></td>
                                             <td class="text-center">
                                                 <div class="btn-group btn-group-sm">
-                                                    <a class="btn btn-primary" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $row->skpt_id; ?>">Lihat</a>
+                                                    <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $row->skpt_id; ?>">Lihat</a>
                                                 </div>
                                             </td>
                                         </tr>

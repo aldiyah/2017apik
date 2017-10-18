@@ -238,35 +238,17 @@ $config['modul_action_configuration'] = array(
         "delete" => array(''),
         "read" => array('index')
     ),
-    "skp" => array(
-        "insert" => array('detail'),
-        "update" => array('detail', 'ajukan'),
-        "delete" => array('delete'),
-        "read" => array('index', 'lihat')
-    ),
-    "sskpt" => array(
-        "insert" => array('detail'),
-        "update" => array('detail', 'setujui'),
-        "delete" => array('delete'),
-        "read" => array('index', 'lihat')
-    ),
-    "rskpt" => array(
+    "jnsabsensi" => array(
         "insert" => array(''),
         "update" => array('detail'),
         "delete" => array(''),
-        "read" => array('index')
-    ),
-    "rskpb" => array(
-        "insert" => array(''),
-        "update" => array('detail', 'ajukan'),
-        "delete" => array(''),
-        "read" => array('index', 'lihat')
-    ),
-    "pskpb" => array(
-        "insert" => array(''),
-        "update" => array('detail', 'nilai'),
-        "delete" => array(''),
         "read" => array('index', 'detail')
+    ),
+    "absensi" => array(
+        "insert" => array(''),
+        "update" => array('lapor', 'validasi'),
+        "delete" => array(''),
+        "read" => array('index')
     )
 );
 

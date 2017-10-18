@@ -42,7 +42,16 @@ class Rskpb extends Back_end {
 
     public function detail($id = FALSE) {
         parent::detail($id, array('skpb_real_kuantitas', 'skpb_real_biaya'));
-        $this->set('skpb', $this->model_tr_skp_bulanan->get_realisasi($id));
+//        $this->set('skpb', $this->model_tr_skp_bulanan->get_realisasi($id));
+        $this->set("bread_crumb", array(
+            "back_end/" . $this->_name => $this->_header_title,
+            "#" => 'Laporan ' . $this->_header_title
+        ));
+    }
+
+    public function lihat($id = FALSE) {
+        parent::detail($id);
+//        $this->set('skpb', $this->model_tr_skp_bulanan->get_realisasi($id));
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => $this->_header_title,
             "#" => 'Laporan ' . $this->_header_title

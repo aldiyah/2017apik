@@ -2,3 +2,9 @@
 CI_Autocomplete\.php
 
 nbproject/
+aktivitas/application/logs/*\.php
+aktivitas/application/cache/
+presensi/application/logs/*\.php
+presensi/application/cache/
+skp/application/logs/*\.php
+skp/application/cache/

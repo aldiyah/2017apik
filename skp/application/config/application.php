@@ -255,13 +255,13 @@ $config['modul_action_configuration'] = array(
         "insert" => array(''),
         "update" => array('detail'),
         "delete" => array(''),
-        "read" => array('index')
+        "read" => array('index', 'detail')
     ),
     "rskpb" => array(
         "insert" => array(''),
         "update" => array('detail', 'ajukan'),
         "delete" => array(''),
-        "read" => array('index', 'lihat')
+        "read" => array('index', 'detail', 'lihat')
     ),
     "pskpb" => array(
         "insert" => array(''),

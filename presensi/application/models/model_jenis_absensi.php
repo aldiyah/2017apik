@@ -9,6 +9,8 @@
  * October 16, 2017
  */
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 include_once "entity/jenis_absensi.php";
 
 class Model_jenis_absensi extends Jenis_absensi {
@@ -17,10 +19,10 @@ class Model_jenis_absensi extends Jenis_absensi {
         parent::__construct();
     }
 
-    public function all($force_limit = FALSE, $force_offset = FALSE) {
+    public function all($conditions = FALSE, $force_limit = FALSE, $force_offset = FALSE) {
         return parent::get_all(array(
                     "absensi_nama"
-                        ), FALSE, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
+                        ), $conditions, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
     }
 
     public function get_like($keyword = FALSE) {
