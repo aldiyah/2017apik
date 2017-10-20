@@ -50,7 +50,7 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
 
         <div class="row">
             <marquee style="padding-top: 15px; color: #ec0850; font-size: 18px; text-shadow: 0 0 5px #fff;">
-                <strong>Pengumuman : </strong>Senin, 02-OKTOBER-2017 Akan dilaksanakan Apel Gabungan Memperingati hari Kesaktian Pancasila dan hari Batik Nasional. Tempat : Lapangan Cilenggang. Pakaian : Batik.
+                <strong>Pengumuman : </strong>Senin, 30-OKTOBER-2017 Akan dilaksanakan Apel Gabungan dan Apel Hari Sumpah Pemuda. Tempat : Lapangan Cilenggang. Pakaian : PDH Coklat.
             </marquee>
         </div>
         <div class="row">

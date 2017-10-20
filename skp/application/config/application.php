@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * @author lahir wisada <lahirwisada@gmail.com>
  * custom setting 
  */
-$config['appname'] = 'e-SKP';
+$config['appname'] = 'Aplikasi Penilaian Kinerja';
 $config['copyright'] = 'Copyright &copy; CV. Mitra Indokomp Sejahtera 2016,.';
 
 
@@ -233,41 +233,24 @@ $config['keyword_key_param'] = 'keyword';
 //    ),
 //);
 $config['modul_action_configuration'] = array(
-    "home" => array(
-        "insert" => array(''),
-        "update" => array(''),
-        "delete" => array(''),
-        "read" => array('index')
-    ),
+//    ga perlu didaftarkan jika cuma ini saja di controller
+//    "default" => array(
+//        "insert" => array('insert', 'detail'),
+//        "update" => array('update', 'detail'),
+//        "delete" => array('delete'),
+//        "read" => array('read', 'index', 'get_like')
+//    ),
     "skp" => array(
-        "insert" => array('detail'),
-        "update" => array('detail', 'ajukan'),
-        "delete" => array('delete'),
-        "read" => array('index', 'lihat')
+        "update" => array('ajukan')
     ),
     "sskpt" => array(
-        "insert" => array('detail'),
-        "update" => array('detail', 'setujui'),
-        "delete" => array('delete'),
-        "read" => array('index', 'lihat')
-    ),
-    "rskpt" => array(
-        "insert" => array(''),
-        "update" => array('detail'),
-        "delete" => array(''),
-        "read" => array('index', 'detail')
+        "update" => array('setujui')
     ),
     "rskpb" => array(
-        "insert" => array(''),
-        "update" => array('detail', 'ajukan'),
-        "delete" => array(''),
-        "read" => array('index', 'detail', 'lihat')
+        "update" => array('ajukan')
     ),
     "pskpb" => array(
-        "insert" => array(''),
-        "update" => array('detail', 'nilai'),
-        "delete" => array(''),
-        "read" => array('index', 'detail')
+        "update" => array('nilai')
     )
 );
 

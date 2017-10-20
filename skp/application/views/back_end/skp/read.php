@@ -15,7 +15,7 @@ $status = array('Draft', 'Pengajuan', 'Proses', 'Selesai');
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading ui-draggable-handle">                                
-                <h3 class="panel-title">Laporan <?php echo $header_title; ?></h3>
+                <h3 class="panel-title">Formulir <?php echo $header_title; ?></h3>
             </div>
             <div class="panel-body">
                 <table>
@@ -68,16 +68,36 @@ $status = array('Draft', 'Pengajuan', 'Proses', 'Selesai');
                     </thead>
                     <tbody>
                         <?php if ($skpb): ?>
+                            <?php
+                            $total_kuantitas = 0;
+                            $total_biaya = 0;
+                            $total_real_kuantitas = 0;
+                            $total_real_biaya = 0;
+                            ?>
                             <?php foreach ($skpb as $row) : ?>
                                 <tr>
                                     <td><?php echo array_month($row->skpb_bulan); ?></td>
                                     <td class="text-center"><?php echo $row->skpb_kuantitas; ?></td>
-                                    <td class="text-right"><?php echo rupiah_display($row->skpb_biaya, 0); ?></td>
+                                    <td class="text-right"><span class="pull-left">Rp. </span><?php echo _format_number($row->skpb_biaya, 0); ?></td>
                                     <td class="text-center"><?php echo $row->skpb_real_kuantitas; ?></td>
-                                    <td class="text-right"><?php echo rupiah_display($row->skpb_real_biaya, 0); ?></td>
+                                    <td class="text-right"><span class="pull-left">Rp. </span><?php echo _format_number($row->skpb_real_biaya, 0); ?></td>
                                     <td class="text-center"><?php echo intval($row->skpb_kualitas); ?></td>
                                 </tr>
+                                <?php
+                                $total_kuantitas += $row->skpb_kuantitas;
+                                $total_biaya += $row->skpb_biaya;
+                                $total_real_kuantitas += $row->skpb_real_kuantitas;
+                                $total_real_biaya += $row->skpb_real_biaya;
+                                ?>
                             <?php endforeach; ?>
+                            <tr class="table-footer">
+                                <td>Total</td>
+                                <td class="text-center"><?php echo $total_kuantitas; ?></td>
+                                <td class="text-right"><span class="pull-left">Rp. </span><?php echo _format_number($total_biaya, 0); ?></td>
+                                <td class="text-center"><?php echo $total_real_kuantitas; ?></td>
+                                <td class="text-right"><span class="pull-left">Rp. </span><?php echo _format_number($total_real_biaya, 0); ?></td>
+                                <td class="text-center"><?php echo intval($row->skpb_kualitas); ?></td>
+                            </tr>
                         <?php else: ?>
                             <tr>
                                 <td colspan="6">Belum ada sasaran kerja bulanan...!</td>
@@ -87,14 +107,7 @@ $status = array('Draft', 'Pengajuan', 'Proses', 'Selesai');
                 </table>
             </div>
             <div class="panel-footer">
-                <form method="POST">
-                    <?php echo form_hidden('skpt_id', $skpt->skpt_id); ?>
-                    <div class="pull-right">
-                        <input type="submit" name="tolak" class="btn-danger btn" value="Tolak">
-                        <input type="submit" name="setuju" class="btn-success btn" value="Setuju">
-                    </div>
-                    <a href="<?php echo base_url("back_end/" . $active_modul . "/index"); ?>" class="btn-default btn">Batal / Kembali</a>
-                </form>
+                <a href="<?php echo base_url("back_end/" . $active_modul . "/index"); ?>" class="btn-default btn">Batal / Kembali</a>
             </div>
         </div>
     </div>

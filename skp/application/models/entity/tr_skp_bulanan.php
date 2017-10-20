@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tr_skp_bulanan extends LWS_Model {
+class Tr_skp_bulanan extends MY_Model {
 
     public $sort_by = 'skpb_id';
     public $sort_mode = 'asc';

@@ -4,11 +4,10 @@ $header_title = isset($header_title) ? $header_title : '';
 $message_error = isset($message_error) ? $message_error : '';
 $records = isset($records) ? $records : FALSE;
 $field_id = isset($field_id) ? $field_id : FALSE;
-$total_record = isset($total_record) ? $total_record : FALSE;
+$paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
 ?>
-
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -23,6 +22,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                             <input type="text" name="keyword" value="<?php echo $keyword; ?>" class="form-control" placeholder="Silahkan masukkan kata kunci disini"/>
                             <div class="input-group-btn">
                                 <button class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+                                <?php if ($access_rules[1][0] == 'allow'): ?>
+                                    <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-default"><span class="fa fa-plus"></span> Tambah</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -32,41 +34,31 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                         <thead>
                             <tr role="row">
                                 <th>No</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Tahun</th>
-                                <th>Bulan</th>
-                                <th>Kuantitas</th>
-                                <th>Biaya</th>
-                                <th>Kualitas</th>
-                                <th>Aksi</th>
+                                <th>Nama Perilaku</th>
+                                <th width="120">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($records): ?>
-                                <?php foreach ($records as $row) : ?>
+                            <?php if ($records != FALSE): ?>
+                                <?php foreach ($records as $key => $record): ?>
                                     <tr>
-                                        <td class="text-right"><?php echo $next_list_number++; ?></td>
-                                        <td><?php echo $row->skpt_kegiatan; ?></td>
-                                        <td class="text-center"><?php echo $row->skpt_tahun; ?></td>
-                                        <td class="text-center"><?php echo array_month($row->skpb_bulan); ?></td>
-                                        <td class="text-center"><?php echo $row->skpb_real_kuantitas . '/' . $row->skpb_kuantitas; ?></td>
-                                        <td class="text-right"><?php echo _format_number($row->skpb_real_biaya, 0) . '/' . _format_number($row->skpb_biaya, 0); ?></td>
-                                        <td class="text-center"><?php echo intval($row->skpb_kualitas); ?></td>
+                                        <td class="text-right"><?php echo $next_list_number++ ?></td>
+                                        <td><?php echo beautify_str($record->perilaku_nama) ?></td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm">
-                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/update") . "/" . $row->skpb_id; ?>">Lihat Laporan</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->perilaku_id; ?>">Ubah</a>
+                                                <a class="btn btn-default btn-hapus-roww" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->perilaku_id; ?>">Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="9">Belum ada data...!</td>
+                                    <td colspan="3"> Kosong / Data tidak ditemukan. </td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
-                    Total ada <?php echo $total_record ?> data.
                 </div>
             </div>
         </div>

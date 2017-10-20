@@ -43,7 +43,7 @@ class Pskpb extends Back_end {
         ));
     }
 
-    public function detail($id = FALSE) {
+    public function update($id = FALSE) {
         parent::detail($id, array("skpb_kualitas"));
         $this->set('pegawai_id', $this->pegawai_id);
         $this->set('skpb', $this->model_tr_skp_bulanan->get_realisasi($id));

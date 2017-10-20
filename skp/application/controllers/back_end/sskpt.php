@@ -8,14 +8,34 @@ class Sskpt extends Back_end {
 
     public function __construct() {
         parent::__construct('kelola_persetujuan_skpt', 'Persetujuan SKP Tahunan');
-        $this->load->model('model_tr_skp_bulanan');
+        $this->load->model(array('model_tr_skp_bulanan', 'model_master_pegawai'));
     }
 
     public function index() {
-        $bawahan[0] = array(0);
-        $bawahan[1] = array(2);
-        $bawahan[2] = array(3);
-        $thn = $this->input->post('tahun');
+        $profil = array(
+            'nip' => $this->pegawai_nip,
+            'kd_eselon' => $this->kode_eselon,
+            'kd_instansi' => $this->kode_instansi,
+            'kd_organisasi' => $this->kode_organisasi,
+            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
+            'kd_unit_organisasi' => $this->kode_unit_organisasi
+        );
+        $data = $this->_call_api('pegawai/get_bawahan', $profil);
+        $bawahan = isset($data['response']) ? $data['response'] : FALSE;
+        $arr_nip_bawahan = array();
+        if ($bawahan) {
+            foreach ($bawahan as $row) {
+                $arr_nip_bawahan[] = $row->nip;
+            }
+        }
+        $data_bawahan = $this->model_master_pegawai->get_all_bawahan_by_nip(implode("','", $arr_nip_bawahan))->record_set;
+        $arr_id_bawahan = array();
+        if ($data_bawahan) {
+            foreach ($data_bawahan as $row) {
+                $arr_id_bawahan[] = $row->pegawai_id;
+            }
+        }
+        $thn = $this->input->get('tahun', TRUE);
         $tahun = $thn ? $thn : date('Y');
         $this->get_attention_message_from_session();
         if ($this->auto_load_model && $this->model != '' && $this->before_load_paging()) {
@@ -25,11 +45,12 @@ class Sskpt extends Back_end {
                 $this->model_tr_skp_tahunan->sort_mode = $sort_mode;
             }
             $this->model_tr_skp_tahunan->change_offset_param("currpage_" . $this->cmodul_name);
-            $records = $this->model_tr_skp_tahunan->get_persetujuan($bawahan[$this->pegawai_id], $tahun);
+            $records = $this->model_tr_skp_tahunan->get_persetujuan($arr_id_bawahan, $tahun);
             $records->record_set = $this->after_get_paging($records->record_set);
             $paging_set = $this->get_paging($this->get_current_location(), $records->record_found, $this->default_limit_paging, $this->cmodul_name);
             $this->set('records', $records->record_set);
             $this->set('keyword', $records->keyword);
+            $this->set('tahun', $tahun);
             $this->set('field_id', $this->model_tr_skp_tahunan->primary_key);
             $this->set('paging_set', $paging_set);
             $this->set('sort_url_query', $sort_url_query);
@@ -43,18 +64,18 @@ class Sskpt extends Back_end {
         ));
     }
 
-    public function lihat($id = FALSE) {
+    public function read($id = FALSE) {
         $info = $this->input->post();
         if ($info) {
             if (array_key_exists('tolak', $info)) {
-                if ($this->model_tr_skp_tahunan->update_status($id, 2)) {
+                if ($this->model_tr_skp_tahunan->update_status($id, 3)) {
                     $this->set_attention_message('SKP berhasil ditolak...');
                 } else {
                     $this->set_attention_message('SKP gagal ditolak...');
                 }
             }
             if (array_key_exists('setuju', $info)) {
-                if ($this->model_tr_skp_tahunan->update_status($id, 3)) {
+                if ($this->model_tr_skp_tahunan->update_status($id, 2)) {
                     $this->set_attention_message('SKP berhasil disetujui...');
                 } else {
                     $this->set_attention_message('SKP gagal disetujui...');

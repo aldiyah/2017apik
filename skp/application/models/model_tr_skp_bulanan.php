@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 include_once "entity/tr_skp_bulanan.php";
 
 class Model_tr_skp_bulanan extends Tr_skp_bulanan {
@@ -9,16 +10,17 @@ class Model_tr_skp_bulanan extends Tr_skp_bulanan {
         parent::__construct();
     }
 
-    public function all($id_pegawai = FALSE, $tahun = FALSE, $force_limit = FALSE, $force_offset = FALSE) {
+    public function all($id_pegawai = FALSE, $tahun = FALSE, $bulan = FALSE, $force_limit = FALSE, $force_offset = FALSE) {
         $conditions = array(
             "sc_skp.tr_skp_tahunan.pegawai_id = '" . $id_pegawai . "'",
             "sc_skp.tr_skp_tahunan.skpt_tahun = '" . $tahun . "'",
+            "sc_skp.tr_skp_bulanan.skpb_bulan = '" . $bulan . "'",
             "sc_skp.tr_skp_bulanan.skpb_kuantitas > 0",
             "sc_skp.tr_skp_tahunan.skpt_status > 1"
         );
         $this->db->order_by('sc_skp.tr_skp_tahunan.skpt_tahun', 'asc');
         $this->db->order_by('sc_skp.tr_skp_bulanan.skpb_bulan', 'asc');
-        return parent::get_all(array("skpt_id"), $conditions, TRUE, FALSE, 1, TRUE, $force_limit, $force_offset);
+        return parent::get_all(array("skpt_id"), $conditions, TRUE, TRUE, 1, TRUE, $force_limit, $force_offset);
     }
 
     public function get_data_setahun($skpt_id, $full = FALSE) {

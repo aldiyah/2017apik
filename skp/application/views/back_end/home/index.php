@@ -11,7 +11,6 @@ $pegawai_nip = isset($pegawai_nip) ? $pegawai_nip : '-';
 $total_tpp = isset($total_tpp) ? $total_tpp : 0;
 $total_skp_diterima = isset($total_skp_diterima) ? $total_skp_diterima : 0;
 $total_skp_ditolak = isset($total_skp_ditolak) ? $total_skp_ditolak : 0;
-//var_dump($records);
 ?>
 <div class="page-content-wrap">
     <div class="row">
