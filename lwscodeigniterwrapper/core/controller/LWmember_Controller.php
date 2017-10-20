@@ -481,7 +481,7 @@ class LWmember_Controller extends LW_Controller {
 
     public function logout() {
         $this->lmanuser->logout($this->my_side);
-        redirect("/");
+        redirect("../");
     }
 
 }

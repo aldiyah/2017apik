@@ -705,7 +705,7 @@ class LWS_Model extends CI_Model {
         if (!$before_save) {
             return FALSE;
         }
-        
+
         $this->attribute_type_test();
 
         if (!$primary_key_value) {
