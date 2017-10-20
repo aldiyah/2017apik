@@ -16,7 +16,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Rekap Bulanan <?php echo array_month($bulan) . ' ' . $tahun ?></h3>
+                    <h3 class="panel-title">Rekap Bulan <?php echo array_month($bulan) . ' ' . $tahun ?></h3>
                 </div>
                 <div class="panel-body">
                     <?php if ($records): ?>

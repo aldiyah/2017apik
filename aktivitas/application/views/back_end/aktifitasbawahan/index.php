@@ -17,43 +17,41 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <h3 class="panel-title">Daftar <?php echo $header_title . ' bulan ' . array_month($bulan) . ' ' . $tahun ?></h3>
             </div>
             <div class="panel-body">
-                <div class="block">
+                <div class="col-md-12">
                     <?php echo load_partial("back_end/shared/attention_message"); ?>
-                    <div class="col-md-12">
-                        <form class="form-inline" method="post">
-                            <label for="bulan" class="control-label">Pilih Bulan</label>
-                            <?php
-                            echo form_dropdown('bulan', array_month(), set_value('bulan', $bulan), 'class="form-control"');
-                            ?>
-                            <label for="tahun" class="control-label">Pilih Tahun</label>
-                            <?php
-                            echo dropdown_tahun('tahun', $tahun, 5, 'class="form-control"');
-                            ?>
-                            <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
-                        </form>
-                    </div>
+                    <form class="form-panel form-inline">
+                        <label for="bulan" class="control-label">Pilih Bulan</label>
+                        <?php
+                        echo form_dropdown('bulan', array_month(), set_value('bulan', $bulan), 'class="form-control"');
+                        ?>
+                        <label for="tahun" class="control-label">Pilih Tahun</label>
+                        <?php
+                        echo dropdown_tahun('tahun', $tahun, 5, 'class="form-control"');
+                        ?>
+                        <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+                    </form>
                 </div>
-                <!--                <div class="block">
-                                    Daftar aktifitas bawahan bulan <?php echo array_month($bulan) . ' ' . $tahun ?>
-                                </div>-->
-                <?php if ($records): ?>
-                    <div class="panel-body panel-body-table list-group list-group-contacts border-bottom">
-                        <?php foreach ($records as $pegawai) : ?>
-                            <div class="list-group-item">
-                                <img src="<?php echo base_url() ?>_assets/uploads/images/users/pria.png" alt="<?php echo $pegawai->pegawai_nama; ?>"/>
-                                <span class="contacts-title"><?php echo beautify_str($pegawai->pegawai_nama); ?></span>
-                                <div class="list-group-controls">
-                                    <button class="btn btn-default" onclick="lihatAktifitas(this, <?php echo $pegawai->pegawai_id; ?>)">Lihat Aktivitas</button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php else: ?>
-                    <div class="panel-body">
-                        Belum ada data...
-                    </div>
-                <?php endif; ?>
             </div>
+            <!--                <div class="block">
+                                Daftar aktifitas bawahan bulan <?php echo array_month($bulan) . ' ' . $tahun ?>
+                            </div>-->
+            <?php if ($records): ?>
+                <div class="panel-body panel-body-table list-group list-group-contacts border-bottom">
+                    <?php foreach ($records as $pegawai) : ?>
+                        <div class="list-group-item">
+                            <img src="<?php echo base_url() ?>_assets/uploads/images/users/pria.png" alt="<?php echo $pegawai->pegawai_nama; ?>"/>
+                            <span class="contacts-title"><?php echo beautify_str($pegawai->pegawai_nama); ?></span>
+                            <div class="list-group-controls">
+                                <button class="btn btn-default" onclick="lihatAktifitas(this, <?php echo $pegawai->pegawai_id; ?>)">Lihat Aktivitas</button>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="panel-body">
+                    Belum ada data...
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

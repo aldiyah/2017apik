@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 /* custom setting */
 
-$config['appname'] = 'Aplikasi Kinerja';
+$config['appname'] = 'Aplikasi Penilaian Kinerja';
 $config['copyright'] = 'Copyright CV. Mitra Indokomp Sejahtera &copy; 2017.';
 
 

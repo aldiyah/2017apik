@@ -16,10 +16,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <h3 class="panel-title">Daftar <?php echo $header_title; ?></h3>
             </div>
             <div class="panel-body">
-                <div class="block">
-                    Daftar aktivitas bawahan yang harus divalidasi.<br />
-                    <?php echo load_partial("back_end/shared/attention_message"); ?>
-                </div>
+                Daftar aktivitas bawahan yang harus divalidasi.<br />
+                <?php echo load_partial("back_end/shared/attention_message"); ?>
+            </div>
+            <div class="panel-body">
                 <?php if ($records): ?>
                     <table class="table table-striped table-condensed table-bordered table-top no-footer" id="DataTables_Table_0">
                         <thead>
@@ -55,9 +55,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                         </tbody>
                     </table>
                 <?php else: ?>
-                    <div class="block">
-                        Belum ada data...
-                    </div>
+                    Belum ada data...
                 </div>
             <?php endif; ?>
         </div>

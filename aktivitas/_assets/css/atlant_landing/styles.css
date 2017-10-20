@@ -358,7 +358,7 @@ a:hover {
 .page-container .page-content .page-content-wrap .page-content-holder {
     width: 1100px;
     margin: 0px auto;
-    padding-top: 60px;
+    padding-top: 50px;
     zoom: 1;
 }
 .page-container .page-content .page-content-wrap .page-content-holder:before,
@@ -466,7 +466,7 @@ a:hover {
 .page-container .page-content .page-content-wrap .page-content-holder .block-heading {
     float: left;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .page-container .page-content .page-content-wrap .page-content-holder .block-heading h1,
 .page-container .page-content .page-content-wrap .page-content-holder .block-heading h2,
@@ -1220,7 +1220,7 @@ a:hover {
     padding: 20px 0px !important;
 }
 .page-container .padding-v-30 {
-    padding: 30px 0px !important;
+    padding: 10px 0px !important;
 }
 .page-container .bg-light {
     background-color: #F5F5F5;

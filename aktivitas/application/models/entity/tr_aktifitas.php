@@ -34,8 +34,8 @@ class tr_aktifitas extends MY_Model {
         array("tr_aktifitas_selesai", "required"),
         array("tr_aktifitas_keterangan", "required|min_length[3]|max_length[200]"),
         array("tr_aktifitas_dokumen", ""),
-        array("tr_valid_satu", "required|numeric"),
-        array("tr_valid_dua", "required|numeric")
+        array("tr_valid_satu", "numeric"),
+        array("tr_valid_dua", "numeric")
     );
     protected $related_tables = array(
         "master_aktifitas" => array(
