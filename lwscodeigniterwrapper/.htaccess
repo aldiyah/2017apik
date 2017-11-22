@@ -1,7 +1,0 @@
-
-##
-# untuk mode generator maka matikan script dibawah ini dan hapus komentar ini
-##
-
-#Deny from all
-DirectoryIndex index.php

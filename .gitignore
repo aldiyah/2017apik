@@ -8,3 +8,7 @@ presensi/application/logs/*\.php
 presensi/application/cache/
 skp/application/logs/*\.php
 skp/application/cache/
+
+lws_api/
+
+lwscodeigniterwrapper/
