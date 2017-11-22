@@ -18,7 +18,9 @@ if (!defined('BASEPATH'))
   |
  */
 
-$config['base_url'] = "http://" . $_SERVER['SERVER_NAME']."/2017apik/presensi";
+$config['base_url'] = "http://" . $_SERVER['SERVER_NAME'] . "/presensi";
+
+date_default_timezone_set('Asia/Jakarta');
 
 /*
   |--------------------------------------------------------------------------

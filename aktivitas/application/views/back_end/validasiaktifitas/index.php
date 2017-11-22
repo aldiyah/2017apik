@@ -16,44 +16,45 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <h3 class="panel-title">Daftar <?php echo $header_title; ?></h3>
             </div>
             <div class="panel-body">
-                Daftar aktivitas bawahan yang harus divalidasi.<br />
+                Daftar aktivitas bawahan yang harus divalidasi.<br>
                 <?php echo load_partial("back_end/shared/attention_message"); ?>
-            </div>
-            <div class="panel-body">
+                <br>
                 <?php if ($records): ?>
-                    <table class="table table-striped table-condensed table-bordered table-top no-footer" id="DataTables_Table_0">
-                        <thead>
-                            <tr>
-                                <th>Nomor</th>
-                                <th>Pegawai</th>
-                                <th width="50%">Aktivitas</th>
-                                <th>Output</th>
-                                <th width="130">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($records as $row) : ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed table-bordered table-top no-footer" id="DataTables_Table_0">
+                            <thead>
                                 <tr>
-                                    <td class="text-right"><?php echo $next_list_number++; ?></td>
-                                    <td><?php echo $row->pegawai_nama . '<br>' . $row->pegawai_nip; ?></td>
-                                    <td>
-                                        <?php echo $row->aktifitas_nama . ' pada tanggal ' . string_to_date($row->tr_aktifitas_tanggal) . ' jam ' . $row->tr_aktifitas_mulai . ' selama ' . $row->aktifitas_waktu . ' menit.'; ?>
-                                        <?php if (trim($row->tr_aktifitas_dokumen) != ""): ?>
-                                            <br />
-                                            <a href="<?php echo base_url() . "_assets/uploads/aktifitas/" . $row->tr_aktifitas_id . "/" . $row->tr_aktifitas_dokumen; ?>" target="_blank"><span class="fa fa-download"></span> Lihat Dokumen Pendukung</a>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td class="text-center"><?php echo $row->aktifitas_output; ?></td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm btn-group-icon">
-                                            <?php echo anchor(backend_url('validasiaktifitas/validasi/' . $row->tr_aktifitas_id), 'Setujui', 'class="btn btn-default"'); ?>
-                                            <?php echo anchor(backend_url('validasiaktifitas/reject/' . $row->tr_aktifitas_id), 'Tolak', 'class="btn btn-default"'); ?>
-                                        </div>
-                                    </td>
+                                    <th>Nomor</th>
+                                    <th>Pegawai</th>
+                                    <th width="50%">Aktivitas</th>
+                                    <th>Output</th>
+                                    <th width="130">Aksi</th>
                                 </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($records as $row) : ?>
+                                    <tr>
+                                        <td class="text-right"><?php echo $next_list_number++; ?></td>
+                                        <td><?php echo $row->pegawai_nama . '<br>' . $row->pegawai_nip; ?></td>
+                                        <td>
+                                            <?php echo $row->aktifitas_nama . ' pada tanggal ' . string_to_date($row->tr_aktifitas_tanggal) . ' jam ' . $row->tr_aktifitas_mulai . ' selama ' . $row->aktifitas_waktu . ' menit.'; ?>
+                                            <?php if (trim($row->tr_aktifitas_dokumen) != ""): ?>
+                                                <br />
+                                                <a href="<?php echo base_url() . "_assets/uploads/aktifitas/" . $row->tr_aktifitas_id . "/" . $row->tr_aktifitas_dokumen; ?>" target="_blank"><span class="fa fa-download"></span> Lihat Dokumen Pendukung</a>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="text-center"><?php echo $row->tr_aktifitas_volume . ' ' . ucwords($row->aktifitas_output) ?></td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm btn-group-icon">
+                                                <?php echo anchor(backend_url('validasiaktifitas/validasi/' . $row->tr_aktifitas_id), 'Setujui', 'class="btn btn-default"'); ?>
+                                                <?php echo anchor(backend_url('validasiaktifitas/reject/' . $row->tr_aktifitas_id), 'Tolak', 'class="btn btn-default"'); ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 <?php else: ?>
                     Belum ada data...
                 </div>

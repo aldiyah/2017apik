@@ -11,8 +11,7 @@ RewriteEngine on
 ##
 
 #RewriteBase /
-
-RewriteBase /2017apik/presensi
+RewriteBase /presensi/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

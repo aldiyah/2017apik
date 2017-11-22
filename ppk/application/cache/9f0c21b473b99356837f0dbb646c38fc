@@ -1,0 +1,349 @@
+1511229083TS---><!DOCTYPE html>
+<html lang="en">
+    <head>        
+        <!-- META SECTION -->
+        <title>Aplikasi Penilaian Kinerja</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="Lahir Wisada Santoso" />
+
+        <link rel="icon" href="http://apik.bkpptangsel.acs/_assets/img/atlant/favicon.ico" type="image/x-icon" />
+
+        <link rel="apple-touch-icon" sizes="57x57" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/favicon-16x16.png">
+        <link rel="manifest" href="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="http://apik.bkpptangsel.acs/_assets/img/atlant/ico/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- END META SECTION -->
+
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="http://apik.bkpptangsel.acs/_assets/css/atlant/theme-night.css"/>
+        <!-- EOF CSS INCLUDE -->
+
+        <link type="text/css" rel="stylesheet" href="http://apik.bkpptangsel.acs/_assets/css/all_css.css" media="" />
+    </head>
+    <body class="">
+        <!-- START PAGE CONTAINER -->
+        <div class="page-container page-navigation-top-fixed">
+
+            <!-- START PAGE SIDEBAR -->
+            <div class="page-sidebar page-sidebar-fixed scroll">
+                <!-- START X-NAVIGATION -->
+                
+<ul class="x-navigation">
+    <li class="xn-logo">
+        <a href="http://apik.bkpptangsel.acs/ppk/">BKPP</a>
+        <a href="#" class="x-navigation-control"></a>
+    </li>
+    <li class="xn-profile">
+                    <div class="profile">
+                <div class="profile-image" style="border:none;">
+                    <img style="border:none;" src="http://apik.bkpptangsel.acs/_assets/uploads/images/users/197611092002121007.jpg" alt="NASHRI ALHAMIDI"/>
+                </div>
+                <div class="profile-data">
+                    <div class="profile-data-name" style="font-weight: bold;">NASHRI ALHAMIDI</div>
+                    <div class="profile-data-name" style="font-size: 11px;">NIP. 197611092002121007</div>
+                    <div class="profile-data-name" style="font-size: 11px;"></div>
+                </div>
+                <div class="profile-controls">
+                                    </div>
+            </div>
+                                                                                
+    </li>
+    <li class="xn-title">Menu Utama</li>
+    <li><a href="http://apik.bkpptangsel.acs/ppk/"><span class="fa fa-circle-o"></span> Beranda</span></a></li>    <li ><a href="http://apik.bkpptangsel.acs/ppk/back_end/skp"><span class="fa fa-circle-o"></span> Sasaran Kerja Pegawai</span></a></li><li ><a href="http://apik.bkpptangsel.acs/ppk/back_end/rskpt"><span class="fa fa-circle-o"></span> Realisasi SKP Tahunan</span></a></li><li class=" active "><a href="http://apik.bkpptangsel.acs/ppk/back_end/rskpb"><span class="fa fa-circle-o"></span> Realisasi SKP Bulanan</span></a></li><li ><a href="http://apik.bkpptangsel.acs/ppk/back_end/sskpt"><span class="fa fa-circle-o"></span> SKP Tahunan Bawahan</span></a></li><li ><a href="http://apik.bkpptangsel.acs/ppk/back_end/pskpb"><span class="fa fa-circle-o"></span> Penilaian SKP Bulanan</span></a></li><li ><a href="http://apik.bkpptangsel.acs/ppk/back_end/perilaku"><span class="fa fa-circle-o"></span> Penilaian Perilaku</span></a></li>    <li class="xn-title">Aplikasi Lain</li>
+        <li><a href="http://apik.bkpptangsel.acs/ppk/back_end/home/to_presensi"><span class="fa  fa-calendar"></span> Aplikasi Presensi</span></a></li>        <li><a href="http://apik.bkpptangsel.acs/ppk/back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aplikasi Aktivitas</span></a></li></ul>                <!-- END X-NAVIGATION -->
+            </div>
+            <!-- END PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                <!-- START X-NAVIGATION VERTICAL -->
+                
+<ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+    <!-- TOGGLE NAVIGATION -->
+    <li style="width: 90%;">
+    <marquee style="padding-top: 15px; color: #ec0850; font-size: 18px; text-shadow: 0 0 5px #fff;">
+        <strong>Pengumuman : </strong>Jum'at, 24-NOVEMBER-2017 Akan dilaksanakan Apel Gabungan dalam rangka "Memperingati HUT Kota Tangerang Selatan". Tempat : Lapangan Cilenggang. Pakaian : Batik KOPRI.
+    </marquee>
+</li>
+<!-- END TOGGLE NAVIGATION -->
+<!-- SEARCH -->
+<!--    <li class="xn-search">
+        <form role="form">
+            <input type="text" name="search" placeholder="Search..."/>
+        </form>
+    </li>   -->
+<!-- END SEARCH -->
+<li class="xn-icon-button pull-right">
+            <!-- SIGN OUT -->
+        <!--<a href="http://apik.bkpptangsel.acs/ppk/logout" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>-->
+        <a href="http://apik.bkpptangsel.acs/ppk/logout" data-box="#mb-signout"><span class="fa fa-sign-out"></span> Keluar</a>
+        <!-- END SIGN OUT -->
+    </li>
+</ul>                <!-- END X-NAVIGATION VERTICAL -->                     
+
+                <!-- START BREADCRUMB -->
+                <ul class="breadcrumb">
+    <li><a href="http://apik.bkpptangsel.acs/ppk/">Home</a></li>
+                                        <li class="active">Realisasi SKP Bulanan</li>
+                            
+</ul>                <!-- END BREADCRUMB -->                       
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">                                
+                <h3 class="panel-title">Realisasi SKP Bulanan</h3>
+            </div>
+            <div class="panel-body">
+                                <form class="form-panel">
+                    <div class="input-group">
+                        <input type="text" name="keyword" style="width: calc(100% - 145px);" value="" class="form-control" placeholder="Silahkan masukkan kata kunci disini"/>
+                        <select name="bulan" class="form-control" style="width: 90px;">
+<option value="1">Januari</option>
+<option value="2">Februari</option>
+<option value="3">Maret</option>
+<option value="4">April</option>
+<option value="5">Mei</option>
+<option value="6">Juni</option>
+<option value="7">Juli</option>
+<option value="8">Agustus</option>
+<option value="9">September</option>
+<option value="10">Oktober</option>
+<option value="11" selected="selected">November</option>
+<option value="12">Desember</option>
+</select>                        <select name="tahun" class="form-control" style="width: 55px;">
+<option value="2012">2012</option>
+<option value="2013">2013</option>
+<option value="2014">2014</option>
+<option value="2015">2015</option>
+<option value="2016">2016</option>
+<option value="2017" selected="selected">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+<option value="2020">2020</option>
+<option value="2021">2021</option>
+<option value="2022">2022</option>
+</select>                        <div class="input-group-btn">
+                            <button class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+                            <a href="http://apik.bkpptangsel.acs/ppk/back_end/rskpb/laporan/2017/11" class="btn btn-default"><span class="fa fa-print"></span> Laporan</a>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-condensed table-striped table-hover">
+                        <thead>
+                            <tr role="row">
+                                <th rowspan="2">No</th>
+                                <th rowspan="2">Nama Kegiatan</th>
+                                <th colspan="3">Target</th>
+                                <th colspan="3">Realisasi</th>
+                                <th rowspan="2">Penghi-<br>tungan</th>
+                                <th rowspan="2">Nilai<br>Capaian<br>SKP</th>
+                                <th rowspan="2">Status</th>
+                                <th rowspan="2" width="80" class="text-center">Aksi</th>
+                            </tr>
+                            <tr>
+                                <th>Kuantitas</th>
+                                <th>Kualitas</th>
+                                <th width="120">Biaya</th>
+                                <th>Kuantitas</th>
+                                <th>Kualitas</th>
+                                <th width="120">Biaya</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                                                                                                                                    <tr>
+                                        <td class="text-right">1</td>
+                                        <td>Melaksanakan sistem penggajian</td>
+                                        <td class="text-center">1 Laporan</td>
+                                        <td class="text-center">100</td>
+                                        <td class="text-right"><span class="pull-left">Rp. </span>0</td>
+                                        <td class="text-center">1 Laporan</td>
+                                        <td class="text-center">90</td>
+                                        <td class="text-right"><span class="pull-left">Rp. </span>0</td>
+                                        <td class="text-center">266</td>
+                                        <td class="text-center">88,67</td>
+                                        <td class="text-center">Selesai</td>
+                                        <td class="text-center">
+                                            <!--<div class="btn-group btn-group-sm">-->
+                                                                                            <a class="btn btn-sm btn-default" href="http://apik.bkpptangsel.acs/ppk/back_end/rskpb/read/11">Lihat</a>
+                                                                                        <!--</div>-->
+                                        </td>
+                                    </tr>
+                                                                                                        <tr>
+                                        <td class="text-right">2</td>
+                                        <td>Menetapkan Laporan Kinerja Keuangan dan Neraca Aset</td>
+                                        <td class="text-center">1 Laporan</td>
+                                        <td class="text-center">100</td>
+                                        <td class="text-right"><span class="pull-left">Rp. </span>0</td>
+                                        <td class="text-center">1 Laporan</td>
+                                        <td class="text-center">80</td>
+                                        <td class="text-right"><span class="pull-left">Rp. </span>0</td>
+                                        <td class="text-center">256</td>
+                                        <td class="text-center">85,33</td>
+                                        <td class="text-center">Selesai</td>
+                                        <td class="text-center">
+                                            <!--<div class="btn-group btn-group-sm">-->
+                                                                                            <a class="btn btn-sm btn-default" href="http://apik.bkpptangsel.acs/ppk/back_end/rskpb/read/23">Lihat</a>
+                                                                                        <!--</div>-->
+                                        </td>
+                                    </tr>
+                                                                <tr style="font-weight: bold;background:#f1f5f9;">
+                                    <td colspan="9" class="text-center">Nilai Capaian SKP</td>
+                                    <td class="text-center">87,00</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                                    </tbody>
+                    </table>
+                    Total ada 2 data
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->                                
+            </div>            
+            <!-- END PAGE CONTENT -->
+        </div>
+        <!-- END PAGE CONTAINER -->
+
+        <!-- MESSAGE BOX-->
+        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                    <div class="mb-content">
+                        <p>Anda yakin melakukan log out?</p>                    
+                        <p>Tekan Tidak untuk batal log out. Tekan Ya untuk menutup sesi saat ini.</p>
+                    </div>
+                    <div class="mb-footer">
+                        <div class="pull-right">
+                            <a href="http://apik.bkpptangsel.acs/ppk/back_bone/member/logout" class="btn btn-success btn-lg">Ya</a>
+                            <button class="btn btn-default btn-lg mb-control-close">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="message-box animated fadeIn" data-sound="alert" id="mb-success">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-check"></span> Input data sukses...!</div>
+                    <div class="mb-content">
+                        <p>Data yang Anda masukkan sudah tersimpan di database.</p>
+                    </div>
+                    <div class="mb-footer">
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-lg mb-control-close">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MESSAGE BOX-->
+
+        <div id="whateverelement"></div>
+
+        <!-- START PRELOADS -->
+        <audio id="audio-alert" src="http://apik.bkpptangsel.acs/_assets/audio/atlant/alert.mp3" preload="auto"></audio>
+        <audio id="audio-fail" src="http://apik.bkpptangsel.acs/_assets/audio/atlant/fail.mp3" preload="auto"></audio>
+        <!-- END PRELOADS -->                  
+
+
+
+
+
+        <!-- START SCRIPTS -->
+        <script type="text/javascript">
+    var js_base_url = 'http://apik.bkpptangsel.acs/ppk/';
+    var base_url = function (uri) {
+        if (typeof uri !== 'undefined') {
+            return js_base_url + "/" + uri;
+        }
+        return js_base_url;
+    };
+
+    var GetImagePath = function ()
+    {
+        return js_base_url + "_assets/img/";
+    }
+
+    var GetCSSPath = function ()
+    {
+        return js_base_url + "_assets/css/";
+    }
+
+</script>
+<!-- START PLUGINS -->
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap.min.js"></script>        
+<!-- END PLUGINS -->
+
+<!-- START THIS PAGE PLUGINS-->        
+<script type='text/javascript' src='http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/icheck/icheck.min.js'></script>        
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/scrolltotop/scrolltopcontrol.js"></script>-->
+
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/morris/raphael-min.js"></script>
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/morris/morris.min.js"></script>       
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/rickshaw/d3.v3.js"></script>
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/rickshaw/rickshaw.min.js"></script>
+<script type='text/javascript' src='http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+<script type='text/javascript' src='http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>                -->
+<script type='text/javascript' src='http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap-datepicker.js'></script>                
+<script type='text/javascript' src='http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap-timepicker.min.js'></script>                
+<script type='text/javascript' src='http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap-select.js'></script>                
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/owl/owl.carousel.min.js"></script>-->                 
+
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/moment.min.js"></script>
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/daterangepicker/daterangepicker.js"></script>-->
+
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap-dialog.js"></script>-->
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap-file-input.js"></script>-->
+<!--<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins/bootstrap/bootstrap-select.js"></script>-->
+<!-- END THIS PAGE PLUGINS-->        
+
+<!-- START TEMPLATE -->
+
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/plugins.js"></script>        
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/actions.js"></script>
+<script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/helper.js"></script>
+
+<!-- <script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/atlant/demo_dashboard.js"></script> -->
+<!-- END TEMPLATE -->
+        <script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/all_js.js" charset="UTF-8"></script>
+
+        <script type="text/javascript" src="http://apik.bkpptangsel.acs/_assets/js/helper/general_helper.js"></script>
+
+                        <!-- END SCRIPTS -->         
+    </body>
+</html>
+
+
+
+
+
+

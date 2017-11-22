@@ -11,7 +11,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tr_absensi extends MY_Model {
-    
+
     public $sort_by = 'abs_tanggal';
     public $sort_mode = 'asc';
 
@@ -24,28 +24,37 @@ class Tr_absensi extends MY_Model {
         "abs_id" => array("abs_id", ""),
         "pegawai_id" => array("pegawai_id", ""),
         "abs_tanggal" => array("abs_tanggal", ""),
-        "absensi_id" => array("absensi_id", ""),
         "abs_masuk" => array("abs_masuk", ""),
         "abs_pulang" => array("abs_pulang", ""),
         "abs_mesin" => array("abs_mesin", ""),
+        "abs_masuk_status" => array("abs_masuk_status", ""),
+        "abs_pulang_status" => array("abs_pulang_status", ""),
+        "abs_status" => array("abs_status", ""),
+        "abs_pinalty_masuk" => array("abs_pinalty_masuk", ""),
+        "abs_pinalty_pulang" => array("abs_pinalty_pulang", ""),
         "abs_approval" => array("abs_approval", ""),
         "abs_approval_by" => array("abs_approval_by", "")
     );
     protected $rules = array(
         array("pegawai_id", ""),
         array("abs_tanggal", ""),
-        array("absensi_id", ""),
         array("abs_masuk", ""),
         array("abs_pulang", ""),
         array("abs_mesin", ""),
+        array("abs_masuk_status", ""),
+        array("abs_pulang_status", ""),
+        array("abs_status", ""),
+        array("abs_pinalty_masuk", ""),
+        array("abs_pinalty_pulang", ""),
         array("abs_approval", ""),
         array("abs_approval_by", "")
     );
     protected $related_tables = array(
-        "jenis_absensi" => array(
-            "fkey" => "absensi_id",
+        "sc_master.master_pegawai" => array(
+            "fkey" => "pegawai_id",
             "columns" => array(
-                "absensi_nama"
+                "pegawai_nip",
+                "pegawai_nama"
             ),
             "referenced" => "LEFT"
         )

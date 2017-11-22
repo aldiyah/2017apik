@@ -25,7 +25,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                 <?php if ($access_rules[1][0] == 'allow'): ?>
                                     <a href="<?php echo base_url('back_end/' . $active_modul . '/detail'); ?>" class="btn btn-default"><span class="fa fa-plus"></span> Tambah</a>
                                 <?php endif; ?>
-            <!--<a href="<?php echo base_url('back_end/klpaktifitas'); ?>" class="btn btn-default"><span class="fa fa-list"></span> Kelompok</a>-->
+        <!--<a href="<?php echo base_url('back_end/klpaktifitas'); ?>" class="btn btn-default"><span class="fa fa-list"></span> Kelompok</a>-->
                             </div>
                         </div>
                     </div>

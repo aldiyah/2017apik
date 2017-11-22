@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class tr_aktifitas extends MY_Model {
 
     public function __construct() {
-        parent::__construct("tr_aktifitas");
+        parent::__construct("tr_aktifitas", "sc_aktivitas");
         $this->primary_key = "tr_aktifitas_id";
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
@@ -48,7 +48,7 @@ class tr_aktifitas extends MY_Model {
             ),
             "referenced" => "LEFT"
         ),
-        "master_pegawai" => array(
+        "sc_master.master_pegawai" => array(
             "fkey" => "pegawai_id",
             "columns" => array(
                 "pegawai_nip",
@@ -57,7 +57,7 @@ class tr_aktifitas extends MY_Model {
             "referenced" => "LEFT"
         ),
         'satu' => array(
-            'table_name' => 'master_pegawai',
+            'table_name' => 'sc_master.master_pegawai',
             'fkey' => array('tr_valid_satu', 'pegawai_id'),
             'table_alias' => 'satu',
             'columns' => array(
@@ -67,7 +67,7 @@ class tr_aktifitas extends MY_Model {
             "referenced" => 'LEFT'
         ),
         'dua' => array(
-            'table_name' => 'master_pegawai',
+            'table_name' => 'sc_master.master_pegawai',
             'fkey' => array('tr_valid_dua', 'pegawai_id'),
             'table_alias' => 'dua',
             'columns' => array(

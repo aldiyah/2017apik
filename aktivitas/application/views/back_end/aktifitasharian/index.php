@@ -7,6 +7,7 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
+$status = array('Pengajuan', 'Diterima', 'Ditolak');
 //var_dump($records);
 //exit();
 ?>
@@ -31,17 +32,17 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 </div>
                 <div class="panel-body">
                     <?php if ($absensi): ?>
-                    <div class="clearfix" style="margin-bottom: 10px;">
+                        <div class="clearfix" style="margin-bottom: 10px;">
                             <div class="btn-group btn-group-sm pull-right">
-                                <a href="<?php echo base_url('back_end/' . $active_modul . '/detail/' . $tanggal); ?>" class="btn btn-default">Tambah</a>
-                                <a href="<?php echo base_url('back_end/' . $active_modul . '/rkbulanan/' . string_to_date($tanggal, 'Y') . '/' . string_to_date($tanggal, 'n')); ?>" class="btn btn-default">Rekap Bulan <?php echo ucfirst(array_month(string_to_date($tanggal, 'n'), TRUE)) . ' ' . string_to_date($tanggal, 'Y'); ?></a>
+                                <a href="<?php echo base_url("back_end/" . $active_modul . '/detail/' . $tanggal); ?>" class="btn btn-default">Tambah</a>
+                                <a href="<?php echo base_url("back_end/" . $active_modul . '/rkbulanan/' . string_to_date($tanggal, 'Y') . '/' . string_to_date($tanggal, 'n')); ?>" class="btn btn-default">Rekap Bulan <?php echo ucfirst(array_month(string_to_date($tanggal, 'n'), TRUE)) . ' ' . string_to_date($tanggal, 'Y'); ?></a>
                             </div>
                             Daftar aktivitas Anda pada tanggal <?php echo string_to_date($tanggal); ?>
                         </div>
                         <?php if ($records): ?>
                             <?php echo load_partial("back_end/shared/attention_message"); ?>
                             <div class="table-responsive">
-                                <table class="table table-condensed table-bordered table-top no-footer" id="DataTables_Table_0">
+                                <table class="table table-condensed table-bordered table-top">
                                     <thead>
                                         <tr>
                                             <th>Nomor</th>
@@ -54,7 +55,6 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                     </thead>
                                     <tbody>
                                         <?php foreach ($records as $data) : ?>
-                                            <?php $status = array('Proses', 'Diterima', 'Ditolak'); ?>
                                             <tr<?php echo ($data->tr_aktifitas_status == 1 ? ' class="success"' : ($data->tr_aktifitas_status == 2 ? ' class="danger"' : '')); ?>>
                                                 <td class="text-right"><?php echo $next_list_number++; ?></td>
                                                 <td><?php echo beautify_str($data->aktifitas_nama); ?>
@@ -63,8 +63,8 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                         <a href="<?php echo base_url() . "_assets/uploads/aktifitas/" . $data->tr_aktifitas_id . "/" . $data->tr_aktifitas_dokumen; ?>" target="_blank"><span class="fa fa-download"></span> Lihat Dokumen Pendukung</a>
                                                     <?php endif; ?>
                                                 </td>
-                                                <td class="text-center"><?php echo $data->aktifitas_waktu; ?> menit</td>
-                                                <td class="text-center"><?php echo $data->aktifitas_output; ?></td>
+                                                <td class="text-center"><?php echo $data->aktifitas_waktu * $data->tr_aktifitas_volume; ?> menit</td>
+                                                <td class="text-center"><?php echo $data->tr_aktifitas_volume . " " . ucwords($data->aktifitas_output) ?></td>
                                                 <td class="text-center"><?php echo $status[$data->tr_aktifitas_status]; ?></td>
                                                 <td class="text-center">
                                                     <!--<div class="btn-group btn-group-sm btn-group-icon">-->

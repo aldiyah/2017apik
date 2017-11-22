@@ -51,7 +51,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'postgres';
 $db['default']['password'] = 'postgres';
-$db['default']['database'] = 'db_presensi';
+$db['default']['database'] = 'db_apik';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
@@ -65,5 +65,21 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 $db['default']['port'] = 5432;
  
+$db['adms']['hostname'] = 'localhost';
+$db['adms']['username'] = 'root';
+$db['adms']['password'] = 'mysql';
+$db['adms']['database'] = 'adms_db';
+$db['adms']['dbdriver'] = 'mysql';
+$db['adms']['dbprefix'] = '';
+$db['adms']['pconnect'] = FALSE;
+$db['adms']['db_debug'] = TRUE;
+$db['adms']['cache_on'] = FALSE;
+$db['adms']['cachedir'] = '';
+$db['adms']['char_set'] = 'utf8';
+$db['adms']['dbcollat'] = 'utf8_general_ci';
+$db['adms']['swap_pre'] = '';
+$db['adms']['autoinit'] = TRUE;
+$db['adms']['stricton'] = FALSE;
+
 /* End of file database.php */ 
 /* Location: ./application/config/database.php */ 

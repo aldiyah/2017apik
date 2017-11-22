@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
 <br>
 <?php if ($aktifitas): ?>
     <?php $i = 1; ?>
@@ -24,7 +26,7 @@
                         <?php endif; ?>
                     </td>
                     <td class="text-center"><?php echo date('j M Y', strtotime($row->tr_aktifitas_tanggal)); ?></td>
-                    <td class="text-center"><?php echo $row->tr_aktifitas_mulai . "-" . $row->tr_aktifitas_selesai; ?></td>
+                    <td class="text-center"><?php echo date('H:i', strtotime($row->tr_aktifitas_mulai)) . " - " . date('H:i', strtotime($row->tr_aktifitas_selesai)) ?></td>
                     <td class="text-center"><?php echo $status[$row->tr_aktifitas_status]; ?></td>
                 </tr>
             <?php endforeach; ?>

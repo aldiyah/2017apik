@@ -2,7 +2,7 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
-//var_dump($detail, $absensi);
+//var_dump($_SERVER);
 ?>
 
 <div class="row">
@@ -31,18 +31,25 @@ $detail = isset($detail) ? $detail : FALSE;
                             <?php
                             $pilihan = array();
                             $pilihan[''] = 'Pilih Absensi';
-                            foreach ($absensi as $row) {
-                                $pilihan[$row->absensi_id] = $row->absensi_nama;
-                            }
-                            echo form_dropdown('absensi_id', $pilihan, set_value('absensi_id', $detail ? $detail->absensi_id : ''), 'id="absensi_id" class="form-control select" data-live-search="true"');
+                            $pilihan['3'] = 'Sakit';
+                            $pilihan['4'] = 'Izin';
+                            $pilihan['5'] = 'Dinas';
+                            echo form_dropdown('abs_status', $pilihan, set_value('abs_status', $detail ? $detail->abs_status : ''), 'id="abs_status" class="form-control select" data-live-search="true"');
                             ?>
                             <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Dokumen Pendukung</label>
+                        <div class="col-md-6 col-xs-12">
+                            <?php echo form_upload('abs_document', '', 'class="form-control"'); ?>
+                            <span class="help-block">Silahkan upload dokumen pendukung di sini.</span>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn-primary btn pull-right">Lapor</button>
-                    <a href="<?php echo base_url("back_end/" . $active_modul . "/index"); ?>" class="btn-default btn">Batal / Kembali</a>
+                    <a href="<?php echo $referer; ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>
         </form>

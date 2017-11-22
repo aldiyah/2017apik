@@ -55,10 +55,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             <?php echo $record->pegawai_nip . ' - ' . beautify_str($record->pegawai_nama) ?>
                                         </td>
                                         <td class="text-right">
-                                            Rp <?php echo $record->tpp_beban_kerja ? _format_number($record->tpp_beban_kerja) : 0 ?>
+                                            Rp. <?php echo $record->tpp_beban_kerja ? number_format($record->tpp_beban_kerja, 0, ',', '.') : 0 ?>
                                         </td>
                                         <td class="text-right">
-                                            Rp <?php echo $record->tpp_objective ? _format_number($record->tpp_objective) : 0 ?>
+                                            Rp. <?php echo $record->tpp_objective ? number_format($record->tpp_objective, 0, ',', '.') : 0 ?>
                                         </td>
                                         <td class="text-center">
                                             <?php echo $record->tahun ?>

@@ -68,7 +68,7 @@ $detail = isset($detail) ? $detail : FALSE;
                         <div class="col-md-6 col-xs-12">        
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                <?php echo form_input('tr_aktifitas_mulai', set_value('tr_aktifitas_mulai', $detail ? $detail->tr_aktifitas_mulai : ''), 'id="tr_aktifitas_mulai" class="form-control" onchange="hitungSelesai()"'); ?>
+                                <?php echo form_input('tr_aktifitas_mulai', set_value('tr_aktifitas_mulai', $detail ? date('H:i', strtotime($detail->tr_aktifitas_mulai)) : ''), 'id="tr_aktifitas_mulai" class="form-control" onchange="hitungSelesai()"'); ?>
                             </div>
                             <span class="help-block">Isikan sesuai dengan waktu mulai aktivitas (hh:mm).</span>
                         </div>
@@ -78,7 +78,7 @@ $detail = isset($detail) ? $detail : FALSE;
                         <div class="col-md-6 col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                <?php echo form_input('tr_aktifitas_selesai', set_value('tr_aktifitas_selesai', $detail ? $detail->tr_aktifitas_selesai : ''), 'id="tr_aktifitas_selesai" class="form-control" readonly'); ?>
+                                <?php echo form_input('tr_aktifitas_selesai', set_value('tr_aktifitas_selesai', $detail ? date('H:i', strtotime($detail->tr_aktifitas_selesai)) : ''), 'id="tr_aktifitas_selesai" class="form-control" readonly'); ?>
                             </div>
                             <span class="help-block">Otomatis terisi dengan waktu selesai aktivitas (hh:mm).</span>
                         </div>
@@ -103,7 +103,7 @@ $detail = isset($detail) ? $detail : FALSE;
                 </div>
                 <div class="panel-footer">
                     <input type="submit" value="Submit" class="btn-primary btn pull-right">
-                    <a href="<?php echo base_url("back_end/" . $active_modul . "/index"); ?>" class="btn-default btn">Batal / Kembali</a>
+                    <a href="<?php echo $referer; ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>
         </form>

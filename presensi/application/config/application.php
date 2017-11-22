@@ -3,12 +3,10 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/**
- * @author lahir wisada <lahirwisada@gmail.com>
- * custom setting 
- */
-$config['appname'] = 'e-Presensi';
-$config['copyright'] = 'Copyright &copy; CV. Mitra Indokomp Sejahtera 2016,.';
+/* custom setting */
+
+$config['appname'] = 'Aplikasi Penilaian Kinerja';
+$config['copyright'] = 'Copyright CV. Mitra Indokomp Sejahtera &copy; 2017.';
 
 
 $config['hashed'] = 'VFUUl2rWS6I5EdSFU2JJyQ==';
@@ -17,7 +15,6 @@ $config['appkey'] = '1029384756';
 
 $config['appsalt'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-//$config['resource_api_link'] = 'http://localhost:43500/BkppRestFulServices-Api/';
 $config['resource_api_link'] = 'http://localhost/2017apik/lws_api/';
 
 $config['lmanuser.usingbackendfrontend'] = FALSE;
@@ -27,11 +24,11 @@ $config['profil_id_column_name'] = "id_profil";
 /**
  * tabel profil lain yang digunakan selain backbone_profil
  */
-$config['another_profil_tablename'] = "sc_presensi.master_pegawai";
+$config['another_profil_tablename'] = "sc_master.master_pegawai";
 $config['another_profil_properties']['partial_form_view'] = "back_bone/member/atlant/tr_pegawai_profil";
 $config['another_profil_properties']['form_config'] = array(
     "using_select2" => TRUE,
-    "input_name" => "id_pegawai",
+    "input_name" => "pegawai_id",
     "input_type" => "select",
     "additional_js" => array(
         "back_bone/member/atlant/js/tr_pegawai_profil_js",
@@ -45,126 +42,14 @@ $config['another_profil_properties']['form_config'] = array(
 
 $config['another_profil_properties']['foreign_key'] = "id_profil";
 $config['another_profil_properties']['foreign_key_to_another_profile'] = "pegawai_id";
+$config['another_profil_properties']['insert_new_data'] = TRUE;
 
 $config['another_profil_properties']['columns'] = array(
     "pegawai_id",
     "pegawai_nip",
     "pegawai_nama"
 );
-//$config['another_profil_properties']['related_tables'] = array(
-//    "sc_presensi.ref_pegawai" => array(
-//        "fkey" => "id_pegawai",
-//        "reference_to" => "sc_presensi.tr_pegawai_profil",
-//        "columns" => array(
-//            "gelar_depan",
-//            "gelar_belakang",
-//            "nama_depan",
-//            "nama_tengah",
-//            "nama_belakang",
-//            "nama_sambung",
-//            "tgl_lahir",
-//            "tempat_lahir",
-//            "nip",
-//            "no_kep",
-//            "tmt_peg",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.ref_status_perkawinan" => array(
-//        "fkey" => "id_status_perkawinan",
-//        "reference_to" => "sc_presensi.ref_pegawai",
-//        "columns" => array(
-//            "id_status_perkawinan",
-//            "status_perkawinan",
-//            "kode_status_perkawinan",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.tr_pegawai_skpd" => array(
-//        "fkey" => "id_pegawai",
-//        "table_alias" => "trpegskpd",
-//        "reference_to" => "sc_presensi.ref_pegawai",
-//        "columns" => array(
-//            "id_pegawai_skpd",
-//            array("tgl_mulai", "tgl_mulai_peg_skpd"),
-//            array("tgl_berakhir", "tgl_berakhir_peg_skpd"),
-//            array("keterangan", "keterangan_peg_skpd"),
-//        ),
-//        "conditions" => array(
-//            "is_active = '1'",
-//            "record_active = '1'",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.ref_skpd" => array(
-//        "fkey" => "id_skpd",
-//        "reference_to" => "trpegskpd",
-//        "columns" => array(
-//            "id_skpd",
-//            "nama_skpd",
-//            "abbr_skpd",
-//            "alamat_skpd",
-//            "kodepos",
-//            "no_telp",
-//            "email",
-//            "website",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.tr_pegawai_skpd_jabatan" => array(
-//        "fkey" => "id_pegawai_skpd",
-//        "table_alias" => "trpegskpdjab",
-//        "reference_to" => "trpegskpd",
-//        "columns" => array(
-//            "id_pegawai_skpd_jabatan",
-//            "masa_kerja_jabatan_bulan",
-//            "masa_kerja_jabatan_tahun",
-//            "tmt_eselon",
-//        ),
-//        "conditions" => array(
-//            "is_active = '1'",
-//            "record_active = '1'",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.ref_jabatan" => array(
-//        "fkey" => "id_jabatan",
-//        "table_alias" => "trjab",
-//        "reference_to" => "trpegskpdjab",
-//        "columns" => array(
-//            "id_jabatan",
-//            "jabatan",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.tr_pegawai_golongan" => array(
-//        "fkey" => "id_pegawai",
-//        "table_alias" => "trpeggol",
-//        "reference_to" => "sc_presensi.ref_pegawai",
-//        "columns" => array(
-//            "id_pegawai_golongan",
-//            "tgl_ditetapkan",
-//            "tgl_berakhir",
-//        ),
-//        "conditions" => array(
-//            "is_active = '1'",
-//            "record_active = '1'",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//    "sc_presensi.ref_golongan" => array(
-//        "fkey" => "id_golongan",
-//        "table_alias" => "trgol",
-//        "reference_to" => "trpeggol",
-//        "columns" => array(
-//            "id_golongan",
-//            "kode_golongan",
-//            array("keterangan", "keterangan_golongan"),
-//            "golongan",
-//        ),
-//        "referenced" => "LEFT"
-//    ),
-//);
+$config['another_profil_properties']['related_tables'] = array();
 
 $config['backend_login_uri'] = 'back_bone/login';
 
@@ -232,24 +117,25 @@ $config['keyword_key_param'] = 'keyword';
 //    ),
 //);
 $config['modul_action_configuration'] = array(
-    "home" => array(
-        "insert" => array(''),
-        "update" => array(''),
-        "delete" => array(''),
-        "read" => array('index')
-    ),
-    "jnsabsensi" => array(
-        "insert" => array(''),
-        "update" => array('detail'),
-        "delete" => array(''),
-        "read" => array('index', 'detail')
-    ),
+//    ga perlu didaftarkan jika cuma ini saja di controller
+//    "default" => array(
+//        "insert" => array('insert', 'detail'),
+//        "update" => array('update', 'detail'),
+//        "delete" => array('delete'),
+//        "read" => array('read', 'index', 'get_like')
+//    ),
     "absensi" => array(
-        "insert" => array(''),
-        "update" => array('lapor', 'validasi'),
-        "delete" => array(''),
-        "read" => array('index')
-    )
+        "update" => array('ulapor', 'mlapor', 'plapor', 'lapor', 'validasi')
+    ),
+    "msapi" => array(
+        "read" => array("like_nip"),
+    ),
+    "cuti" => array(
+        "update" => array("ajukan"),
+    ),
+    "vcuti" => array(
+        "update" => array("validasi", "reject"),
+    ),
 );
 
 /**

@@ -8,7 +8,7 @@ class master_alih_penilai extends MY_Model {
     public $sort_mode = "asc";
 
     public function __construct() {
-        parent::__construct("master_alih_penilai");
+        parent::__construct("master_alih_penilai", "sc_aktivitas");
         $this->primary_key = "alih_id";
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
@@ -24,7 +24,7 @@ class master_alih_penilai extends MY_Model {
         array('penilai_id', 'required|integer')
     );
     protected $related_tables = array(
-        'master_pegawai' => array(
+        'sc_master.master_pegawai' => array(
             'fkey' => 'pegawai_id',
             'table_alias' => 'b',
             'columns' => array(
@@ -34,7 +34,7 @@ class master_alih_penilai extends MY_Model {
             'referenced' => 'LEFT'
         ),
         'a' => array(
-            'table_name' => 'master_pegawai',
+            'table_name' => 'sc_master.master_pegawai',
             'fkey' => array('penilai_id', 'pegawai_id'),
             'table_alias' => 'a',
             'columns' => array(

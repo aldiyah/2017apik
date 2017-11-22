@@ -25,9 +25,7 @@ $config['profil_id_column_name'] = "id_profil";
 /**
  * tabel profil lain yang digunakan selain backbone_profil
  */
-$config['another_profil_tablename'] = "sc_akrifwz.master_pegawai";
-
-
+$config['another_profil_tablename'] = "sc_master.master_pegawai";
 $config['another_profil_properties']['partial_form_view'] = "back_bone/member/atlant/tr_pegawai_profil";
 $config['another_profil_properties']['form_config'] = array(
     "using_select2" => TRUE,
@@ -45,6 +43,7 @@ $config['another_profil_properties']['form_config'] = array(
 
 $config['another_profil_properties']['foreign_key'] = "id_profil";
 $config['another_profil_properties']['foreign_key_to_another_profile'] = "pegawai_id";
+$config['another_profil_properties']['insert_new_data'] = TRUE;
 
 $config['another_profil_properties']['columns'] = array(
     "pegawai_id",
@@ -72,10 +71,10 @@ $config['application_active_layout'] = 'atlant';
  * ini digunakan untuk memberikan nama schema
  * ketika menggunakan basis data postgres
  */
-$config['application_db_schema_name'] = 'sc_akrifwz';
+$config['application_db_schema_name'] = 'sc_master';
 
 /** ini digunakan ketika aplikasi telah diupload ke hosting */
-$config['application_path_location'] = '/home/ikatifau/public_html/';
+//$config['application_path_location'] = '/home/ikatifau/public_html/';
 
 $config['front_end_css_files'] = array("bootstrap/bootstrap.css", "bootstrap/bootstrap-theme.css");
 
@@ -105,86 +104,60 @@ $config['keyword_key_param'] = 'keyword';
 
 /**
  * modul configuration
- * array("nama_modul"=>array("nama_aksi"=>array("nama_aksi_dikontroller")))
+ * array(
+ * 		"nama_modul"=>array(
+ * 							"nama_aksi"=>array(
+  "nama_aksi_dikontroller"
+ * )));
+ *
+ * @example 
+ * "cref_pegawai" => array(
+ *       "insert" => array("detail", "history_detail"),
+ *       "update" => array("detail", "history_detail"),
+ *       "delete" => array("delete"),
+ *       "read" => array("index", "get_like", "history"),
+ *   );
  */
 $config['modul_action_configuration'] = array(
+//    ga perlu didaftarkan jika cuma ini saja di controller
+//    "default" => array(
+//        "insert" => array('insert', 'detail'),
+//        "update" => array('update', 'detail'),
+//        "delete" => array('delete'),
+//        "read" => array('read', 'index', 'get_like')
+//    ),
     "home" => array(
-        "insert" => array(),
-        "update" => array(),
-        "delete" => array(),
-        "read" => array("index", "lihataktifitas"),
-    ),
-    "msaktifitas" => array(
-        "insert" => array("detail"),
-        "update" => array("detail"),
-        "delete" => array("delete"),
-        "read" => array("index"),
-    ),
-    "usaktifitas" => array(
-        "insert" => array("detail"),
-        "update" => array("detail"),
-        "delete" => array("delete"),
-        "read" => array("index"),
+        "read" => array("lihataktifitas"),
     ),
     "msusulan" => array(
-        "insert" => array(),
         "update" => array("validasi"),
-        "delete" => array("delete"),
-        "read" => array("index")
     ),
     "aktifitasharian" => array(
-        "insert" => array("detail"),
-        "update" => array("detail"),
-        "delete" => array("delete"),
-        "read" => array("index", "get_waktu", "rkbulanan")
+        "read" => array("get_waktu", "rkbulanan")
     ),
     "aktifitasbawahan" => array(
-        "insert" => array(""),
-        "update" => array(""),
-        "delete" => array(""),
-        "read" => array("index", "lihataktifitas")
+        "read" => array("lihataktifitas")
     ),
     "validasiaktifitas" => array(
-        "insert" => array(""),
         "update" => array("validasi", "reject"),
-        "delete" => array(""),
-        "read" => array("index")
     ),
     "msapi" => array(
-        "insert" => array(),
-        "update" => array(),
-        "delete" => array(),
-        "read" => array("like_nip", "lihataktifitas"),
+        "read" => array("like_nip"),
     ),
     "tpaktifitas" => array(
         "insert" => array("pilihaktifitas", "tambahaktifitas", "getaktifitas"),
-        "update" => array(),
-        "delete" => array("delete"),
-        "read" => array(),
     ),
     "setkegiatan" => array(
         "insert" => array("pilihpegawai", "tambahpegawai", "getkegiatan", "pilihkegiatan", "tambahkegiatan"),
-        "update" => array("detail"),
-        "delete" => array("delete"),
-        "read" => array("index"),
     ),
     "setaktifitas" => array(
         "insert" => array("getaktifitas", "pilihaktifitas", "tambahaktifitas", "pilihkegiatan", "tambahkegiatan"),
-        "update" => array("detail"),
-        "delete" => array("delete"),
-        "read" => array("index"),
     ),
     "inputaktifitas" => array(
         "insert" => array("laporan"),
-        "update" => array(""),
-        "delete" => array(""),
-        "read" => array("index"),
     ),
     "trpenilaian" => array(
         "insert" => array("aktifitas", "perilaku", "capaian"),
-        "update" => array(""),
-        "delete" => array(""),
-        "read" => array("index"),
     )
 );
 
@@ -193,4 +166,4 @@ $config['modul_action_configuration'] = array(
  * digunakan untuk memberikan role secara otomatis pada PNS ketika menambahkan PNS pada referensi data PNS
  * karena ketika menambahkan PNS aplikasi membuatkan username dan password secara otomatis
  */
-$config['id_role_pegawai_negeri_sipil'] =5;
+$config['id_role_pegawai_negeri_sipil'] = 5;

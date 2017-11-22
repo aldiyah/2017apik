@@ -2,13 +2,13 @@
 
 defined("BASEPATH") OR exit("No direct script access allowed");
 
-class usulan_aktifitas extends MY_Model {
+class Usulan_aktifitas extends MY_Model {
 
     public $sort_by = "usulan_nama";
     public $sort_mode = "asc";
 
     public function __construct() {
-        parent::__construct("usulan_aktifitas");
+        parent::__construct("usulan_aktifitas", "sc_aktivitas");
         $this->primary_key = "usulan_id";
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
@@ -40,7 +40,7 @@ class usulan_aktifitas extends MY_Model {
 //            ),
 //            "referenced" => "LEFT"
 //        ),
-        "master_pegawai" => array(
+        "sc_master.master_pegawai" => array(
             "fkey" => "pegawai_id",
             "columns" => array(
                 "pegawai_nip",

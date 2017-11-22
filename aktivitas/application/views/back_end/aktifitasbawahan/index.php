@@ -7,7 +7,7 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
-//var_dump($records);
+//var_dump($tahun, $bulan, $records);
 //exit();
 ?>
 <div class="row">
@@ -39,10 +39,10 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <div class="panel-body panel-body-table list-group list-group-contacts border-bottom">
                     <?php foreach ($records as $pegawai) : ?>
                         <div class="list-group-item">
-                            <img src="<?php echo base_url() ?>_assets/uploads/images/users/pria.png" alt="<?php echo $pegawai->pegawai_nama; ?>"/>
+                            <img src="<?php echo assets() ?>uploads/images/users/pria.png" alt="<?php echo $pegawai->pegawai_nama; ?>"/>
                             <span class="contacts-title"><?php echo beautify_str($pegawai->pegawai_nama); ?></span>
                             <div class="list-group-controls">
-                                <button class="btn btn-default" onclick="lihatAktifitas(this, <?php echo $pegawai->pegawai_id; ?>)">Lihat Aktivitas</button>
+                                <button class="btn btn-default" onclick="lihatAktifitas(this, <?php echo $pegawai->pegawai_id . "," . $tahun . "," . $bulan; ?>)">Lihat Aktivitas</button>
                             </div>
                         </div>
                     <?php endforeach; ?>

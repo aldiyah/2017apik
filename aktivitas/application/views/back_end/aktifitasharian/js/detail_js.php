@@ -7,7 +7,7 @@ $detail = isset($detail) ? $detail : FALSE;
 //        $('#tr_aktifitas_selesai').timepicker({showMeridian: false});
     });
     function hitungSelesai() {
-        $('input[type=submit]').attr('disabled', true);
+        $('input[type=submit]').hide();
         var idAktifitas = $('#aktifitas_id').val();
         var mulai = $('#tr_aktifitas_mulai').val().split(':');
         var volume = $('#tr_aktifitas_volume').val();
@@ -20,6 +20,7 @@ $detail = isset($detail) ? $detail : FALSE;
                 }
             });
         }
-        $('input[type=submit]').attr('disabled', false);
+        
+        $('input[type=submit]').show();
     }
 </script>

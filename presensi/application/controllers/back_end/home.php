@@ -12,32 +12,83 @@ class Home extends Back_end {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array(
-            'model_master_pegawai',
-        ));
-        
-        $user_detail = $this->lmanuser->get_by_prefix('auth.','user_detail');
-        
-        $tpp_sementara = ($this->sementara_tpp($user_detail["pegawai_id"])*0.5);
-        
-        if($user_detail["pegawai_id"] == '3'){
-            $tpp_sementara = $tpp_sementara-($tpp_sementara*0.04);
-        }
-        
-        $this->set('master_tpp', $tpp_sementara);
-        $this->set('pegawai_id', $user_detail["pegawai_id"]);
     }
 
     public function landingpage() {
-        $this->_layout = 'atlant_landing';
+        $this->load->model(array(
+            'model_master_pegawai',
+            'model_master_tpp'
+        ));
+        $this->__get_absensi_from_adms();
+        $id_pegawai = $this->pegawai_id;
+        $holidays = array();
+        $hari_kerja_efektif = get_working_day_monthly($holidays)->total;
+        $bln = date('n');
+        $thn = date('Y');
 
-        /**
-          protected 'pegawai_id' => int 0
-          protected 'pegawai_nip' => int 0
-          protected 'kode_jabatan' => int 0
-          protected 'kode_organisasi' => int 0
-         * 
-         */
+        // Ambil data tpp
+        $tpp_dasar = $this->model_master_tpp->get_detail('master_tpp.pegawai_id = ' . $id_pegawai);
+        $tpp_aktivitas_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['aktivitas']['bobot'] : 0;
+        $tpp_aktivitas_over = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['aktivitas']['overtime'] : 0;
+        $tpp_presensi_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['presensi']['bobot'] : 0;
+        $tpp_ppk_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['ppk']['bobot'] : 0;
+
+        // Hitung tpp absensi
+        $pinalty_absensi = $this->model_master_tpp->get_pinalty_absensi($id_pegawai, $thn, $bln);
+        $tpp_presensi_real = (100 - $pinalty_absensi) / 100 * $tpp_presensi_dasar;
+
+        // Hitung tpp aktivitas
+        $tpp_harian_dasar = $tpp_aktivitas_dasar > 0 ? $tpp_aktivitas_dasar / $hari_kerja_efektif : 0;
+        $tpp_harian_over = $tpp_aktivitas_over > 0 ? $tpp_aktivitas_over / $hari_kerja_efektif : 0;
+        $rekap_aktifitas = $this->model_master_tpp->get_aktivitas_bulanan($id_pegawai, $bln, $thn);
+        $tpp_aktivitas_real = 0;
+        if ($rekap_aktifitas) {
+            foreach ($rekap_aktifitas as $row) {
+                $waktu = $row->aktifitas_waktu * $row->tr_aktifitas_volume;
+                $tpp_aktivitas_real += ($waktu > 300 ? $tpp_harian_dasar + $tpp_harian_over : $waktu / 300 * $tpp_harian_dasar);
+            }
+        }
+
+        // Hitung tpp ppk
+        $skpb = $this->model_master_tpp->get_all_skpb_by_id($id_pegawai, $thn, $bln);
+        $nilai_capaian = $skpb->jumlah > 0 ? $skpb->nilai / $skpb->jumlah : 0;
+        $nilai_perilaku = 0;
+
+        $perilaku = $this->model_master_tpp->get_perilaku_by_id($id_pegawai, $thn, $bln);
+        if ($perilaku) {
+            if ($perilaku->perilaku_kepemimpinan > 0) {
+                $nilai_perilaku = ($perilaku->perilaku_pelayanan + $perilaku->perilaku_integritas + $perilaku->perilaku_komitmen + $perilaku->perilaku_disiplin + $perilaku->perilaku_kerjasama + $perilaku->perilaku_kepemimpinan) / 6;
+            } else {
+                $nilai_perilaku = ($perilaku->perilaku_pelayanan + $perilaku->perilaku_integritas + $perilaku->perilaku_komitmen + $perilaku->perilaku_disiplin + $perilaku->perilaku_kerjasama) / 5;
+            }
+        }
+        $nilai_final = ((0.6 * $nilai_capaian) + (0.4 * $nilai_perilaku));
+        $tpp_ppk_real = 0;
+        if ($nilai_final <= 0) {
+            $tpp_ppk_real = 0.0 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 15) {
+            $tpp_ppk_real = 0.2 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 25) {
+            $tpp_ppk_real = 0.3 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 35) {
+            $tpp_ppk_real = 0.4 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 45) {
+            $tpp_ppk_real = 0.5 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 55) {
+            $tpp_ppk_real = 0.6 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 65) {
+            $tpp_ppk_real = 0.7 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 75) {
+            $tpp_ppk_real = 0.8 * $tpp_ppk_dasar;
+        } elseif ($nilai_final < 85) {
+            $tpp_ppk_real = 0.9 * $tpp_ppk_dasar;
+        } else {
+            $tpp_ppk_real = 1.0 * $tpp_ppk_dasar;
+        }
+        $this->set("tpp_presensi", $tpp_presensi_real);
+        $this->set("tpp_aktivitas", $tpp_aktivitas_real);
+        $this->set("tpp_ppk", $tpp_ppk_real);
+        $this->_layout = 'atlant_landing';
     }
 
     public function to_presensi() {
@@ -45,53 +96,36 @@ class Home extends Back_end {
     }
 
     public function to_ppk() {
-        $url = "http://" . $_SERVER['SERVER_NAME'] . "/2017apik/skp/";
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/ppk/";
         header('Location: ' . $url);
         exit;
     }
 
     public function to_aktivitas() {
-        $url = "http://" . $_SERVER['SERVER_NAME'] . "/2017apik/aktivitas";
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/aktivitas/";
         header('Location: ' . $url);
         exit;
     }
 
     public function index() {
-// api by triasada start
-//        $url = 'http://192.168.100.15:8080/BkppRestFulServices-Api/login';
-//        $param = array('loginIn'=>array('nip'=>'195404061978031009',
-//            'password'=>'2001b9264899b6035395ce4d1a8c1139')
-//                
-//            );
-//        $ch = curl_init($url);
-//        curl_setopt($ch, CURLOPT_POST, 1);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
-//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-////        curl_setopt($ch, CURLOPT_HEADER, 'Content-Type: application/json');
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-//    'Content-Type: application/json',
-//    'Accept: application/json'
-//));
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//        $result = curl_exec($ch);
-//
-//
-//
-//        var_dump($result);exit();
-//        api by triasada end
-//        echo "eko dipanggil";exit;
-//        $this->load->model(array("model_tr_pembayaran", "model_ref_penghuni"));
-//        $terbayar_perbulan = toJsonString($this->model_tr_pembayaran->get_record_terbayar_perbulan(), FALSE);
-//        $pendaftar_perbulan = toJsonString($this->model_ref_penghuni->get_record_pendaftar_perbulan(), FALSE);
-//        $this->set("terbayar_perbulan", $terbayar_perbulan);
-//        $this->set("pendaftar_perbulan", $pendaftar_perbulan);
-//        $this->set("var_bulan", $this->month());
-//        $this->set("additional_js", "back_end/home/js/index_js");
-//        $this->add_jsfiles(array(
-//            "avant/plugins/charts-flot/jquery.flot.min.js",
-//            "avant/plugins/charts-flot/jquery.flot.resize.min.js",
-//        ));
+        $this->load->model(array(
+            'model_master_pegawai',
+            'model_master_tpp'
+        ));
+        $id_pegawai = $this->pegawai_id;
+        $bln = date('n');
+        $thn = date('Y');
+
+        // Ambil data tpp
+        $tpp_dasar = $this->model_master_tpp->get_detail('master_tpp.pegawai_id = ' . $id_pegawai);
+        $tpp_presensi_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['presensi']['bobot'] : 0;
+
+        // Hitung tpp absensi
+        $pinalty_absensi = $this->model_master_tpp->get_pinalty_absensi($id_pegawai, $thn, $bln);
+        $tpp_presensi_real = (100 - $pinalty_absensi) / 100 * $tpp_presensi_dasar;
+
+        $this->set('pegawai_id', $this->pegawai_id);
+        $this->set('total_tpp', $tpp_presensi_real);
     }
 
     private function month() {
@@ -103,5 +137,27 @@ class Home extends Back_end {
         return toJsonString($month, FALSE);
     }
 
-}
+    private function __get_absensi_from_adms() {
+        $this->load->model(array('model_ab_absensi', 'model_tr_absensi'));
+        $last_date = $this->model_tr_absensi->get_last_day($this->pegawai_id);
+        $data_absensi = $this->model_ab_absensi->get_absensi($this->pegawai_nip, $last_date);
+        if ($data_absensi) {
+            $new_absensi = array();
+            foreach ($data_absensi as $row) {
+                if (date("Ymd", strtotime($row->ctime)) != date("Ymd")) {
+                    $new_absensi[] = array(
+                        "pegawai_id" => $this->pegawai_id,
+                        "abs_tanggal" => $row->ctime,
+                        "abs_masuk" => (date("H", strtotime($row->mintime)) < 12 ? $row->mintime : NULL),
+                        "abs_pulang" => (date("H", strtotime($row->maxtime)) > 12 ? $row->maxtime : NULL),
+                        "abs_masuk_status" => 0
+                    );
+                }
+            }
+        }
+        if (!empty($new_absensi)) {
+            $this->model_tr_absensi->transfer_absensi($new_absensi);
+        }
+    }
 
+}

@@ -31,16 +31,16 @@ class Aktifitasbawahan extends Back_end {
                 $arr_nip_bawahan[] = $row->nip;
             }
         }
-        $records = $this->model_master_pegawai->get_all_bawahan_by_nip(implode("','", $arr_nip_bawahan));
+        $records = $this->model_master_pegawai->get_all_bawahan_by_nip(implode("','", $arr_nip_bawahan))->record_set;
 //        $this->load->model('model_master_alih_penilai');
 //        $pegawai = $this->model_master_alih_penilai->get_bawahan($this->user_detail['pegawai_id']);
-        $bulan = $this->input->post('bulan');
-        $tahun = $this->input->post('tahun');
+        $bulan = $this->input->get('bulan', TRUE);
+        $tahun = $this->input->get('tahun', TRUE);
         $this->set('bulan', $bulan ? $bulan : date('n'));
         $this->set('tahun', $tahun ? $tahun : date('Y'));
         $this->set('records', $records);
         $this->set('keyword', NULL);
-        $this->set('additional_js', 'back_end/' . $this->_name . '/js/index_js');
+        $this->set('additional_js', "back_end/" . $this->_name . '/js/index_js');
         $this->set("bread_crumb", array(
             "#" => 'Daftar ' . $this->_header_title
         ));
@@ -62,8 +62,8 @@ class Aktifitasbawahan extends Back_end {
 //        var_dump($data);
 //    }
 //
-    public function lihataktifitas($id_pegawai, $bulan, $tahun) {
-        $data['aktifitas'] = $this->model_tr_aktifitas->get_aktifitas($id_pegawai, $bulan, $tahun);
+    public function lihataktifitas($id_pegawai, $tahun, $bulan) {
+        $data['aktifitas'] = $this->model_tr_aktifitas->get_aktifitas($id_pegawai, $tahun, $bulan)->record_set;
         return $this->load->view('back_end/aktifitasbawahan/lihataktifitas', $data);
     }
 

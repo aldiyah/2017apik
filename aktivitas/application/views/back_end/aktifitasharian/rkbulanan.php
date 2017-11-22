@@ -7,9 +7,6 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
-//var_dump($tpp_harian);
-//var_dump($records);
-//exit();
 ?>
 <div class="page-content-wrap">
     <div class="row">
@@ -44,7 +41,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <td class="text-right"><?php echo $next_list_number++; ?></td>
                                         <td class="text-center"><?php echo string_to_date($row->tr_aktifitas_tanggal); ?></td>
                                         <td class="text-center"><?php echo $row->aktifitas_waktu * $row->tr_aktifitas_volume; ?> menit</td>
-                                        <td class="text-right">Rp <?php echo $nilai_tpp ? _format_number($nilai_tpp) : 0; ?></td>
+                                        <td class="text-right">Rp. <?php echo $nilai_tpp ? number_format($nilai_tpp, 0, ',', '.') : 0; ?></td>
                                     </tr>
                                     <?php
                                     $total_waktu += $row->aktifitas_waktu * $row->tr_aktifitas_volume;
@@ -53,8 +50,8 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                 <?php endforeach; ?>
                                 <tr class="">
                                     <td class="text-right" colspan="2">Total</td>
-                                    <td class="text-center"><?php echo $total_waktu ? _format_number($total_waktu) : 0; ?> menit</td>
-                                    <td class="text-right">Rp <?php echo $total_tpp ? _format_number($total_tpp) : 0; ?></td>
+                                    <td class="text-center"><?php echo $total_waktu ? number_format($total_waktu, 0, ',', '.') : 0; ?> menit</td>
+                                    <td class="text-right">Rp. <?php echo $total_tpp ? number_format($total_tpp, 0, ',', '.') : 0; ?></td>
                                 </tr>
                             </tbody>
                         </table>

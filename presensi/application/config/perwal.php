@@ -33,15 +33,69 @@ $config['perwal'] = array(
         'absensi' => array('Hadir', 'Cuti', 'Dinas')
     ),
     'aktivitas' => array(
-        'bobot' => 0.5,
+        'bobot' => 0.45,
+        'overtime' => 0.05,
         'laporan' => 2,
         'validasi_penilai' => 3,
         'validasi_atasan' => 3
     ),
-    'skp' => array(
+    'ppk' => array(
         'bobot' => 0.2,
         'laporan' => 2,
         'validasi_penilai' => 3,
         'validasi_atasan' => 3
     )
+);
+$config['jenis_perilaku'] = array(
+    '1' => 'Orientasi Pelayanan',
+    '2' => 'Integritas',
+    '3' => 'Komitmen',
+    '4' => 'Disiplin',
+    '5' => 'Kerjasama',
+    '6' => 'Kepemimpinan'
+);
+$config['jenis_absensi'] = array(
+    '0' => 'Absen',
+    '1' => 'Hadir',
+    '2' => 'Sakit',
+    '3' => 'Ijin',
+    '4' => 'Cuti',
+    '5' => 'Hamil',
+    '6' => 'ijin Dinas'
+);
+$config['lapor_absensi'] = array(
+    '0' => 'Absen',
+    '2' => 'Sakit',
+    '3' => 'Ijin',
+    '4' => 'Cuti',
+    '5' => 'Hamil',
+    '6' => 'ijin Dinas'
+);
+$config['jenis_cuti'] = array(
+    '1' => 'Cuti Tahunan',
+    '2' => 'Cuti Nikah',
+    '3' => 'Cuti Hamil'
+);
+$config['jenis_status_skp'] = array(
+    '0' => 'Draft',
+    '1' => 'Pengajuan',
+    '2' => 'Proses',
+    '3' => 'Selesai'
+);
+$config['jenis_status_ijin'] = array(
+    '0' => 'Draft',
+    '1' => 'Pengajuan',
+    '2' => 'Disetujui',
+    '3' => 'Ditolak'
+);
+$config['pengurang_ppk'] = array(
+    '15' => 20,
+    '25' => 30,
+    '35' => 40,
+    '45' => 50,
+    '55' => 60,
+    '65' => 70,
+    '75' => 80,
+    '85' => 90,
+    '100' => 100
 );

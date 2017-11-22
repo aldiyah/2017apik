@@ -38,17 +38,12 @@
 |
 */
 
-//$route['default_controller'] = "front_end/home";
 $route['back_end'] = "back_end/home";
 $route['default_controller'] = $route['back_end'];
-
 $route['back_bone/user'] = "back_bone/member";
 $route['login'] = "back_end/anggota/login";
 $route['logout'] = "back_end/anggota/logout";
 $route['back_bone/user/(.*)'] = "back_bone/member/$1";
-
-//$route['front_end/login'] = "front_end/cfpns/login";
-
 $route['(\w{2})/(.*)'] = '$2';
 $route['(\w{2})'] = $route['default_controller'];
 $route['404_override'] = '';

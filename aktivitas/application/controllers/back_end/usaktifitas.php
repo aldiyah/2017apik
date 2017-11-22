@@ -8,6 +8,7 @@ class Usaktifitas extends Back_end {
 
     public function __construct() {
         parent::__construct('kelola_usulan_aktifitas', 'Usulan Aktivitas');
+        $this->set('access_rules', $this->access_rules());
     }
 
     public function index() {

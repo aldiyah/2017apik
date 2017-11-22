@@ -6,7 +6,7 @@ $is_authenticated = isset($is_authenticated) ? $is_authenticated : FALSE;
     <!-- TOGGLE NAVIGATION -->
     <li style="width: 90%;">
     <marquee style="padding-top: 15px; color: #ec0850; font-size: 18px; text-shadow: 0 0 5px #fff;">
-        <strong>Pengumuman : </strong>Senin, 02-OKTOBER-2017 Akan dilaksanakan Apel Gabungan Memperingati hari Kesaktian Pancasila dan hari Batik Nasional. Tempat : Lapangan Cilenggang. Pakaian : Batik.
+        <strong>Pengumuman : </strong>Jum'at, 24-NOVEMBER-2017 Akan dilaksanakan Apel Gabungan dalam rangka "Memperingati HUT Kota Tangerang Selatan". Tempat : Lapangan Cilenggang. Pakaian : Batik KOPRI.
     </marquee>
 </li>
 <!-- END TOGGLE NAVIGATION -->

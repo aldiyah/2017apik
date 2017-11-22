@@ -63,8 +63,6 @@ $current_user_roles = isset($current_user_roles) ? $current_user_roles : "Tamu";
         <?php echo isset($css) ? $css : ''; ?>
         <style type="text/css">
             .profile {
-                width: 100%;
-                float: left;
                 padding: 15px 10px;
                 position: relative;
                 background: #192233;
@@ -82,21 +80,38 @@ $current_user_roles = isset($current_user_roles) ? $current_user_roles : "Tamu";
             }
             .profile .profile-data {
                 width: 100%;
-                float: left;
                 text-align: center;
             }
             .xn-profile {
                 padding: 0px;
                 background: transparent;
-                float: left;
                 display: block;
                 width: 100%;
                 padding: 0px;
                 margin: 0px;
                 position: relative;
             }
+            .page-container {
+                margin-bottom: 40px;
+            }
             .page-container .page-content .page-content-wrap {
                 border-bottom: 1px solid #c1c1c1;
+            }
+            .page-container .page-header {
+                text-align: center;
+                text-transform: uppercase;
+                font-size: 16px;
+                font-weight: bold;
+                background: rgba(250,250,250,0.5);
+                padding: 10px;
+                border-bottom: 1px solid #c1c1c1;
+            }
+            .boxshadow {
+                padding: 10px;
+                box-shadow: 0 0 3px #999;
+                margin-bottom: 20px;
+                background: rgba(250,250,250,0.5);
+                border-radius: 5px;
             }
         </style>
     </head>
@@ -109,7 +124,7 @@ $current_user_roles = isset($current_user_roles) ? $current_user_roles : "Tamu";
 
                 <!-- page header holder -->
                 <div class="page-header-holder">
-
+                    <?php echo $page_title; ?>
                 </div>
                 <!-- ./page header holder -->
 

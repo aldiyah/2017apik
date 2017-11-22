@@ -17,7 +17,7 @@
             $('<span>').addClass('fa').addClass('fa-cog').addClass('fa-spin').insertBefore($(el));
             $(el).addClass('open');
             $(el).text('Tutup Info');
-            $.get(js_base_url + 'back_end/aktifitasbawahan/lihataktifitas/' + id + '/' +<?php echo $bulan; ?> + '/' +<?php echo $tahun; ?>, function (data) {
+            $.get(js_base_url + 'back_end/aktifitasbawahan/lihataktifitas/' + id + '/' +<?php echo $tahun; ?> + '/' +<?php echo $bulan; ?>, function (data) {
                 $(kotak).html(data);
                 $('span.fa-spin').remove();
             });

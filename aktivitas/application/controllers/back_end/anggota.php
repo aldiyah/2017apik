@@ -54,7 +54,9 @@ class Anggota extends Back_end {
             $this->lmanuser->set_user_detail('kd_unit_kerja', $info->kd_unit_kerja);
             $this->lmanuser->set_user_detail('nama_unit_kerja', $info->nama_unit_kerja);
         }
-        redirect('back_end/home/landingpage');
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/presensi/back_end/home/landingpage";
+        header('Location: ' . $url);
+        exit;
     }
 
 }

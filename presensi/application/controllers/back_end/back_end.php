@@ -46,7 +46,7 @@ class Back_end extends Lwpustaka_data {
         $this->set('access_rules', $this->access_rules());
         $this->set('user_detail', $this->user_detail);
         $this->perwal = $this->config->item('perwal');
-//        var_dump($this->user_detail);
+        $this->set('referer', $this->agent->referrer());
     }
 
     protected function after_detail($id = FALSE) {

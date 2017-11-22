@@ -22,9 +22,9 @@ $total_ditolak = isset($total_ditolak) ? $total_ditolak : 0;
                         <span class="fa fa-star"></span>
                     </div>
                     <div class="widget-data">
-                        <div class="widget-int"><?php echo rupiah_display($total_tpp, 0); ?></div>
+                        <div class="widget-int">Rp. <?php echo number_format($total_tpp, 0, ',', '.'); ?></div>
                         <div class="widget-title">TPP Aktivitas</div>
-                        <div class="widget-subtitle">TPP Aktivitas Anda bulan ini</div>
+                        <div class="widget-subtitle">Estimasi TPP Aktivitas Anda bulan ini</div>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@ $total_ditolak = isset($total_ditolak) ? $total_ditolak : 0;
                     <span class="fa fa-suitcase"></span>
                 </div>
                 <div class="widget-data">
-                    <div class="widget-int"><?php echo _format_number($total_aktivitas, 0); ?></div>
+                    <div class="widget-int"><?php echo number_format($total_aktivitas, 0, ',', '.'); ?></div>
                     <div class="widget-title">Aktivitas Bulanan</div>
                     <div class="widget-subtitle">Jumlah aktivitas Anda bulan ini</div>
                 </div>
@@ -47,7 +47,7 @@ $total_ditolak = isset($total_ditolak) ? $total_ditolak : 0;
                     <span class="fa fa-tag"></span>
                 </div>
                 <div class="widget-data">
-                    <div class="widget-int"><?php echo _format_number($total_ditolak, 0); ?></div>
+                    <div class="widget-int"><?php echo number_format($total_ditolak, 0, ',', '.'); ?></div>
                     <div class="widget-title">Aktivitas Ditolak</div>
                     <div class="widget-subtitle">Jumlah aktivitas Anda yang ditolak bulan ini</div>
                 </div>
@@ -65,3 +65,5 @@ $total_ditolak = isset($total_ditolak) ? $total_ditolak : 0;
         </div>
     </div>
 </div>
+<?php
+?>

@@ -9,8 +9,7 @@ class Validasiaktifitas extends Back_end {
     public function __construct() {
         parent::__construct('kelola_validasi_aktifitas', 'Validasi Aktivitas');
         $this->load->model(array(
-            'model_master_pegawai',
-            'model_tr_aktifitas'
+            'model_master_pegawai'
         ));
     }
 
@@ -38,7 +37,7 @@ class Validasiaktifitas extends Back_end {
         $records = $this->model_tr_aktifitas->validasi_aktifitas(implode("','", $arr_nip_bawahan), $batas);
         $this->set('records', $records);
         $this->set('keyword', NULL);
-        $this->set('additional_js', 'back_end/' . $this->_name . '/js/index_js');
+        $this->set('additional_js', "back_end/" . $this->_name . '/js/index_js');
         $this->set("bread_crumb", array(
             "#" => 'Daftar ' . $this->_header_title
         ));

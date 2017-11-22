@@ -11,7 +11,7 @@ RewriteEngine on
 ##
 
 #RewriteBase /
-RewriteBase /2017apik/aktivitas/
+RewriteBase /aktivitas/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

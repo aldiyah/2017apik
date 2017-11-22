@@ -15,7 +15,11 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
-$approval = array('Proses', 'Disetujui', 'Ditolak');
+$status_masuk = array('Hadir', 'Absen', 'Terlambat', 'Izin', 'Sakit', 'Dinas');
+$status_pulang = array('Hadir', 'Absen', 'Pulang', 'Izin', 'Sakit', 'Dinas');
+$status = array('Hadir', 'Absen', 'T/P', 'Izin', 'Sakit', 'Dinas');
+//$approval = array('Proses', 'Disetujui', 'Ditolak');
+//var_dump($tanggal);
 ?>
 
 <div class="row">
@@ -28,61 +32,95 @@ $approval = array('Proses', 'Disetujui', 'Ditolak');
             </div>
             <div class="panel-body">
                 <?php echo load_partial("back_end/shared/attention_message"); ?>
-                <div class="dataTables_wrapper no-footer">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-condensed table-bordered table-top no-footer" id="DataTables_Table_0">
-                            <thead>
-                                <tr role="row">
-                                    <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Absensi</th>
-                                    <th>Masuk</th>
-                                    <th>Pulang</th>
-                                    <th>Status</th>
-                                    <th>Pinalti</th>
-                                    <th width="80">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($records != FALSE): ?>
-                                    <?php $total_pinalty = 0; ?>
-                                    <?php foreach ($records as $key => $record): ?>
-                                        <?php
-                                        $pinalty = pinalty_absensi($record->absensi_id, $record->abs_masuk, $record->abs_pulang);
-                                        $total_pinalty += $pinalty;
-                                        ?>
-                                        <tr>
-                                            <td class="text-right"><?php echo $next_list_number++; ?></td>
-                                            <td class="text-center"><?php echo pg_date_to_text($record->abs_tanggal) ?></td>
-                                            <td><?php echo $record->absensi_id > 0 ? beautify_str($record->absensi_nama) : 'Belum Absen' ?></td>
-                                            <td class="text-center"><?php echo $record->abs_masuk ? $record->abs_masuk : '-' ?></td>
-                                            <td class="text-center"><?php echo $record->abs_pulang ? $record->abs_pulang : '-' ?></td>
-                                            <td class="text-center"><?php echo $approval[$record->abs_approval] ?></td>
-                                            <td class="text-center"><?php echo $pinalty ?> %</td>
-                                            <td class="text-center">
-                                                <?php if ($record->absensi_id == 0): ?>
-                                                    <div class="btn-group btn-group-sm">
-                                                        <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/lapor") . "/" . $record->abs_id; ?>">Lapor</a>
-                                                    </div>
-                                                <?php else: ?>
-                                                    -
-                                                <?php endif; ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    <tr style="background: #00232c;font-weight: bold;">
-                                        <td colspan="6" class="text-center">TOTAL</td>
-                                        <td class="text-center"><?php echo $total_pinalty ?> %</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="5"> Kosong / Data tidak ditemukan. </td>
-                                    </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
+                <form class="form-panel">
+                    <div class="input-group">
+                        <input type="text" name="keyword" style="width: calc(100% - 145px);" value="<?php echo $keyword; ?>" class="form-control" placeholder="Silahkan pilih periode absensi di sebelah ini..." disabled/>
+                        <?php echo form_dropdown('bulan', array_month(), $bulan, 'class="form-control" style="width: 90px;"') ?>
+                        <?php echo dropdown_tahun('tahun', $tahun, 5, 'class="form-control" style="width: 55px;"') ?>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+                        </div>
                     </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed table-bordered table-top">
+                        <thead>
+                            <tr role="row">
+                                <th rowspan="3">No</th>
+                                <th rowspan="3">Tanggal</th>
+                                <th rowspan="2" colspan="2">Upacara/Apel</th>
+                                <th colspan="6">Absensi</th>
+                            </tr>
+                            <tr>
+                                <th colspan="2">Masuk</th>
+                                <th colspan="2">Pulang</th>
+                                <th rowspan="2">Status</th>
+                                <th rowspan="2">Pinalti</th>
+                            </tr>
+                            <tr>
+                                <th>Datang</th>
+                                <th>Pinalti</th>
+                                <th>Jam</th>
+                                <th>Status</th>
+                                <th>Jam</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (ENVIRONMENT == 'testing' || ENVIRONMENT == 'development') : ?>
+                            <tr>
+                                <td class="text-right" style="background: #99ccff"><?php echo 0 ?></td>
+                                    <td class="text-center" style="background: #99ccff">Contoh</td>
+                                    <td class="text-center" style="background: #99ccff"><?php echo '<a href="' . base_url('back_end/' . $active_modul . '/ulapor/0"') . '" class="btn btn-sm btn-default">' . $status_pulang[1] . '</a>' ?></td>
+                                    <td class="text-center" style="background: #99ccff">4 %</td>
+                                    <td class="text-center" style="background: #99ccff">-</td>
+                                    <td class="text-center" style="background: #99ccff"><?php echo '<a href="' . base_url('back_end/' . $active_modul . '/mlapor/0"') . '" class="btn btn-sm btn-default">' . $status_pulang[1] . '</a>' ?></td>
+                                    <td class="text-center" style="background: #99ccff">-</td>
+                                    <td class="text-center" style="background: #99ccff"><?php echo '<a href="' . base_url('back_end/' . $active_modul . '/plapor/0"') . '" class="btn btn-sm btn-default">' . $status_pulang[1] . '</a>' ?></td>
+                                    <td class="text-center" style="background: #99ccff"><?php echo '<a href="' . base_url('back_end/' . $active_modul . '/lapor/0"') . '" class="btn btn-sm btn-default">' . $status_pulang[1] . '</a>' ?></td>
+                                    <td class="text-center" style="background: #99ccff">4 %</td>
+                                </tr>
+                            <?php endif; ?>
+                            <?php if ($records != FALSE): ?>
+                                <?php $total_pinalty = 0; ?>
+                                <?php foreach ($records as $key => $record): ?>
+                                    <?php
+                                    $pinalty = $record->abs_pinalty_masuk + $record->abs_pinalty_pulang;
+                                    $total_pinalty += $pinalty;
+                                    ?>
+                                    <tr>
+                                        <td class="text-right"><?php echo $next_list_number++; ?></td>
+                                        <td class="text-center"><?php echo pg_date_to_text($record->abs_tanggal) ?></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">
+                                            <?php echo $record->abs_masuk ? $record->abs_masuk : '-' ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <?php echo ($record->abs_masuk_status > 0 && $record->abs_masuk_status < 3 ? '<a href="' . base_url("back_end/" . $active_modul . "/mlapor") . "/" . $record->abs_id . '" class="btn btn-sm btn-default">' . $status_masuk[$record->abs_masuk_status] . '</a>' : $status_masuk[$record->abs_masuk_status]); ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <?php echo $record->abs_pulang ? $record->abs_pulang : '-' ?>
+                                        </td>
+                                        <td class="text-center"><?php echo ($record->abs_pulang_status > 0 && $record->abs_pulang_status < 3 ? '<a href="' . base_url("back_end/" . $active_modul . "/plapor") . "/" . $record->abs_id . '" class="btn btn-sm btn-default">' . $status_pulang[$record->abs_pulang_status] . '</a>' : $status_pulang[$record->abs_pulang_status]) ?></td>
+                                        <td class="text-center"><?php echo ($record->abs_status == 1 ? '<a href="' . base_url("back_end/" . $active_modul . "/lapor") . "/" . $record->abs_id . '" class="btn btn-sm btn-default">' . $status[$record->abs_status] . '</a>' : $status[$record->abs_status]) ?></td>
+                                        <td class="text-center"><?php echo $pinalty ?> %</td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                <tr class="table-footer">
+                                    <td colspan="3" class="text-center">TOTAL</td>
+                                    <td class="text-center"></td>
+                                    <td colspan="5"></td>
+                                    <td class="text-center"><?php echo $total_pinalty ?> %</td>
+                                </tr>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="11"> Kosong / Data tidak ditemukan. </td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                    Total ada <?php echo $total_record ?> data
                 </div>
             </div>
         </div>

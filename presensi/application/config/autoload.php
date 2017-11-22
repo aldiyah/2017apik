@@ -67,7 +67,7 @@ $autoload['libraries'] = array('database', 'session', 'uri', 'lmanuser', 'form_v
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('url', 'file', 'conf', 'common', 'form', 'security', 'lang', 'atlant', 'crypto');
+$autoload['helper'] = array('url', 'file', 'conf', 'common', 'form', 'security', 'lang', 'atlant', 'crypto', 'date', 'perwal');
 
 
 /*
@@ -83,7 +83,7 @@ $autoload['helper'] = array('url', 'file', 'conf', 'common', 'form', 'security',
   |
  */
 
-$autoload['config'] = array('application');
+$autoload['config'] = array('application', 'perwal');
 
 
 /*

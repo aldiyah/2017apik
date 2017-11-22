@@ -54,7 +54,7 @@ class Aktifitasharian extends Back_end {
 //        $this->set('aktifitas', $this->model_master_aktifitas->get_all());
 //        $this->set('access_rules', $this->access_rules());
         $this->set('records', $records);
-        $this->set('additional_js', 'back_end/' . $this->_name . '/js/index_js');
+        $this->set('additional_js', "back_end/" . $this->_name . '/js/index_js');
         $this->add_jsfiles(array('atlant/plugins/fullcalendar/fullcalendar.min.js'));
         $this->add_jsfiles(array('atlant/plugins/fullcalendar/lang/id.js'));
         $this->set("bread_crumb", array(
@@ -72,7 +72,7 @@ class Aktifitasharian extends Back_end {
         $this->set('pegawai_id', $this->pegawai_id);
         $this->set('tanggal', $tgl);
         $this->set('aktifitas', $this->model_master_aktifitas->get_all());
-        $this->set('additional_js', 'back_end/' . $this->_name . '/js/detail_js');
+        $this->set('additional_js', "back_end/" . $this->_name . '/js/detail_js');
         $this->set("bread_crumb", array(
             "back_end/" . $this->_name => 'Daftar ' . $this->_header_title,
             "#" => 'Formulir ' . $this->_header_title
@@ -106,8 +106,10 @@ class Aktifitasharian extends Back_end {
     public function rkbulanan($tahun = FALSE, $bulan = FALSE) {
         $this->load_model('model_master_tpp');
         $data_tpp = $this->model_master_tpp->get_detail('master_tpp.pegawai_id = ' . $this->pegawai_id);
-        $hari_kerja_efektif = 20;
-        $tpp_harian = $data_tpp && property_exists($data_tpp, 'tpp_beban_kerja') ? $data_tpp->tpp_beban_kerja * 0.3 / $hari_kerja_efektif : 0;
+        $holidays = array();
+        $hari_kerja_efektif = get_working_day_monthly($holidays);
+//        $tpp_harian = $data_tpp && property_exists($data_tpp, 'tpp_beban_kerja') ? $data_tpp->tpp_beban_kerja * $this->perwal['aktivitas']['bobot'] / $hari_kerja_efektif->total : 0;
+        $tpp_harian = $data_tpp ? $data_tpp->tpp_beban_kerja * $this->perwal['aktivitas']['bobot'] / $hari_kerja_efektif->total : 0;
         $bln = $bulan ? $bulan : date('n');
         $thn = $tahun ? $tahun : date('Y');
         $id_pegawai = $this->pegawai_id;

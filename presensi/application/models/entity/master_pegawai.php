@@ -17,7 +17,7 @@ class Master_pegawai extends MY_Model {
     public $sort_mode = 'asc';
 
     public function __construct() {
-        parent::__construct("master_pegawai");
+        parent::__construct("master_pegawai", "sc_master");
         $this->primary_key = "pegawai_id";
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);

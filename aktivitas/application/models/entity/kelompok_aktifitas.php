@@ -8,7 +8,7 @@ class kelompok_aktifitas extends MY_Model {
     public $sort_mode = 'asc';
 
     public function __construct() {
-        parent::__construct("kelompok_aktifitas");
+        parent::__construct("kelompok_aktifitas", "sc_aktivitas");
         $this->primary_key = "kelompok_id";
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);

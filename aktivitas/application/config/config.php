@@ -17,8 +17,8 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
-
-$config['base_url'] = "http://" . $_SERVER['SERVER_NAME']."/2017apik/aktivitas/";
+$config['base_url'] = "http://" . $_SERVER['SERVER_NAME'] . "/aktivitas/";
+date_default_timezone_set('Asia/Jakarta');
 
 /*
   |--------------------------------------------------------------------------

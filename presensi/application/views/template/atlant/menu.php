@@ -1,12 +1,9 @@
 <?php
 $is_authenticated = isset($is_authenticated) ? $is_authenticated : FALSE;
-
 $active_modul = isset($active_modul) ? $active_modul : "";
 $current_user_profil_name = isset($current_user_profil_name) ? $current_user_profil_name : "-";
 $current_user_roles = isset($current_user_roles) ? $current_user_roles : "pengguna";
 $menu_item = isset($menu_item) ? build_atlant_menu($menu_item, $active_modul) : "";
-?>
-<?php
 $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) && array_key_exists("pegawai_nip", $active_user_detail) && !is_null($active_user_detail["pegawai_nip"]) ? $active_user_detail["pegawai_nip"] : "user_default_avatar";
 ?>
 
@@ -17,12 +14,9 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
     </li>
     <li class="xn-profile">
         <?php if ($is_authenticated): ?>
-<!--            <a href="#" class="profile-mini" style="border:none;">
-                <img src="<?php echo upload_location("images/users/" . $pegawai_avatar . ".jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
-            </a>-->
             <div class="profile">
                 <div class="profile-image" style="border:none;">
-                    <img style="border:none;" src="<?php echo upload_location("images/users/" . $pegawai_avatar . ".jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
+                    <img style="border:none;" src="<?php echo (remote_file_exists(upload_location("images/users/" . $pegawai_avatar . ".jpg")) ? upload_location("images/users/" . $pegawai_avatar . ".jpg") : upload_location("images/users/user_default_avatar.jpg")) ?>" alt="<?php echo $current_user_profil_name ?>"/>
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name" style="font-weight: bold;"><?php echo $current_user_profil_name; ?></div>
@@ -64,5 +58,5 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
     <?php echo $menu_item; ?>
     <li class="xn-title">Aplikasi Lain</li>
         <?php echo '<li><a href="' . base_url() . 'back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aplikasi Aktivitas</span></a></li>'; ?>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_ppk"><span class="fa fa-book"></span> Aplikasi SKP</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_ppk"><span class="fa fa-book"></span> Aplikasi PPK</span></a></li>'; ?>
 </ul>

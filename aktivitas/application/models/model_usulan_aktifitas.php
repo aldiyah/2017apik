@@ -3,7 +3,7 @@
 defined("BASEPATH") OR exit("No direct script access allowed");
 include_once "entity/usulan_aktifitas.php";
 
-class model_usulan_aktifitas extends usulan_aktifitas {
+class Model_usulan_aktifitas extends Usulan_aktifitas {
 
     public function __construct() {
         parent::__construct();

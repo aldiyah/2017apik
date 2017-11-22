@@ -93,24 +93,20 @@ class model_tr_aktifitas extends tr_aktifitas {
         $where = $this->table_name . ".pegawai_id = " . $id_pegawai;
         $where .= " and " . $this->table_name . ".tr_aktifitas_tanggal = '" . $tanggal . "'";
         $this->get_select_referenced_table();
-//        $data = $this->get_where($where, '*');
-//        var_dump($this->db->last_query());
-//        var_dump($data);
-//        exit();
-//        echo $this->db->last_query();exit;
         return $this->get_where($where, '*, ' . $this->table_name . '.tr_aktifitas_dokumen as aktifitas_dok');
     }
 
-    public function get_aktifitas($id_pegawai = FALSE, $bulan = 1, $tahun = 2017) {
-        $where = $this->table_name . ".pegawai_id = " . $id_pegawai;
-        $where .= " and EXTRACT(MONTH FROM " . $this->table_name . ".tr_aktifitas_tanggal) = " . $bulan;
-        $where .= " and EXTRACT(YEAR FROM " . $this->table_name . ".tr_aktifitas_tanggal) = " . $tahun;
-//        if ($status) {
-//            $where .= " and " . $this->table_name . ".tr_aktifitas_status = " . $status;
-//        }
-        $this->db->order_by($this->table_name . ".tr_aktifitas_tanggal", 'asc');
-        $this->get_select_referenced_table();
-        return $this->get_where($where, '*');
+    public function get_aktifitas($id_pegawai = FALSE, $tahun = 2017, $bulan = 1) {
+        if ($id_pegawai) {
+            $conditions[] = $this->table_name . ".pegawai_id = " . $id_pegawai;
+        }
+        if ($tahun) {
+            $conditions[] = "EXTRACT(YEAR FROM " . $this->table_name . ".tr_aktifitas_tanggal) = " . $tahun;
+        }
+        if ($bulan) {
+            $conditions[] = "EXTRACT(MONTH FROM " . $this->table_name . ".tr_aktifitas_tanggal) = " . $bulan;
+        }
+        return $this->get_all(NULL, $conditions, TRUE, TRUE);
     }
 
     public function count_aktifitas($id_pegawai = FALSE, $bulan = 1, $tahun = 2017, $status = FALSE) {
@@ -124,10 +120,9 @@ class model_tr_aktifitas extends tr_aktifitas {
     }
 
     public function validasi_aktifitas($all_id_bawahan = FALSE, $batas = FALSE) {
-        $where = "sc_akrifwz.master_pegawai.pegawai_nip in ('" . $all_id_bawahan . "')";
+        $where = $this->master_schema . ".master_pegawai.pegawai_nip in ('" . $all_id_bawahan . "')";
         $where .= " and " . $this->table_name . ".tr_aktifitas_tanggal > '" . $batas . "'";
         $where .= " and " . $this->table_name . ".tr_aktifitas_status = 0";
-//        $this->get_select_referenced_table();
         return $this->get_all(null, $where);
     }
 
@@ -140,16 +135,17 @@ class model_tr_aktifitas extends tr_aktifitas {
 
     public function get_rekap_bulanan($id_pegawai = FALSE, $bulan = 1, $tahun = 2017) {
         $this->db->select($this->table_name . '.tr_aktifitas_tanggal');
-        $this->db->select_sum('sc_akrifwz.master_aktifitas.aktifitas_waktu');
+        $this->db->select_sum($this->schema_name . '.master_aktifitas.aktifitas_waktu');
         $this->db->select($this->table_name . '.tr_aktifitas_volume');
 //        $this->db->select('EXTRACT(MONTH FROM ' . $this->table_name . '.tr_aktifitas_tanggal)');
 //        $this->db->select('EXTRACT(YEAR FROM ' . $this->table_name . '.tr_aktifitas_tanggal)');
 //        $this->db->select($this->table_name . '.pegawai_id');
-        $this->db->join('sc_akrifwz.master_pegawai', 'sc_akrifwz.master_pegawai.pegawai_id = sc_akrifwz.tr_aktifitas.pegawai_id');
-        $this->db->join('sc_akrifwz.master_aktifitas', 'sc_akrifwz.master_aktifitas.aktifitas_id = sc_akrifwz.tr_aktifitas.aktifitas_id');
+        $this->db->join($this->master_schema . '.master_pegawai', $this->master_schema . '.master_pegawai.pegawai_id = ' . $this->schema_name . '.tr_aktifitas.pegawai_id');
+        $this->db->join($this->schema_name . '.master_aktifitas', $this->schema_name . '.master_aktifitas.aktifitas_id = ' . $this->schema_name . '.tr_aktifitas.aktifitas_id');
         $this->db->where($this->table_name . ".pegawai_id = ", $id_pegawai);
         $this->db->where('EXTRACT(MONTH FROM ' . $this->table_name . '.tr_aktifitas_tanggal) = ', $bulan);
         $this->db->where('EXTRACT(YEAR FROM ' . $this->table_name . '.tr_aktifitas_tanggal) = ', $tahun);
+        $this->db->where($this->table_name . ".tr_aktifitas_status = 1");
 //        $this->db->group_by($this->table_name . '.pegawai_id');
         $this->db->group_by($this->table_name . '.tr_aktifitas_tanggal');
         $this->db->group_by('EXTRACT(MONTH FROM ' . $this->table_name . '.tr_aktifitas_tanggal)');
@@ -157,6 +153,9 @@ class model_tr_aktifitas extends tr_aktifitas {
         $this->db->group_by($this->table_name . '.tr_aktifitas_volume');
         $this->db->order_by($this->table_name . '.tr_aktifitas_tanggal');
         $query = $this->db->get($this->table_name);
+//        print_r($this->db->last_query());
+//        var_dump($query->result());
+//        exit();
         return $query->num_rows() > 0 ? $query->result() : FALSE;
     }
 
