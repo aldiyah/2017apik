@@ -2,13 +2,18 @@
 CI_Autocomplete\.php
 
 nbproject/
-aktivitas/application/logs/*\.php
-aktivitas/application/cache/
-presensi/application/logs/*\.php
-presensi/application/cache/
-skp/application/logs/*\.php
-skp/application/cache/
-
+lwscodeigniterwrapper/
 lws_api/
 
-lwscodeigniterwrapper/
+aktivitas/application/logs/*\.php
+aktivitas/application/cache/
+aktivitas/index\.php
+
+presensi/application/logs/*\.php
+presensi/application/cache/
+presensi/index\.php
+presensi/application/config/database\.php
+
+ppk/application/logs/*\.php
+ppk/application/cache/
+ppk/index\.php
