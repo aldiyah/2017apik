@@ -137,27 +137,4 @@ class Home extends Back_end {
         return toJsonString($month, FALSE);
     }
 
-    private function __get_absensi_from_adms() {
-        $this->load->model(array('model_ab_absensi', 'model_tr_absensi'));
-        $last_date = $this->model_tr_absensi->get_last_day($this->pegawai_id);
-        $data_absensi = $this->model_ab_absensi->get_absensi($this->pegawai_nip, $last_date);
-        if ($data_absensi) {
-            $new_absensi = array();
-            foreach ($data_absensi as $row) {
-                if (date("Ymd", strtotime($row->ctime)) != date("Ymd")) {
-                    $new_absensi[] = array(
-                        "pegawai_id" => $this->pegawai_id,
-                        "abs_tanggal" => $row->ctime,
-                        "abs_masuk" => (date("H", strtotime($row->mintime)) < 12 ? $row->mintime : NULL),
-                        "abs_pulang" => (date("H", strtotime($row->maxtime)) > 12 ? $row->maxtime : NULL),
-                        "abs_masuk_status" => 0
-                    );
-                }
-            }
-        }
-        if (!empty($new_absensi)) {
-            $this->model_tr_absensi->transfer_absensi($new_absensi);
-        }
-    }
-
 }

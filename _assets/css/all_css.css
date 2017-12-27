@@ -166,6 +166,12 @@ tr.table-footer td {
 .wizard .anchor li a:after {
     z-index: 2;
 }
+.x-navigation.x-navigation-panel li#pengumuman {
+    width: 90%;
+}
+.panel, .form-control, .btn {
+    border-radius: 0 !important;
+}
 @media only screen and (max-width: 1024px){
     .breadcrumb {
         position: relative;
@@ -174,5 +180,10 @@ tr.table-footer td {
     }
     .x-navigation.x-navigation-panel li.xn-icon-button a {
         padding: 10px 0;
+    }
+}
+@media only screen and (max-width: 768px){
+    .x-navigation.x-navigation-panel li#pengumuman {
+        width: 85%;
     }
 }

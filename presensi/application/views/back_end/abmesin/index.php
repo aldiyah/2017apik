@@ -11,7 +11,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $records = isset($records) ? $records : FALSE;
 $urutan = isset($urutan) ? $urutan : 1;
-//var_dump($records);
+var_dump($records);
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -40,6 +40,7 @@ $urutan = isset($urutan) ? $urutan : 1;
                                 <th>Alias</th>
                                 <th>Device</th>
                                 <th>Aktivitas Terakhir</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,6 +52,11 @@ $urutan = isset($urutan) ? $urutan : 1;
                                         <td><?php echo beautify_str($row->Alias) ?></td>
                                         <td><?php echo $row->OEMVendor . " " . $row->DeviceName . " - " . $row->Platform ?></td>
                                         <td><?php echo $row->LastActivity ?></td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm">
+                                                <?php echo anchor(base_url("back_end/" . $active_modul . "/detail") . "/" . $row->SN, 'Ubah', 'class="btn btn-default"') ?>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>

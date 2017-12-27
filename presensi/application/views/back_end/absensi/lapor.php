@@ -28,14 +28,7 @@ $detail = isset($detail) ? $detail : FALSE;
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Status Absensi</label>
                         <div class="col-md-6 col-xs-12">
-                            <?php
-                            $pilihan = array();
-                            $pilihan[''] = 'Pilih Absensi';
-                            $pilihan['3'] = 'Sakit';
-                            $pilihan['4'] = 'Izin';
-                            $pilihan['5'] = 'Dinas';
-                            echo form_dropdown('abs_status', $pilihan, set_value('abs_status', $detail ? $detail->abs_status : ''), 'id="abs_status" class="form-control select" data-live-search="true"');
-                            ?>
+                            <?php echo form_dropdown('abs_lapor', $absensi, set_value('abs_lapor', $detail ? $detail->abs_lapor : ''), 'id="abs_lapor" class="form-control select" data-live-search="true"'); ?>
                             <span class="help-block"></span>
                         </div>
                     </div>

@@ -30,10 +30,12 @@ class Tr_absensi extends MY_Model {
         "abs_masuk_status" => array("abs_masuk_status", ""),
         "abs_pulang_status" => array("abs_pulang_status", ""),
         "abs_status" => array("abs_status", ""),
+        "abs_masuk_lapor" => array("abs_masuk_lapor", ""),
+        "abs_pulang_lapor" => array("abs_pulang_lapor", ""),
+        "abs_lapor" => array("abs_lapor", ""),
         "abs_pinalty_masuk" => array("abs_pinalty_masuk", ""),
         "abs_pinalty_pulang" => array("abs_pinalty_pulang", ""),
-        "abs_approval" => array("abs_approval", ""),
-        "abs_approval_by" => array("abs_approval_by", "")
+        "abs_pinalty_absensi" => array("abs_pinalty_absensi", "")
     );
     protected $rules = array(
         array("pegawai_id", ""),
@@ -44,10 +46,12 @@ class Tr_absensi extends MY_Model {
         array("abs_masuk_status", ""),
         array("abs_pulang_status", ""),
         array("abs_status", ""),
+        array("abs_masuk_lapor", ""),
+        array("abs_pulang_lapor", ""),
+        array("abs_lapor", ""),
         array("abs_pinalty_masuk", ""),
         array("abs_pinalty_pulang", ""),
-        array("abs_approval", ""),
-        array("abs_approval_by", "")
+        array("abs_pinalty_absensi", "")
     );
     protected $related_tables = array(
         "sc_master.master_pegawai" => array(

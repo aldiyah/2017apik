@@ -29,4 +29,7 @@ class Abmesin extends Back_end {
         $this->set('records', $this->model_ab_mesin->all());
     }
 
+    public function detail($id = FALSE) {
+    }
+
 }

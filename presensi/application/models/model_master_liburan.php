@@ -35,7 +35,20 @@ class Model_master_liburan extends Master_liburan {
         return $result;
     }
 
+    public function get_bulanan($tahun = FALSE, $bulan = FALSE) {
+        $this->db->select("libur_tanggal");
+        if ($tahun) {
+            $this->db->where("EXTRACT(YEAR FROM " . $this->table_name . ".libur_tanggal) = '" . $tahun . "'");
+        }
+        if ($bulan) {
+            $this->db->where("EXTRACT(MONTH FROM " . $this->table_name . ".libur_tanggal) = '" . $bulan . "'");
+        }
+        $query = $this->db->get($this->table_name);
+        return $query->num_rows() > 0 ? $query->result() : FALSE;
+    }
+
     protected function before_data_insert($data = FALSE) {
         parent::before_data_insert($data);
     }
+
 }

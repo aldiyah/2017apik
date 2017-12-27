@@ -134,4 +134,45 @@ class Back_end extends Lwpustaka_data {
         return md5(date('d') . md5("api_bkpp") . date("Y"));
     }
 
+    protected function __get_absensi_from_adms() {
+        $this->load->model(array('model_ab_absensi', 'model_tr_absensi'));
+        $last_data = $this->model_tr_absensi->get_last_data($this->pegawai_id);
+        $last_date = $last_data->maxtgl;
+        $max_masuk = $last_data->maxmasuk;
+        $max_pulang = $last_data->maxpulang;
+        $last_time = $max_masuk && $max_pulang ? max($max_masuk, $max_pulang) : ($max_masuk ? $max_masuk : ($max_pulang ? $max_pulang : NULL));
+        $data_absensi = $this->model_ab_absensi->get_absensi($this->pegawai_nip, $last_time);
+        if ($data_absensi) {
+            $old_absensi = array();
+            $new_absensi = array();
+            foreach ($data_absensi as $row) {
+                if (date("Y-m-d", strtotime($row->ctime)) != $last_date) {
+                    $new_absensi[] = array(
+                        "pegawai_id" => $this->pegawai_id,
+                        "abs_tanggal" => $row->ctime,
+                        "abs_masuk" => (date("H", strtotime($row->mintime)) < 12 ? $row->mintime : NULL),
+                        "abs_pulang" => (date("H", strtotime($row->maxtime)) > 12 ? $row->maxtime : NULL),
+                        "abs_masuk_status" => 0
+                    );
+                } else {
+                    if ((date('H', strtotime($row->mintime)) < 12 && $row->mintime < $max_masuk) || (date("H", strtotime($row->maxtime)) > 12 && $row->maxtime > $max_pulang)) {
+                        $old_absensi[] = array(
+                            "pegawai_id" => $this->pegawai_id,
+                            "abs_tanggal" => $row->ctime,
+                            "abs_masuk" => (date("H", strtotime($row->mintime)) < 12 ? ($max_masuk < $row->mintime ? $max_masuk : $row->mintime) : NULL),
+                            "abs_pulang" => (date("H", strtotime($row->maxtime)) > 12 ? ($max_pulang > $row->maxtime ? $max_pulang : $row->maxtime) : NULL),
+                            "abs_masuk_status" => 0
+                        );
+                    }
+                }
+            }
+        }
+        if (!empty($old_absensi)) {
+            $this->model_tr_absensi->update_absensi($new_absensi);
+        }
+        if (!empty($new_absensi)) {
+            $this->model_tr_absensi->transfer_absensi($new_absensi);
+        }
+    }
+
 }
