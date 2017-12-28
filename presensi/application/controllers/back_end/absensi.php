@@ -60,12 +60,52 @@ class Absensi extends Back_end {
     }
 
     public function mlapor($id = FALSE) {
-        parent::detail($id, array('abs_masuk_lapor'));
+        $this->load->model('model_tr_lapor_masuk');
+        $posted_data = array('abs_id', 'lm_lapor');
+//        var_dump(array_diff(array_keys($_POST), $posted_data), $this->model_tr_lapor_masuk->get_data_post(FALSE, $posted_data), $this->model_tr_lapor_masuk->is_valid(), $this->model_tr_lapor_masuk);
+//        exit;
+        if ($this->model_tr_lapor_masuk->get_data_post(FALSE, $posted_data)) {
+            if ($this->model_tr_lapor_masuk->is_valid()) {
+                //$this->before_save_response = $this->before_save($posted_data);
+                //$saved_id = FALSE;
+                //if ($this->before_save_response !== FALSE) {
+                $saved_id = $this->model_tr_lapor_masuk->save();
+                //}
+                //$this->after_save_response = $this->after_save($id, $saved_id);
+                $this->saved_id = $id;
+                if (!$id) {
+                    $id = $saved_id;
+                    $this->saved_id = $saved_id;
+                }
+                $this->upload_laporan_masuk_dokumen($id);
+//                if ($this->before_save_response) {
+                $this->attention_messages = "Data baru telah disimpan.";
+//                    if ($id) {
+//                        $this->attention_messages = "Perubahan telah disimpan.";
+//                    }
+//                    if ($parent_id) {
+//                        redirect('back_end/' . $this->_name . '/index/' . $parent_id);
+//                    }
+                redirect('back_end/' . $this->_name);
+//                redirect($_SERVER['HTTP_REFERER']);
+//                }
+                $this->attention_messages = "Terdapat Kesalahan, Periksa kembali isian anda.";
+            } else {
+                $this->attention_messages = $this->model_tr_lapor_masuk->errors->get_html_errors("<br />", "line-wrap");
+            }
+        }
+        $detail = $this->{$this->model}->show_detail($id);
+//        var_dump($this->db->last_query(), $detail);exit;
+        $this->set("detail", $detail);
         $this->set('absensi', $this->config->item('lapor_masuk'));
         $this->set('bread_crumb', array(
             'back_end/' . $this->_name => $this->_header_title,
             '#' => 'Lapor Absensi'
         ));
+    }
+
+    public function upload_laporan_masuk_dokumen($id = FALSE) {
+        
     }
 
     public function plapor($id = FALSE) {
