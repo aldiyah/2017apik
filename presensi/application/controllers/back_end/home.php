@@ -85,8 +85,11 @@ class Home extends Back_end {
         } else {
             $tpp_ppk_real = 1.0 * $tpp_ppk_dasar;
         }
+        $this->set("tpp_presensi_top", $tpp_presensi_dasar);
         $this->set("tpp_presensi", $tpp_presensi_real);
+        $this->set("tpp_aktivitas_top", $tpp_aktivitas_dasar + $tpp_aktivitas_over);
         $this->set("tpp_aktivitas", $tpp_aktivitas_real);
+        $this->set("tpp_ppk_top", $tpp_ppk_dasar);
         $this->set("tpp_ppk", $tpp_ppk_real);
         $this->_layout = 'atlant_landing';
     }

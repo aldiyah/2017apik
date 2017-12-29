@@ -1,6 +1,7 @@
 <?php
 $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) && array_key_exists("pegawai_nip", $active_user_detail) && !is_null($active_user_detail["pegawai_nip"]) ? $active_user_detail["pegawai_nip"] : "user_default_avatar";
 $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
+$tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
 ?>
 <div class="page-content-wrap">
     <div class="page-content-holder">
@@ -15,9 +16,9 @@ $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
                         <div class="profile-data-name" style="font-weight: bold;">NIP. <?php echo isset($active_user_detail['pegawai_nip']) ? $active_user_detail['pegawai_nip'] : '-'; ?></div>
                         <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_jabatan']) ? $active_user_detail['nama_jabatan'] : '')); ?></div>
                         <!--<div class="profile-data-name"><?php echo ucwords(strtolower($active_user_detail['nama_unit_organisasi'])); ?></div>-->
-                        <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_satuan_organisasi']) ? $active_user_detail['nama_satuan_organisasi'] : '')); ?></div>
+                        <!--<div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_satuan_organisasi']) ? $active_user_detail['nama_satuan_organisasi'] : '')); ?></div>-->
                         <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_organisasi']) ? $active_user_detail['nama_organisasi'] : '')); ?></div>
-                        <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_instansi']) ? $active_user_detail['nama_instansi'] : '')); ?></div>
+                        <!--<div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_instansi']) ? $active_user_detail['nama_instansi'] : '')); ?></div>-->
                     </div>
                     <div class="profile-controls">
                     </div>
@@ -37,6 +38,10 @@ $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
                     </h3>
                     <div class="block-heading-text">
                         Estimasi TPP bulan ini sampai dengan tanggal <?php echo date("d-m-Y"); ?>
+                    </div>
+                    <div style="border-top: 1px dashed #aaa;margin-top: 10px;padding-top: 5px;font-weight: bold;color: #0000ff;font-size: large;">
+                        Max. TPP
+                        <span class="pull-right"><strong>Rp. <?php echo number_format($tpp_pegawai_top, 0, ',', '.') ?></strong></span>
                     </div>
                 </div>
                 <div class="boxshadow text-center">
@@ -69,6 +74,10 @@ $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
                     <div class="pb-block">
                         <p>TPP yang diperoleh pegawai dari <strong>Absensi Harian dan Upacara</strong></p>
                     </div>
+                    <div class="pb-block" style="font-weight: bold;color: #0000ff;">
+                        Max. TPP Presensi
+                        <span class="pull-right">Rp. <?php echo number_format($tpp_presensi_top, 0, ',', '.') ?></span>
+                    </div>
                 </div>
 
             </div>
@@ -84,6 +93,10 @@ $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
                     <div class="pb-block">
                         <p>TPP yang diperoleh pegawai dari kegiatan <strong>Aktivitas Harian</strong></p>
                     </div>
+                    <div class="pb-block" style="font-weight: bold;color: #0000ff;">
+                        Max. TPP Aktivitas
+                        <span class="pull-right">Rp. <?php echo number_format($tpp_aktivitas_top, 0, ',', '.') ?></span>
+                    </div>
                 </div>
 
             </div>
@@ -98,6 +111,10 @@ $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
                     </div>
                     <div class="pb-block">
                         <p>TPP yang diperoleh pegawai dari kegiatan <strong>SKP Bulanan</strong> dan <strong>Penilaian Perilaku</strong></p>
+                    </div>
+                    <div class="pb-block" style="font-weight: bold;color: #0000ff;">
+                        Max. TPP PPK
+                        <span class="pull-right">Rp. <?php echo number_format($tpp_ppk_top, 0, ',', '.') ?></span>
                     </div>
                 </div>
 
