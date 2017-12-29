@@ -9,6 +9,7 @@ $detail = isset($detail) ? $detail : FALSE;
     <div class="col-md-12">
 
         <form id="frm-pegawai" enctype="multipart/form-data" method="POST" class="form-horizontal">
+            <?php echo form_hidden('abs_id', $detail->abs_id); ?>
             <div class="panel panel-default">
 
                 <div class="panel-heading">
@@ -28,14 +29,14 @@ $detail = isset($detail) ? $detail : FALSE;
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Status Absensi</label>
                         <div class="col-md-6 col-xs-12">
-                            <?php echo form_dropdown('abs_pulang_lapor', $absensi, set_value('abs_pulang_lapor', $detail ? $detail->abs_pulang_lapor : ''), 'id="abs_pulang_lapor" class="form-control select" data-live-search="true"'); ?>
+                            <?php echo form_dropdown('lp_lapor', $absensi, set_value('lp_lapor'), 'id="lp_lapor" class="form-control select" data-live-search="true"'); ?>
                             <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 col-xs-12 control-label">Dokumen Pendukung</label>
                         <div class="col-md-6 col-xs-12">
-                            <?php echo form_upload('abs_document', '', 'class="form-control"'); ?>
+                            <?php echo form_upload('lp_dokumen', '', 'class="form-control"'); ?>
                             <span class="help-block">Silahkan upload dokumen pendukung di sini.</span>
                         </div>
                     </div>

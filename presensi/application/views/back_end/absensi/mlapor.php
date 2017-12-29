@@ -2,7 +2,7 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
-var_dump($detail);
+//var_dump($detail);
 ?>
 
 <div class="row">
