@@ -90,6 +90,12 @@ class Home extends Back_end {
         $this->_layout = 'atlant_landing';
     }
 
+    public function to_landing() {
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/presensi/back_end/home/landingpage";
+        header('Location: ' . $url);
+        exit;
+    }
+
     public function to_presensi() {
         $url = "http://" . $_SERVER['SERVER_NAME'] . "/presensi/";
         header('Location: ' . $url);

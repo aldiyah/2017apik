@@ -110,7 +110,7 @@ $current_user_roles = isset($current_user_roles) ? $current_user_roles : "Tamu";
                 padding: 10px;
                 box-shadow: 0 0 3px #999;
                 margin-bottom: 20px;
-                background: rgba(250,250,250,0.5);
+                background: rgba(250,250,250,0.6);
                 border-radius: 5px;
             }
         </style>

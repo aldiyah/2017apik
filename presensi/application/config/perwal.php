@@ -64,13 +64,13 @@ $config['status_masuk'] = array(
     '6' => 'Cuti'
 );
 $config['lapor_masuk'] = array(
-    '0' => 'Belum Lapor',
+    '0' => 'Tanpa Keterangan',
     '1' => 'Sakit',
     '2' => 'Izin',
     '3' => 'Dinas'
 );
 $config['status_lapor_masuk'] = array(
-    '0' => 'Belum Lapor',
+    '0' => 'Tanpa Keterangan',
     '1' => 'Sakit',
     '2' => 'Izin',
     '3' => 'Dinas'
@@ -85,10 +85,10 @@ $config['status_pulang'] = array(
     '6' => 'Cuti'
 );
 $config['lapor_pulang'] = array(
-    '0' => 'Belum Lapor',
+    '0' => 'Tanpa Keterangan',
     '1' => 'Sakit Dengan Keterangan Dokter',
     '2' => 'Sakit Tanpa Keterangan Dokter',
-    '3' => 'Izin Keperluan Pribadi',
+    '3' => 'Izin',
     '4' => 'Dinas'
 );
 $config['status_lapor_pulang'] = array(
@@ -108,18 +108,20 @@ $config['status_absensi'] = array(
     '6' => 'Cuti'
 );
 $config['lapor_absensi'] = array(
-    '0' => 'Belum Lapor',
+    '0' => 'Tanpa Keterangan',
     '1' => 'Sakit Dengan Keterangan Dokter',
     '2' => 'Sakit Tanpa Keterangan Dokter',
-    '3' => 'Izin Keperluan Pribadi',
-    '4' => 'Dinas'
+    '3' => 'Izin',
+    '4' => 'Dinas',
+    '5' => 'Cuti'
 );
 $config['status_lapor_absensi'] = array(
     '0' => 'Belum',
     '1' => 'SDKD',
     '2' => 'STKD',
     '3' => 'Izin',
-    '4' => 'Dinas'
+    '4' => 'Dinas',
+    '5' => 'Cuti'
 );
 $config['jenis_cuti'] = array(
     '1' => 'Cuti Tahunan',

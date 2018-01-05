@@ -7,7 +7,7 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
-$skpt_ouput = array('Laporan','Dokumen');
+$skpt_ouput = array('Laporan','Dokumen','Paket','Orang','Unit');
 $status = array('Draft', 'Pengajuan', 'Proses', 'Selesai', 'Ditolak');
 //var_dump($records);
 ?>

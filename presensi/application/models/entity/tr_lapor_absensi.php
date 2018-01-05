@@ -51,6 +51,15 @@ class Tr_lapor_absensi extends MY_Model {
                 "abs_tanggal"
             ),
             "referenced" => "LEFT"
+        ),
+        "sc_master.master_pegawai" => array(
+            "reference_to" => "tr_absensi",
+            "fkey" => "pegawai_id",
+            "columns" => array(
+                "pegawai_nip",
+                "pegawai_nama"
+            ),
+            "referenced" => "LEFT"
         )
     );
     protected $attribute_types = array();

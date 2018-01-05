@@ -23,28 +23,40 @@ class Vabsensi extends Back_end {
     public function index() {
         $thn = $this->input->get('tahun', TRUE);
         $tahun = $thn ? $thn : date('Y');
-        $profil = array(
-            'nip' => $this->pegawai_nip,
-            'kd_eselon' => $this->kode_eselon,
-            'kd_instansi' => $this->kode_instansi,
-            'kd_organisasi' => $this->kode_organisasi,
-            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
-            'kd_unit_organisasi' => $this->kode_unit_organisasi
-        );
-        $data = $this->_call_api('pegawai/get_bawahan', $profil);
-        $bawahan = isset($data['response']) ? $data['response'] : FALSE;
-        $arr_nip_bawahan = array();
-        if ($bawahan) {
-            foreach ($bawahan as $row) {
-                $arr_nip_bawahan[] = $row->nip;
-            }
-        }
-        $records = $arr_nip_bawahan ? $this->model_tr_absensi->get_validasi(implode("','", $arr_nip_bawahan), $tahun) : FALSE;
-        $this->set('records', $records ? $records->record_set : FALSE);
-        $this->set('total_record', $records ? $records->record_found : 0);
-        $this->set('keyword', $records ? $records->keyword : '');
+//        $profil = array(
+//            'nip' => $this->pegawai_nip,
+//            'kd_eselon' => $this->kode_eselon,
+//            'kd_instansi' => $this->kode_instansi,
+//            'kd_organisasi' => $this->kode_organisasi,
+//            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
+//            'kd_unit_organisasi' => $this->kode_unit_organisasi
+//        );
+//        $data = $this->_call_api('pegawai/get_bawahan', ["nip" => $this->pegawai_nip]);
+//        $bawahan = isset($this->user_detail['bawahan']) ? $this->user_detail['bawahan'] : FALSE;
+//        $arr_nip_bawahan = array();
+//        if ($bawahan) {
+//            foreach ($bawahan as $row) {
+//                $arr_nip_bawahan[] = $row->NIP;
+//            }
+//        }
+//        $this->load->model('model_tr_lapor_upacara');
+        $this->load->model('model_tr_lapor_masuk');
+        $this->load->model('model_tr_lapor_pulang');
+        $this->load->model('model_tr_lapor_absensi');
+//        $records = $arr_nip_bawahan ? $this->model_tr_absensi->get_validasi(implode("','", $arr_nip_bawahan), $tahun) : FALSE;
+//        $records = $this->model_tr_lapor_masuk->get_validasi_bawahan($this->pegawai_id);
+//        var_dump($records);
+//        exit();
+        $this->set('masuk', $this->model_tr_lapor_masuk->get_validasi_bawahan($this->pegawai_id)->record_set);
+        $this->set('pulang', $this->model_tr_lapor_pulang->get_validasi_bawahan($this->pegawai_id)->record_set);
+        $this->set('absensi', $this->model_tr_lapor_absensi->get_validasi_bawahan($this->pegawai_id)->record_set);
+//        $this->set('records', $records ? $records->record_set : FALSE);
+//        $this->set('total_record', $records ? $records->record_found : 0);
+//        $this->set('keyword', $records ? $records->keyword : '');
         $this->set('tahun', $tahun);
-        $this->set('jenis_cuti', $this->config->item('jenis_cuti'));
+        $this->set('lapor_masuk', $this->config->item('lapor_masuk'));
+        $this->set('lapor_pulang', $this->config->item('lapor_pulang'));
+        $this->set('lapor_absensi', $this->config->item('lapor_absensi'));
         $this->set('bread_crumb', array(
             '#' => $this->_header_title
         ));

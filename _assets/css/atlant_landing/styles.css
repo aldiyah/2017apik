@@ -859,6 +859,11 @@ a:hover {
 }
 .page-container .page-content .page-content-wrap .pricing-block .pb-block:last-child {
     border-bottom: 0px;
+    padding: 0;
+}
+.page-container .page-content .page-content-wrap .pricing-block .pb-block a.btn {
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
 }
 .page-container .page-content .page-content-wrap .pricing-block .pb-price {
     float: left;

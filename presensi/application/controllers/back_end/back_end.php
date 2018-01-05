@@ -8,12 +8,6 @@ class Back_end extends Lwpustaka_data {
     protected $myid = 0;
     protected $pegawai_id = 0;
     protected $pegawai_nip = 0;
-    protected $kode_eselon = 0;
-    protected $kode_jabatan = 0;
-    protected $kode_instansi = 0;
-    protected $kode_organisasi = 0;
-    protected $kode_satuan_organisasi = 0;
-    protected $kode_unit_organisasi = 0;
     protected $resource_api_link = NULL;
     protected $saved_id = FALSE;
     public $perwal = NULL;
@@ -37,14 +31,8 @@ class Back_end extends Lwpustaka_data {
         $this->myid = $this->user_detail['id_user'];
         $this->pegawai_id = is_array($this->user_detail) && array_key_exists('pegawai_id', $this->user_detail) && $this->user_detail['pegawai_id'] != NULL ? $this->user_detail['pegawai_id'] : 0;
         $this->pegawai_nip = is_array($this->user_detail) && array_key_exists('pegawai_nip', $this->user_detail) ? $this->user_detail['pegawai_nip'] : '';
-        $this->kode_eselon = is_array($this->user_detail) && array_key_exists('kd_eselon', $this->user_detail) ? $this->user_detail['kd_eselon'] : '';
-        $this->kode_jabatan = is_array($this->user_detail) && array_key_exists('kd_jabatan', $this->user_detail) ? $this->user_detail['kd_jabatan'] : '';
-        $this->kode_instansi = is_array($this->user_detail) && array_key_exists('kd_instansi', $this->user_detail) ? $this->user_detail['kd_instansi'] : '';
-        $this->kode_organisasi = is_array($this->user_detail) && array_key_exists('kd_organisasi', $this->user_detail) ? $this->user_detail['kd_organisasi'] : '';
-        $this->kode_satuan_organisasi = is_array($this->user_detail) && array_key_exists('kd_satuan_organisasi', $this->user_detail) ? $this->user_detail['kd_satuan_organisasi'] : '';
-        $this->kode_unit_organisasi = is_array($this->user_detail) && array_key_exists('kd_unit_organisasi', $this->user_detail) ? $this->user_detail['kd_unit_organisasi'] : '';
         $this->set('access_rules', $this->access_rules());
-        $this->set('user_detail', $this->user_detail);
+//        $this->set('user_detail', $this->user_detail);
         $this->perwal = $this->config->item('perwal');
         $this->set('referer', $this->agent->referrer());
     }
@@ -104,20 +92,16 @@ class Back_end extends Lwpustaka_data {
 
     public function _call_api($path, $params) {
         $url = $this->resource_api_link . $path;
-        $ch = curl_init($url);
-        $params["apitoken"] = $this->get_api_token();
-        curl_setopt($ch, CURLOPT_POST, 1);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-//            'Content-Type:application/json',
-//            'Accept:application/json'
-//        ));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        $data = curl_exec($ch);
-        return (array) json_decode($data);
+        $options = array(
+            'http' => array(
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($params),
+            ),
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        return (array) json_decode($result);
     }
 
     private function init_back_end() {

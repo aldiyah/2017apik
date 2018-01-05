@@ -109,9 +109,13 @@ $current_user_roles = isset($current_user_roles) ? $current_user_roles : "Tamu";
             .boxshadow {
                 padding: 10px;
                 box-shadow: 0 0 3px #999;
-                margin-bottom: 20px;
-                background: rgba(250,250,250,0.5);
+                margin-bottom: 10px;
+                background: rgba(250,250,250,0.8);
                 border-radius: 5px;
+            }
+            .profile .profile-image {
+                height: 120px;
+                overflow: hidden;
             }
         </style>
     </head>

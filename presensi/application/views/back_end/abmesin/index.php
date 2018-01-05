@@ -11,7 +11,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $records = isset($records) ? $records : FALSE;
 $urutan = isset($urutan) ? $urutan : 1;
-var_dump($records);
+//var_dump($records);
 ?>
 <div class="row">
     <div class="col-md-12">

@@ -14,20 +14,20 @@ class Validasiaktifitas extends Back_end {
     }
 
     public function index() {
-        $profil = array(
-            'nip' => $this->pegawai_nip,
-            'kd_eselon' => $this->kode_eselon,
-            'kd_instansi' => $this->kode_instansi,
-            'kd_organisasi' => $this->kode_organisasi,
-            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
-            'kd_unit_organisasi' => $this->kode_unit_organisasi
-        );
-        $data = $this->_call_api('pegawai/get_bawahan', $profil);
-        $bawahan = isset($data['response']) ? $data['response'] : FALSE;
+//        $profil = array(
+//            'nip' => $this->pegawai_nip,
+//            'kd_eselon' => $this->kode_eselon,
+//            'kd_instansi' => $this->kode_instansi,
+//            'kd_organisasi' => $this->kode_organisasi,
+//            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
+//            'kd_unit_organisasi' => $this->kode_unit_organisasi
+//        );
+//        $data = $this->_call_api('pegawai/get_bawahan', $profil);
+        $bawahan = isset($this->user_detail['bawahan']) ? $this->user_detail['bawahan'] : FALSE;
         $arr_nip_bawahan = array();
         if ($bawahan) {
             foreach ($bawahan as $row) {
-                $arr_nip_bawahan[] = $row->nip;
+                $arr_nip_bawahan[] = $row->NIP;
             }
         }
 

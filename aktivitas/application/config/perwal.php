@@ -54,27 +54,83 @@ $config['jenis_perilaku'] = array(
     '5' => 'Kerjasama',
     '6' => 'Kepemimpinan'
 );
-$config['jenis_absensi'] = array(
-    '0' => 'Absen',
-    '1' => 'Hadir',
-    '2' => 'Sakit',
-    '3' => 'Ijin',
-    '4' => 'Cuti',
-    '5' => 'Hamil',
-    '6' => 'ijin Dinas'
+$config['status_masuk'] = array(
+    '0' => 'Hadir',
+    '1' => 'Absen',
+    '2' => 'Terlambat',
+    '3' => 'Sakit',
+    '4' => 'Izin',
+    '5' => 'Dinas',
+    '6' => 'Cuti'
+);
+$config['lapor_masuk'] = array(
+    '0' => 'Tanpa Keterangan',
+    '1' => 'Sakit',
+    '2' => 'Izin',
+    '3' => 'Dinas'
+);
+$config['status_lapor_masuk'] = array(
+    '0' => 'Tanpa Keterangan',
+    '1' => 'Sakit',
+    '2' => 'Izin',
+    '3' => 'Dinas'
+);
+$config['status_pulang'] = array(
+    '0' => 'Hadir',
+    '1' => 'Absen',
+    '2' => 'Pulang',
+    '3' => 'Sakit',
+    '4' => 'Izin',
+    '5' => 'Dinas',
+    '6' => 'Cuti'
+);
+$config['lapor_pulang'] = array(
+    '0' => 'Tanpa Keterangan',
+    '1' => 'Sakit Dengan Keterangan Dokter',
+    '2' => 'Sakit Tanpa Keterangan Dokter',
+    '3' => 'Izin',
+    '4' => 'Dinas'
+);
+$config['status_lapor_pulang'] = array(
+    '0' => 'Belum',
+    '1' => 'SDKD',
+    '2' => 'STKD',
+    '3' => 'Izin',
+    '4' => 'Dinas'
+);
+$config['status_absensi'] = array(
+    '0' => 'Hadir',
+    '1' => 'Absen',
+    '2' => 'T/P',
+    '3' => 'Sakit',
+    '4' => 'Izin',
+    '5' => 'Dinas',
+    '6' => 'Cuti'
 );
 $config['lapor_absensi'] = array(
-    '0' => 'Absen',
-    '2' => 'Sakit',
-    '3' => 'Ijin',
-    '4' => 'Cuti',
-    '5' => 'Hamil',
-    '6' => 'ijin Dinas'
+    '0' => 'Tanpa Keterangan',
+    '1' => 'Sakit Dengan Keterangan Dokter',
+    '2' => 'Sakit Tanpa Keterangan Dokter',
+    '3' => 'Izin',
+    '4' => 'Dinas',
+    '5' => 'Cuti'
+);
+$config['status_lapor_absensi'] = array(
+    '0' => 'Belum',
+    '1' => 'SDKD',
+    '2' => 'STKD',
+    '3' => 'Izin',
+    '4' => 'Dinas',
+    '5' => 'Cuti'
 );
 $config['jenis_cuti'] = array(
     '1' => 'Cuti Tahunan',
-    '2' => 'Cuti Nikah',
-    '3' => 'Cuti Hamil'
+    '2' => 'Cuti Besar',
+    '3' => 'Cuti Sakit',
+    '4' => 'Cuti Melahirkan',
+    '5' => 'Cuti Karena Alasan Penting',
+    '6' => 'Cuti Bersama',
+    '7' => 'Cuti Diluar Tanggungan Negara'
 );
 $config['jenis_status_skp'] = array(
     '0' => 'Draft',

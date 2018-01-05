@@ -15,8 +15,8 @@ $config['appkey'] = '1029384756';
 
 $config['appsalt'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-//$config['resource_api_link'] = 'http://localhost:43500/BkppRestFulServices-Api/';
-$config['resource_api_link'] = 'http://localhost/2017apik/lws_api/';
+//$config['resource_api_link'] = 'http://localhost/2017apik/lws_api/';
+$config['resource_api_link'] = 'http://lasik.tangerangselatankota.go.id/simpeg/api/';
 
 $config['lmanuser.usingbackendfrontend'] = FALSE;
 $config['user_id_column_name'] = "id_user";

@@ -47,7 +47,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                             <tr role="row">
                                 <th rowspan="3">No</th>
                                 <th rowspan="3">Tanggal</th>
-                                <th rowspan="2" colspan="3">Upacara/Apel</th>
+                                <th rowspan="2" colspan="3">Upacara Gabungan</th>
                                 <th colspan="6">Absensi</th>
                             </tr>
                             <tr>
@@ -57,7 +57,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                 <th rowspan="2">Pinalti</th>
                             </tr>
                             <tr>
-                                <th>Datang</th>
+                                <th>Jam</th>
                                 <th>Status</th>
                                 <th>Pinalti</th>
                                 <th>Jam</th>
@@ -94,7 +94,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             } else {
                                                 if ($record->lm_lapor == 0) {
                                                     if ($record->abs_masuk_status > 0 && $record->abs_masuk_status < 3) {
-                                                        echo anchor(base_url("back_end/" . $active_modul . "/mlapor") . "/" . $record->abs_id, $status_masuk[$record->abs_masuk_status], 'class="btn btn-sm btn-default"');
+                                                        echo anchor(base_url("back_end/" . $active_modul . "/mlapor") . "/" . $record->abs_id, $status_masuk[$record->abs_masuk_status], 'class="btn btn-sm btn-primary"');
                                                     } else {
                                                         echo $status_masuk[$record->abs_masuk_status];
                                                     }
@@ -122,7 +122,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             } else {
                                                 if ($record->lp_lapor == 0) {
                                                     if ($record->abs_pulang_status > 0 && $record->abs_pulang_status < 3) {
-                                                        echo anchor(base_url("back_end/" . $active_modul . "/plapor") . "/" . $record->abs_id, $status_pulang[$record->abs_pulang_status], 'class="btn btn-sm btn-default"');
+                                                        echo anchor(base_url("back_end/" . $active_modul . "/plapor") . "/" . $record->abs_id, $status_pulang[$record->abs_pulang_status], 'class="btn btn-sm btn-primary"');
                                                     } else {
                                                         echo $status_pulang[$record->abs_pulang_status];
                                                     }
@@ -140,7 +140,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                             <?php
                                             if ($record->abs_status == 1) {
                                                 if ($record->la_lapor == 0) {
-                                                    echo anchor(base_url("back_end/" . $active_modul . "/lapor") . "/" . $record->abs_id, $status[$record->abs_status], 'class="btn btn-sm btn-default"');
+                                                    echo anchor(base_url("back_end/" . $active_modul . "/lapor") . "/" . $record->abs_id, $status[$record->abs_status], 'class="btn btn-sm btn-primary"');
                                                 } else {
                                                     if ($record->la_approval_al == 1 || $record->la_approval_aa == 1) {
                                                         echo $lapor[$record->abs_lapor] . ' [V]';
@@ -190,7 +190,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                         <tr>
                             <td>Izin</td>
                             <td>=</td>
-                            <td>Izin Keperluan Pribadi</td>
+                            <td>Izin</td>
                         </tr>
                         <tr>
                             <td>SDKD</td>

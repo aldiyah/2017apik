@@ -97,12 +97,12 @@ $detail = isset($detail) ? $detail : FALSE;
                         <label class="col-md-3 col-xs-12 control-label">Dokumen Pendukung</label>
                         <div class="col-md-6 col-xs-12">
                             <?php echo form_upload('tr_aktifitas_dokumen', set_value('tr_aktifitas_dokumen', $detail ? $detail->tr_aktifitas_dokumen : ''), 'class="form-control"'); ?>
-                            <span class="help-block">Silahkan upload dokumen pendukung di sini.</span>
+                            <span class="help-block">Silahkan unggah/upload dokumen pendukung berbentuk gambar di sini.</span>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <input type="submit" value="Submit" class="btn-primary btn pull-right">
+                    <input type="submit" value="Kirim" class="btn-primary btn pull-right">
                     <a href="<?php echo $referer; ?>" class="btn-default btn">Batal / Kembali</a>
                 </div>
             </div>

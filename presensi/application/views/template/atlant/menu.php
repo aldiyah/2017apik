@@ -17,11 +17,12 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
             <div class="profile">
                 <div class="profile-image" style="border:none;">
                     <img style="border:none;" src="<?php echo (remote_file_exists(upload_location("images/users/" . $pegawai_avatar . ".jpg")) ? upload_location("images/users/" . $pegawai_avatar . ".jpg") : upload_location("images/users/user_default_avatar.jpg")) ?>" alt="<?php echo $current_user_profil_name ?>"/>
+                    <!--<img style="border:none;" src="http://lasik.tangerangselatankota.go.id/simpeg/assets/img/photo/157.jpg" alt="<?php echo $current_user_profil_name ?>"/>-->
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name" style="font-weight: bold;"><?php echo $current_user_profil_name; ?></div>
-                    <div class="profile-data-name" style="font-size: 11px;">NIP. <?php echo isset($user_detail['pegawai_nip']) ? $user_detail['pegawai_nip'] : ''; ?></div>
-                    <div class="profile-data-name" style="font-size: 11px;"><?php echo ucwords(strtolower(isset($user_detail['nama_jabatan']) ? $user_detail['nama_jabatan'] : '')); ?></div>
+                    <div class="profile-data-name" style="font-size: 11px;">NIP. <?php echo isset($active_user_detail['pegawai_nip']) ? $active_user_detail['pegawai_nip'] : ''; ?></div>
+                    <div class="profile-data-name" style="font-size: 11px;"><?php echo ucwords(strtolower(isset($active_user_detail['nama_jabatan']) ? $active_user_detail['nama_jabatan'] : '')); ?></div>
                 </div>
                 <div class="profile-controls">
                     <?php /*
@@ -47,7 +48,7 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
             </div>
         <?php endif ?>                                                                        
     </li>
-    <li class="xn-title">Menu Utama</li>
+    <li class="xn-title">Menu</li>
     <?php
     if (strtolower(trim($active_modul)) == 'home') {
         echo '<li class="active"><a href="' . base_url() . '"><span class="fa fa-circle-o"></span> Beranda</span></a></li>';
@@ -56,7 +57,8 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
     }
     ?>
     <?php echo $menu_item; ?>
-    <li class="xn-title">Aplikasi Lain</li>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aplikasi Aktivitas</span></a></li>'; ?>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_ppk"><span class="fa fa-book"></span> Aplikasi PPK</span></a></li>'; ?>
+    <li class="xn-title" style="background: #ffff33;"></li>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aktivitas Harian</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_ppk"><span class="fa fa-book"></span> PPK - SKP</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_landing"><span class="fa fa-dashboard"></span> Rekapitulasi</span></a></li>'; ?>
 </ul>

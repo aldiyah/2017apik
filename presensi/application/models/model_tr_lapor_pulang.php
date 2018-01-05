@@ -19,4 +19,14 @@ class Model_tr_lapor_pulang extends Tr_lapor_pulang {
         parent::__construct();
     }
 
+    public function get_validasi_bawahan($id = 0) {
+        $conditions = array(
+//            "sc_master.master_pegawai.pegawai_nip in ('" . $bawahan . "')",
+//            "EXTRACT(YEAR FROM " . $this->table_name . ".abs_tanggal) = '" . $tahun . "'",
+            "((" . $this->table_name . ".lp_approval_al = " . $id . " AND " . $this->table_name . ".lp_approval_by_al = 0 AND " . $this->table_name . ".lp_approval_by_aa = 0 ) OR "
+            . "(" . $this->table_name . ".lp_approval_aa = " . $id . " AND " . $this->table_name . ".lp_approval_by_aa = 0 AND " . $this->table_name . ".lp_approval_by_al = 0))"
+        );
+        return parent::get_all(array(), $conditions, TRUE, TRUE, 1, TRUE);
+    }
+
 }

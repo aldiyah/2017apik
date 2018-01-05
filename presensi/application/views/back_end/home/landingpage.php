@@ -3,13 +3,14 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
 $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
 $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
 ?>
-<div class="page-content-wrap">
+<div class="page-content-wrap" style="padding-bottom: 10px;">
     <div class="page-content-holder">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile xn-profile boxshadow">
                     <div class="profile-image" style="border:none;">
                         <img style="border:none;" src="<?php echo remote_file_exists(upload_location("images/users/" . $pegawai_avatar . ".jpg")) ? upload_location("images/users/" . $pegawai_avatar . ".jpg") : upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
+                        <!--<img style="border:none;" src="http://lasik.tangerangselatankota.go.id/simpeg/assets/img/photo/157.jpg" alt="<?php echo $current_user_profil_name; ?>"/>-->
                     </div>
                     <div class="profile-data">
                         <div class="profile-data-name" style="font-size: 13px;font-weight: bold;color: #e0401d;"><?php echo $current_user_profil_name; ?></div>
@@ -44,10 +45,10 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
                         <span class="pull-right"><strong>Rp. <?php echo number_format($tpp_pegawai_top, 0, ',', '.') ?></strong></span>
                     </div>
                 </div>
-                <div class="boxshadow text-center">
-                    <a href="<?php echo base_url("back_end/home") ?>" class="btn btn-primary">MASUK</a>
-                    <a href="<?php echo base_url("logout") ?>" class="btn btn-primary">KELUAR</a>
-                </div>
+                <!--                <div class="boxshadow text-center">
+                                    <a href="<?php echo base_url("back_end/home") ?>" class="btn btn-primary">MASUK</a>
+                                    <a href="<?php echo base_url("logout") ?>" class="btn btn-primary">KELUAR</a>
+                                </div>-->
             </div>
         </div>
     </div>
@@ -72,11 +73,14 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
                         </h3>
                     </div>
                     <div class="pb-block">
-                        <p>TPP yang diperoleh pegawai dari <strong>Absensi Harian dan Upacara</strong></p>
+                        <p>TPP dari <strong>Absensi Harian dan Upacara</strong></p>
                     </div>
                     <div class="pb-block" style="font-weight: bold;color: #0000ff;">
                         Max. TPP Presensi
                         <span class="pull-right">Rp. <?php echo number_format($tpp_presensi_top, 0, ',', '.') ?></span>
+                    </div>
+                    <div class="pb-block">
+                        <a href="<?php echo base_url("back_end/home/to_presensi") ?>" class="btn btn-block btn-primary">MASUK</a>
                     </div>
                 </div>
 
@@ -91,11 +95,14 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
                         </h3>
                     </div>
                     <div class="pb-block">
-                        <p>TPP yang diperoleh pegawai dari kegiatan <strong>Aktivitas Harian</strong></p>
+                        <p>TPP dari <strong>Aktivitas Harian</strong></p>
                     </div>
                     <div class="pb-block" style="font-weight: bold;color: #0000ff;">
                         Max. TPP Aktivitas
                         <span class="pull-right">Rp. <?php echo number_format($tpp_aktivitas_top, 0, ',', '.') ?></span>
+                    </div>
+                    <div class="pb-block">
+                        <a href="<?php echo base_url("back_end/home/to_aktivitas") ?>" class="btn btn-block btn-primary">MASUK</a>
                     </div>
                 </div>
 
@@ -110,11 +117,14 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
                         </h3>
                     </div>
                     <div class="pb-block">
-                        <p>TPP yang diperoleh pegawai dari kegiatan <strong>SKP Bulanan</strong> dan <strong>Penilaian Perilaku</strong></p>
+                        <p>TPP dari <strong>SKP Bulanan</strong> dan <strong>Penilaian Perilaku</strong></p>
                     </div>
                     <div class="pb-block" style="font-weight: bold;color: #0000ff;">
                         Max. TPP PPK
                         <span class="pull-right">Rp. <?php echo number_format($tpp_ppk_top, 0, ',', '.') ?></span>
+                    </div>
+                    <div class="pb-block">
+                        <a href="<?php echo base_url("back_end/home/to_ppk") ?>" class="btn btn-block btn-primary">MASUK</a>
                     </div>
                 </div>
 

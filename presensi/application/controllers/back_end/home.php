@@ -94,6 +94,10 @@ class Home extends Back_end {
         $this->_layout = 'atlant_landing';
     }
 
+    public function to_landing() {
+        redirect('back_end/home/landingpage');
+    }
+
     public function to_presensi() {
         redirect('back_end/home');
     }

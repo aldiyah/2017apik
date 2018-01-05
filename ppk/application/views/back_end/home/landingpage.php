@@ -15,9 +15,9 @@ $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
                         <div class="profile-data-name" style="font-weight: bold;">NIP. <?php echo isset($active_user_detail['pegawai_nip']) ? $active_user_detail['pegawai_nip'] : '-'; ?></div>
                         <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_jabatan']) ? $active_user_detail['nama_jabatan'] : '')); ?></div>
                         <!--<div class="profile-data-name"><?php echo ucwords(strtolower($active_user_detail['nama_unit_organisasi'])); ?></div>-->
-                        <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_satuan_organisasi']) ? $active_user_detail['nama_satuan_organisasi'] : '')); ?></div>
+                        <!--<div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_satuan_organisasi']) ? $active_user_detail['nama_satuan_organisasi'] : '')); ?></div>-->
                         <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_organisasi']) ? $active_user_detail['nama_organisasi'] : '')); ?></div>
-                        <div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_instansi']) ? $active_user_detail['nama_instansi'] : '')); ?></div>
+                        <!--<div class="profile-data-name"><?php echo ucwords(strtolower(isset($active_user_detail['nama_instansi']) ? $active_user_detail['nama_instansi'] : '')); ?></div>-->
                     </div>
                     <div class="profile-controls">
                     </div>
