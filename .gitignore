@@ -5,18 +5,18 @@ nbproject/
 lwscodeigniterwrapper/
 lws_api/
 
-aktivitas/index.php
+aktivitas/index\.php
 aktivitas/application/config/application\.php
 aktivitas/application/logs/*\.php
 aktivitas/application/cache/
 
-presensi/index.php
+presensi/index\.php
 presensi/application/config/application\.php
 presensi/application/config/database\.php
 presensi/application/logs/*\.php
 presensi/application/cache/
 
-ppk/index.php
+ppk/index\.php
 ppk/application/config/application\.php
 ppk/application/logs/*\.php
 ppk/application/cache/
