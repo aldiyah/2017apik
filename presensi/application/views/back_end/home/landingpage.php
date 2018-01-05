@@ -52,15 +52,19 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
         </div>
     </div>
 </div>
+<div style="background: rgba(250, 250, 150, 0.5);clear: both;border-bottom: 1px solid #c1c1c1;">
+    <marquee style="padding: 15px 0; color: #ff0000; font-size: 18px; text-shadow: 0 0 5px #fff;">
+        <strong>Pengumuman : </strong>Jum'at, 24-NOVEMBER-2017 Akan dilaksanakan Apel Gabungan dalam rangka "Memperingati HUT Kota Tangerang Selatan". Tempat : Lapangan Cilenggang. Pakaian : Batik KOPRI.
+    </marquee>
+</div>
 <div class="page-content-wrap" style="min-height: 200px;background: rgba(255, 255, 255, 0.5);">
     <!-- page content holder -->
     <div class="page-content-holder padding-v-30">
-
-        <div class="row">
-            <marquee style="padding-top: 15px; color: #ec0850; font-size: 18px; text-shadow: 0 0 5px #fff;">
-                <strong>Pengumuman : </strong>Jum'at, 24-NOVEMBER-2017 Akan dilaksanakan Apel Gabungan dalam rangka "Memperingati HUT Kota Tangerang Selatan". Tempat : Lapangan Cilenggang. Pakaian : Batik KOPRI.
-            </marquee>
-        </div>
+        <!--        <div class="row">
+                    <marquee style="padding: 15px 0; color: #ec0850; font-size: 18px; text-shadow: 0 0 5px #fff;background: #99ffff;">
+                        <strong>Pengumuman : </strong>Jum'at, 24-NOVEMBER-2017 Akan dilaksanakan Apel Gabungan dalam rangka "Memperingati HUT Kota Tangerang Selatan". Tempat : Lapangan Cilenggang. Pakaian : Batik KOPRI.
+                    </marquee>
+                </div>-->
         <div class="row">
             <div class="col-md-4">
 
