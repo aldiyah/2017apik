@@ -27,7 +27,10 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
             </div>
             <div class="col-md-8">
                 <div class="boxshadow">
-                    <h3 style="border-bottom: 1px dashed #aaa;padding-bottom: 5px;"><strong><?php show_greeting(); ?></strong></h3>
+                    <h3 style="border-bottom: 1px dashed #aaa;padding-bottom: 5px;">
+                        <strong><?php show_greeting(); ?></strong>
+                        <a href="<?php echo base_url("logout") ?>" class="btn btn-primary pull-right">KELUAR</a>
+                    </h3>
                     <div class="block-heading-text">
                         Mudah, Tepat dan Cepat untuk Kota Tangerang Selatan.
                     </div>
@@ -45,10 +48,6 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
                         <span class="pull-right"><strong>Rp. <?php echo number_format($tpp_pegawai_top, 0, ',', '.') ?></strong></span>
                     </div>
                 </div>
-                <!--                <div class="boxshadow text-center">
-                                    <a href="<?php echo base_url("back_end/home") ?>" class="btn btn-primary">MASUK</a>
-                                    <a href="<?php echo base_url("logout") ?>" class="btn btn-primary">KELUAR</a>
-                                </div>-->
             </div>
         </div>
     </div>
