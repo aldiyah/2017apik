@@ -57,7 +57,7 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
     ?>
     <?php echo $menu_item; ?>
     <li class="xn-title" style="background: #ffff33;"></li>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_presensi"><span class="fa  fa-calendar"></span> Aplikasi Presensi</span></a></li>'; ?>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aplikasi Aktivitas</span></a></li>'; ?>
-        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_landing"><span class="fa fa-dashboard"></span> Rekapitulasi</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_presensi"><span class="fa  fa-calendar"></span> Presensi</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_aktivitas"><span class="fa fa-briefcase"></span> Aktivitas Harian</span></a></li>'; ?>
+        <?php echo '<li><a href="' . base_url() . 'back_end/home/to_landing"><span class="fa fa-dashboard"></span> PPK - SKP</span></a></li>'; ?>
 </ul>
