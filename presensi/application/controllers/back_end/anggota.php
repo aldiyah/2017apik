@@ -44,4 +44,10 @@ class Anggota extends Back_end {
         exit;
     }
 
+    public function login() {
+        $url = "http://" . $_SERVER['SERVER_NAME'] . "/aktivitas/login";
+        header('Location: ' . $url);
+        exit;
+    }
+
 }
