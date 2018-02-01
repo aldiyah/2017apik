@@ -6,6 +6,8 @@ if (!defined('BASEPATH'))
 /* custom setting */
 
 $config['appname'] = 'Aplikasi Penilaian Kinerja';
+$config['maintenance'] = TRUE;
+$config['maintenance_url'] = 'http://' . $_SERVER['SERVER_NAME'];
 $config['copyright'] = 'Copyright CV. Mitra Indokomp Sejahtera &copy; 2017.';
 
 
@@ -48,7 +50,8 @@ $config['another_profil_properties']['insert_new_data'] = TRUE;
 $config['another_profil_properties']['columns'] = array(
     "pegawai_id",
     "pegawai_nip",
-    "pegawai_nama"
+    "pegawai_nama",
+    "id_organisasi"
 );
 //$config['another_profil_properties']['related_tables'] = array(
 //    "sc_akrifwz.master_jabatan" => array(

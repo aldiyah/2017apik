@@ -28,7 +28,7 @@ class Aktifitasbawahan extends Back_end {
         $arr_nip_bawahan = array();
         if ($bawahan) {
             foreach ($bawahan as $row) {
-                $arr_nip_bawahan[] = $row->NIP;
+                $arr_nip_bawahan[] = $row['NIP'];
             }
         }
         $records = $this->model_master_pegawai->get_all_bawahan_by_nip(implode("','", $arr_nip_bawahan))->record_set;

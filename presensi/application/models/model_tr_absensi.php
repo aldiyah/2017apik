@@ -20,7 +20,7 @@ class Model_tr_absensi extends Tr_absensi {
 
     public function all($pegawai_id = FALSE, $tahun = FALSE, $bulan = FALSE, $force_limit = FALSE, $force_offset = FALSE) {
         $this->db->select("ta.abs_id,ta.pegawai_id,ta.abs_tanggal,"
-                . "tu.apel_id,tu.apel_hadir,tu.apel_status,tu.apel_lapor,tu.apel_approval_al,tu.apel_approval_aa,tu.apel_pinalty,"
+                . "tu.upacara_id,tu.upacara_hadir,tu.upacara_status,tu.upacara_lapor,tu.upacara_approval_al,tu.upacara_approval_aa,tu.upacara_pinalty,"
                 . "ta.abs_masuk,ta.abs_masuk_status,ta.abs_masuk_lapor,tm.lm_lapor,tm.lm_approval_al,tm.lm_approval_aa,"
                 . "ta.abs_pulang,ta.abs_pulang_status,ta.abs_pulang_lapor,tp.lp_lapor,tp.lp_approval_al,tp.lp_approval_aa,"
                 . "ta.abs_status,ta.abs_lapor,tl.la_lapor,tl.la_approval_al,tl.la_approval_aa,"
@@ -28,7 +28,7 @@ class Model_tr_absensi extends Tr_absensi {
         $this->db->from($this->table_name . " as ta");
         $this->db->join("sc_master.master_pegawai as mp", "mp.pegawai_id = ta.pegawai_id", "left");
         $this->db->join("sc_presensi.master_upacara as mu", "mu.upacara_tanggal = ta.abs_tanggal", "left");
-        $this->db->join("sc_presensi.tr_apel as tu", "tu.apel_tanggal = mu.upacara_tanggal", "left");
+        $this->db->join("sc_presensi.tr_upacara as tu", "tu.upacara_tanggal = mu.upacara_tanggal", "left");
         $this->db->join("sc_presensi.tr_lapor_masuk as tm", "tm.abs_id = ta.abs_id", "left");
         $this->db->join("sc_presensi.tr_lapor_pulang as tp", "tp.abs_id = ta.abs_id", "left");
         $this->db->join("sc_presensi.tr_lapor_absensi as tl", "tl.abs_id = ta.abs_id", "left");

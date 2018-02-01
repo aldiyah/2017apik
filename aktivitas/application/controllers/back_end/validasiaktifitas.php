@@ -27,11 +27,12 @@ class Validasiaktifitas extends Back_end {
         $arr_nip_bawahan = array();
         if ($bawahan) {
             foreach ($bawahan as $row) {
-                $arr_nip_bawahan[] = $row->NIP;
+                $arr_nip_bawahan[] = $row['NIP'];
             }
         }
 
         $batas = date('Y-m-d', mktime(0, 0, 0, date('n'), date('j') - 100, date('Y')));
+//        $batas = date('Y-m-d', mktime(0, 0, 0, 11, 16, 2017));
         $this->load->model('model_master_alih_penilai');
 
         $records = $this->model_tr_aktifitas->validasi_aktifitas(implode("','", $arr_nip_bawahan), $batas);

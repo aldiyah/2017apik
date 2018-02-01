@@ -43,7 +43,8 @@ $lapor_masuk = isset($lapor_masuk) ? $lapor_masuk : FALSE;
                                         <td><?php echo $lapor_masuk[$row->lm_lapor] ?></td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm">
-                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/" . $row->abs_id; ?>">Validasi</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/m/" . $row->abs_id . "/setuju"; ?>">Setujui</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/m/" . $row->abs_id . "/tolak"; ?>">Tolak</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -83,7 +84,8 @@ $lapor_masuk = isset($lapor_masuk) ? $lapor_masuk : FALSE;
                                         <td><?php echo $lapor_pulang[$row->lp_lapor] ?></td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm">
-                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/" . $row->abs_id; ?>">Validasi</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/p/" . $row->abs_id . "/setuju"; ?>">Setujui</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/p/" . $row->abs_id . "/tolak"; ?>">Tolak</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -123,7 +125,8 @@ $lapor_masuk = isset($lapor_masuk) ? $lapor_masuk : FALSE;
                                         <td><?php echo $lapor_absensi[$row->la_lapor] ?></td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm">
-                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/" . $row->abs_id; ?>">Validasi</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/a/" . $row->abs_id . "/setuju"; ?>">Setujui</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/a/" . $row->abs_id . "/tolak"; ?>">Tolak</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -131,6 +134,17 @@ $lapor_masuk = isset($lapor_masuk) ? $lapor_masuk : FALSE;
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (!$absensi && !$masuk && !$pulang): ?>
+            <?php $next_list_number = 1; ?>
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">                                
+                    <h3 class="panel-title">Validasi Absensi Bawahan</h3>
+                </div>
+                <div class="panel-body">
+                    Belum ada data absensi bawahan yang perlu divalidasi...!!!
                 </div>
             </div>
         <?php endif; ?>

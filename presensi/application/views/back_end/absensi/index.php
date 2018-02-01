@@ -15,10 +15,9 @@ $field_id = isset($field_id) ? $field_id : FALSE;
 $paging_set = isset($paging_set) ? $paging_set : FALSE;
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $next_list_number = isset($next_list_number) ? $next_list_number : 1;
-//$approval = array('Proses', 'Disetujui', 'Ditolak');
-//var_dump($tanggal);
-//var_dump($records);
-//var_dump($status_masuk);
+$status_upacara = array("Hadir", "Tidak");
+//var_dump($tanggal, $records);
+//exit();
 ?>
 
 <div class="row">
@@ -38,6 +37,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                         <?php echo dropdown_tahun('tahun', $tahun, 5, 'class="form-control" style="width: 55px;"') ?>
                         <div class="input-group-btn">
                             <button class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
+                            <button class="btn btn-default"><span class="fa fa-print"></span> Rekap</button>
                         </div>
                     </div>
                 </form>
@@ -68,103 +68,109 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                         </thead>
                         <tbody>
                             <?php if ($records != FALSE): ?>
-                                <?php $total_pinalty = 0; ?>
+                                <?php
+                                $pinalty_upacara = 0;
+                                $total_pinalty = 0;
+                                ?>
                                 <?php foreach ($records as $key => $record): ?>
-                                    <?php
-                                    $pinalty = $record->abs_pinalty_masuk + $record->abs_pinalty_pulang;
-                                    $total_pinalty += $pinalty;
-                                    ?>
-                                    <tr>
-                                        <td class="text-right"><?php echo $next_list_number++; ?></td>
-                                        <td class="text-center"><?php echo pg_date_to_text($record->abs_tanggal) ?></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-center">
-                                            <?php echo $record->abs_masuk ? date('H:i:s', strtotime($record->abs_masuk)) : '-' ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php
-                                            if ($record->abs_status == 1) {
-                                                if ($record->lm_approval_al == 1 || $record->lm_approval_aa == 1) {
-                                                    
-                                                } else {
-                                                    echo $status_masuk[$record->abs_masuk_status];
-                                                }
-                                            } else {
-                                                if ($record->lm_lapor == 0) {
-                                                    if ($record->abs_masuk_status > 0 && $record->abs_masuk_status < 3) {
-                                                        echo anchor(base_url("back_end/" . $active_modul . "/mlapor") . "/" . $record->abs_id, $status_masuk[$record->abs_masuk_status], 'class="btn btn-sm btn-primary"');
+                                    <?php if (in_array($record->abs_tanggal, $tanggal)): ?>
+                                        <?php
+                                        $pinalty = $record->abs_pinalty_masuk + $record->abs_pinalty_pulang; // Pilih yang lebih besar
+                                        $pinalty_upacara += $record->upacara_pinalty;
+                                        $total_pinalty += $pinalty;
+                                        ?>
+                                        <tr>
+                                            <td class="text-right"><?php echo $next_list_number++; ?></td>
+                                            <td class="text-center"><?php echo pg_date_to_text($record->abs_tanggal); ?></td>
+                                            <td class="text-center"><?php echo is_null($record->upacara_hadir) ? "-" : date('H:i:s', strtotime($record->upacara_hadir)); ?></td>
+                                            <td class="text-center"><?php echo is_null($record->upacara_status) ? "-" : $status_upacara[$record->upacara_status]; ?></td>
+                                            <td class="text-center"><?php echo is_null($record->upacara_pinalty) ? "-" : $record->upacara_pinalty . "%"; ?></td>
+                                            <td class="text-center">
+                                                <?php echo $record->abs_masuk ? date('H:i:s', strtotime($record->abs_masuk)) : '-' ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php
+                                                if ($record->abs_status == 1) {
+                                                    if ($record->lm_approval_al == 1 || $record->lm_approval_aa == 1) {
+                                                        
                                                     } else {
                                                         echo $status_masuk[$record->abs_masuk_status];
                                                     }
                                                 } else {
-                                                    if ($record->lm_approval_al == 1 || $record->lm_approval_aa == 1) {
-                                                        echo $lapor_masuk[$record->abs_masuk_lapor] . ' [V]';
+                                                    if ($record->lm_lapor == 0) {
+                                                        if ($record->abs_masuk_status > 0 && $record->abs_masuk_status < 3) {
+                                                            echo anchor(base_url("back_end/" . $active_modul . "/mlapor") . "/" . $record->abs_id, $status_masuk[$record->abs_masuk_status], 'class="btn btn-sm btn-primary"');
+                                                        } else {
+                                                            echo $status_masuk[$record->abs_masuk_status];
+                                                        }
                                                     } else {
-                                                        echo $lapor_masuk[$record->lm_lapor] . ' [P]';
+                                                        if ($record->lm_approval_al == 1 || $record->lm_approval_aa == 1) {
+                                                            echo $lapor_masuk[$record->abs_masuk_lapor] . ' [V]';
+                                                        } else {
+                                                            echo $lapor_masuk[$record->lm_lapor] . ' [P]';
+                                                        }
                                                     }
                                                 }
-                                            }
-                                            ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php echo $record->abs_pulang ? date('H:i:s', strtotime($record->abs_pulang)) : '-' ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php
-                                            if ($record->abs_status == 1) {
-                                                if ($record->lp_approval_al == 1 || $record->lp_approval_aa == 1) {
-                                                    
-                                                } else {
-                                                    echo $status_pulang[$record->abs_pulang_status];
-                                                }
-                                            } else {
-                                                if ($record->lp_lapor == 0) {
-                                                    if ($record->abs_pulang_status > 0 && $record->abs_pulang_status < 3) {
-                                                        echo anchor(base_url("back_end/" . $active_modul . "/plapor") . "/" . $record->abs_id, $status_pulang[$record->abs_pulang_status], 'class="btn btn-sm btn-primary"');
+                                                ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $record->abs_pulang ? date('H:i:s', strtotime($record->abs_pulang)) : '-' ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php
+                                                if ($record->abs_status == 1) {
+                                                    if ($record->lp_approval_al == 1 || $record->lp_approval_aa == 1) {
+                                                        
                                                     } else {
                                                         echo $status_pulang[$record->abs_pulang_status];
                                                     }
                                                 } else {
-                                                    if ($record->lp_approval_al == 1 || $record->lp_approval_aa == 1) {
-                                                        echo $lapor_pulang[$record->abs_pulang_lapor] . ' [V]';
+                                                    if ($record->lp_lapor == 0) {
+                                                        if ($record->abs_pulang_status > 0 && $record->abs_pulang_status < 3) {
+                                                            echo anchor(base_url("back_end/" . $active_modul . "/plapor") . "/" . $record->abs_id, $status_pulang[$record->abs_pulang_status], 'class="btn btn-sm btn-primary"');
+                                                        } else {
+                                                            echo $status_pulang[$record->abs_pulang_status];
+                                                        }
                                                     } else {
-                                                        echo $lapor_pulang[$record->lp_lapor] . ' [P]';
+                                                        if ($record->lp_approval_al == 1 || $record->lp_approval_aa == 1) {
+                                                            echo $lapor_pulang[$record->abs_pulang_lapor] . ' [V]';
+                                                        } else {
+                                                            echo $lapor_pulang[$record->lp_lapor] . ' [P]';
+                                                        }
                                                     }
                                                 }
-                                            }
-                                            ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php
-                                            if ($record->abs_status == 1) {
-                                                if ($record->la_lapor == 0) {
-                                                    echo anchor(base_url("back_end/" . $active_modul . "/lapor") . "/" . $record->abs_id, $status[$record->abs_status], 'class="btn btn-sm btn-primary"');
-                                                } else {
+                                                ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php
+                                                if ($record->abs_status == 1) {
+                                                    if ($record->la_lapor == 0) {
+                                                        echo anchor(base_url("back_end/" . $active_modul . "/lapor") . "/" . $record->abs_id, $status[$record->abs_status], 'class="btn btn-sm btn-primary"');
+                                                    } else {
+                                                        if ($record->la_approval_al == 1 || $record->la_approval_aa == 1) {
+                                                            echo $lapor[$record->abs_lapor] . ' [V]';
+                                                        } else {
+                                                            echo $lapor[$record->la_lapor] . ' [P]';
+                                                        }
+                                                    }
+                                                } else { // Lanjutkan lagi brooooo.... Cek approval semua
                                                     if ($record->la_approval_al == 1 || $record->la_approval_aa == 1) {
                                                         echo $lapor[$record->abs_lapor] . ' [V]';
                                                     } else {
-                                                        echo $lapor[$record->la_lapor] . ' [P]';
+                                                        echo $status[$record->abs_status];
                                                     }
                                                 }
-                                            } else { // Lanjutkan lagi brooooo.... Cek approval semua
-                                                if ($record->la_approval_al == 1 || $record->la_approval_aa == 1) {
-                                                    echo $lapor[$record->abs_lapor] . ' [V]';
-                                                } else {
-                                                    echo $status[$record->abs_status];
-                                                }
-                                            }
-                                            ?>
-                                        </td>
-                                        <td class="text-center"><?php echo $pinalty ?> %</td>
-                                    </tr>
+                                                ?>
+                                            </td>
+                                            <td class="text-center"><?php echo $pinalty ?> %</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                                 <tr class="table-footer">
                                     <td colspan="4" class="text-center">TOTAL</td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center"><?php echo $pinalty_upacara; ?>%</td>
                                     <td colspan="5"></td>
-                                    <td class="text-center"><?php echo $total_pinalty ?> %</td>
+                                    <td class="text-center"><?php echo $total_pinalty; ?> %</td>
                                 </tr>
                             <?php else: ?>
                                 <tr>

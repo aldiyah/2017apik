@@ -67,7 +67,7 @@ class Aktifitasharian extends Back_end {
             $this->session->set_flashdata("id_aktifitas", $id);
         }
 
-        parent::detail($id, array("pegawai_id", "aktifitas_id", "tr_aktifitas_tanggal", "tr_aktifitas_volume", "tr_aktifitas_mulai", "tr_aktifitas_selesai", "tr_aktifitas_keterangan"));
+        parent::detail($id, array("pegawai_id", "aktifitas_id", "tr_aktifitas_tanggal", "tr_aktifitas_volume", "tr_aktifitas_mulai", "tr_aktifitas_selesai", "tr_aktifitas_keterangan", "tr_valid_by_al", "tr_valid_by_aa"));
         $tgl = $date != FALSE ? $date : date('Y-m-d');
         $this->set('pegawai_id', $this->pegawai_id);
         $this->set('tanggal', $tgl);

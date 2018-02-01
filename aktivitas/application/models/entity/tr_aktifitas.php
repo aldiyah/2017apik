@@ -22,8 +22,10 @@ class tr_aktifitas extends MY_Model {
         "tr_aktifitas_keterangan" => array("tr_aktifitas_keterangan", "Aktifitas Keterangan"),
         "tr_aktifitas_status" => array("tr_aktifitas_status", "Status Aktifitas"),
         "tr_aktifitas_dokumen" => array("tr_aktifitas_dokumen", "Dokumen Pendukung"),
-        "tr_valid_satu" => array("tr_valid_satu", "Validasi Satu"),
-        "tr_valid_dua" => array("tr_valid_dua", "Validasi Dua")
+        "tr_valid_al" => array("tr_valid_al", "Validasi Atasan Langsung"),
+        "tr_valid_aa" => array("tr_valid_aa", "Validasi Atasan Atasan"),
+        "tr_valid_by_al" => array("tr_valid_by_al", "Validasi Oleh Atasan Langsung"),
+        "tr_valid_by_aa" => array("tr_valid_by_aa", "Validasi Oleh Atasan Atasan")
     );
     protected $rules = array(
         array("pegawai_id", "required|is_natural_no_zero"),
@@ -34,8 +36,10 @@ class tr_aktifitas extends MY_Model {
         array("tr_aktifitas_selesai", "required"),
         array("tr_aktifitas_keterangan", "required|min_length[3]|max_length[200]"),
         array("tr_aktifitas_dokumen", ""),
-        array("tr_valid_satu", "numeric"),
-        array("tr_valid_dua", "numeric")
+        array("tr_valid_al", "numeric"),
+        array("tr_valid_aa", "numeric"),
+        array("tr_valid_by_al", "numeric"),
+        array("tr_valid_by_aa", "numeric")
     );
     protected $related_tables = array(
         "master_aktifitas" => array(
@@ -58,7 +62,7 @@ class tr_aktifitas extends MY_Model {
         ),
         'satu' => array(
             'table_name' => 'sc_master.master_pegawai',
-            'fkey' => array('tr_valid_satu', 'pegawai_id'),
+            'fkey' => array('tr_valid_by_al', 'pegawai_id'),
             'table_alias' => 'satu',
             'columns' => array(
                 'pegawai_nip as satu_nip',
@@ -68,7 +72,7 @@ class tr_aktifitas extends MY_Model {
         ),
         'dua' => array(
             'table_name' => 'sc_master.master_pegawai',
-            'fkey' => array('tr_valid_dua', 'pegawai_id'),
+            'fkey' => array('tr_valid_by_aa', 'pegawai_id'),
             'table_alias' => 'dua',
             'columns' => array(
                 'pegawai_nip as dua_nip',

@@ -18,16 +18,18 @@ class Master_liburan extends MY_Model {
 
     public function __construct() {
         parent::__construct("master_liburan");
-        $this->primary_key = "libur_tanggal";
+        $this->primary_key = "libur_id";
         $this->attribute_labels = array_merge_recursive($this->_continuously_attribute_label, $this->attribute_labels);
         $this->rules = array_merge_recursive($this->_continuously_rules, $this->rules);
     }
 
     protected $attribute_labels = array(
+        "libur_id" => array("libur_id", "ID Libur"),
         "libur_tanggal" => array("libur_tanggal", "Tanggal Libur"),
         "libur_keterangan" => array("libur_keterangan", "Keterangan Libur")
     );
     protected $rules = array(
+        array("libur_keterangan", "required"),
         array("libur_keterangan", "required|min_length[3]|max_length[200]")
     );
     protected $related_tables = array();

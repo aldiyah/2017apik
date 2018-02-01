@@ -47,8 +47,4 @@ class Model_master_liburan extends Master_liburan {
         return $query->num_rows() > 0 ? $query->result() : FALSE;
     }
 
-    protected function before_data_insert($data = FALSE) {
-        parent::before_data_insert($data);
-    }
-
 }

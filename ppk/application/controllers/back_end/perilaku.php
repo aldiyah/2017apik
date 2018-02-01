@@ -24,20 +24,21 @@ class Perilaku extends Back_end {
         $thn = $this->input->get('tahun', TRUE);
         $bulan = $bln ? $bln : date('n');
         $tahun = $thn ? $thn : date('Y');
-        $profil = array(
-            'nip' => $this->pegawai_nip,
-            'kd_eselon' => $this->kode_eselon,
-            'kd_instansi' => $this->kode_instansi,
-            'kd_organisasi' => $this->kode_organisasi,
-            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
-            'kd_unit_organisasi' => $this->kode_unit_organisasi
-        );
-        $data = $this->_call_api('pegawai/get_bawahan', $profil);
-        $list_bawahan = isset($data['response']) ? $data['response'] : FALSE;
+//        $profil = array(
+//            'nip' => $this->pegawai_nip,
+//            'kd_eselon' => $this->kode_eselon,
+//            'kd_instansi' => $this->kode_instansi,
+//            'kd_organisasi' => $this->kode_organisasi,
+//            'kd_satuan_organisasi' => $this->kode_satuan_organisasi,
+//            'kd_unit_organisasi' => $this->kode_unit_organisasi
+//        );
+//        $data = $this->_call_api('pegawai/get_bawahan', $profil);
+//        $list_bawahan = isset($data['response']) ? $data['response'] : FALSE;
+        $list_bawahan = isset($this->user_detail['bawahan']) ? $this->user_detail['bawahan'] : FALSE;
         $arr_nip_bawahan = array();
         if ($list_bawahan) {
             foreach ($list_bawahan as $row) {
-                $arr_nip_bawahan[] = $row->nip;
+                $arr_nip_bawahan[] = $row['NIP'];
             }
         }
         $this->load->model('model_master_pegawai');

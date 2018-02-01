@@ -2,7 +2,21 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
-//var_dump($detail);
+var_dump($detail, $active_user_detail);
+//$atasan_langsung = FALSE;
+//$atasan_atasan = FALSE;
+//if (isset($active_user_detail['atasan'][0])) {
+//    $a = array_map('trim', array_keys((array) $active_user_detail['atasan'][0]));
+//    $b = array_map('trim', (array) $active_user_detail['atasan'][0]);
+//    $atasan_langsung = array_combine($a, $b);
+////    var_dump($atasan_langsung);
+//}
+//if (isset($active_user_detail['atasan'][1])) {
+//    $a = array_map('trim', array_keys((array) $active_user_detail['atasan'][1]));
+//    $b = array_map('trim', (array) $active_user_detail['atasan'][1]);
+//    $atasan_atasan = array_combine($a, $b);
+////    var_dump($atasan_atasan);
+//}
 ?>
 
 <div class="row">
@@ -19,6 +33,8 @@ $detail = isset($detail) ? $detail : FALSE;
                 </div>
                 <div class="panel-body">
                     <?php echo form_hidden('pegawai_id', $pegawai_id); ?>
+                    <?php echo form_hidden('tr_valid_by_al', $atasan_langsung ? $atasan_langsung['Id'] : 0); ?>
+                    <?php echo form_hidden('tr_valid_by_aa', $atasan_atasan ? $atasan_atasan['Id'] : 0); ?>
                     <div class = "form-group">
                         <label class = "col-md-3 col-xs-12 control-label">Pilih Aktivitas *</label>
                         <div class = "col-md-6 col-xs-12">

@@ -29,7 +29,6 @@ class Home extends Back_end {
         // Ambil data tpp
         $tpp_dasar = $this->model_master_tpp->get_detail('master_tpp.pegawai_id = ' . $id_pegawai);
         $tpp_aktivitas_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['aktivitas']['bobot'] : 0;
-        $tpp_aktivitas_over = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['aktivitas']['overtime'] : 0;
         $tpp_presensi_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['presensi']['bobot'] : 0;
         $tpp_ppk_dasar = $tpp_dasar ? $tpp_dasar->tpp_beban_kerja * $this->config->item('perwal')['ppk']['bobot'] : 0;
 
@@ -39,13 +38,12 @@ class Home extends Back_end {
 
         // Hitung tpp aktivitas
         $tpp_harian_dasar = $tpp_aktivitas_dasar > 0 ? $tpp_aktivitas_dasar / $hari_kerja_efektif : 0;
-        $tpp_harian_over = $tpp_aktivitas_over > 0 ? $tpp_aktivitas_over / $hari_kerja_efektif : 0;
         $rekap_aktifitas = $this->model_master_tpp->get_aktivitas_bulanan($id_pegawai, $bln, $thn);
         $tpp_aktivitas_real = 0;
         if ($rekap_aktifitas) {
             foreach ($rekap_aktifitas as $row) {
                 $waktu = $row->aktifitas_waktu * $row->tr_aktifitas_volume;
-                $tpp_aktivitas_real += ($waktu > 300 ? $tpp_harian_dasar + $tpp_harian_over : $waktu / 300 * $tpp_harian_dasar);
+                $tpp_aktivitas_real += ($waktu > 300 ? $tpp_harian_dasar : $waktu / 300 * $tpp_harian_dasar);
             }
         }
 
@@ -87,7 +85,7 @@ class Home extends Back_end {
         }
         $this->set("tpp_presensi_top", $tpp_presensi_dasar);
         $this->set("tpp_presensi", $tpp_presensi_real);
-        $this->set("tpp_aktivitas_top", $tpp_aktivitas_dasar + $tpp_aktivitas_over);
+        $this->set("tpp_aktivitas_top", $tpp_aktivitas_dasar);
         $this->set("tpp_aktivitas", $tpp_aktivitas_real);
         $this->set("tpp_ppk_top", $tpp_ppk_dasar);
         $this->set("tpp_ppk", $tpp_ppk_real);

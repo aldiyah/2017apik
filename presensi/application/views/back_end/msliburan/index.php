@@ -57,8 +57,8 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                         <td><?php echo beautify_str($record->libur_keterangan) ?></td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm">
-                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->libur_tanggal; ?>">Ubah</a>
-                                                <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->libur_tanggal; ?>">Hapus</a>
+                                                <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/detail") . "/" . $record->libur_id; ?>">Ubah</a>
+                                                <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->libur_id; ?>">Hapus</a>
                                             </div>
                                         </td>
                                     </tr>

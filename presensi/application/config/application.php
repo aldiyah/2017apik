@@ -6,6 +6,8 @@ if (!defined('BASEPATH'))
 /* custom setting */
 
 $config['appname'] = 'Aplikasi Penilaian Kinerja';
+$config['maintenance'] = TRUE;
+$config['maintenance_url'] = 'http://' . $_SERVER['SERVER_NAME'];
 $config['copyright'] = 'Copyright CV. Mitra Indokomp Sejahtera &copy; 2017.';
 
 
@@ -15,7 +17,8 @@ $config['appkey'] = '1029384756';
 
 $config['appsalt'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-$config['resource_api_link'] = 'http://localhost/2017apik/lws_api/';
+//$config['resource_api_link'] = 'http://localhost/2017apik/lws_api/';
+$config['resource_api_link'] = 'http://lasik.tangerangselatankota.go.id/simpeg/api/';
 
 $config['lmanuser.usingbackendfrontend'] = FALSE;
 $config['user_id_column_name'] = "id_user";
@@ -126,6 +129,9 @@ $config['modul_action_configuration'] = array(
 //    ),
     "absensi" => array(
         "update" => array('ulapor', 'mlapor', 'plapor', 'lapor', 'validasi')
+    ),
+    "vabsensi" => array(
+        "update" => array('validasi')
     ),
     "msapi" => array(
         "read" => array("like_nip"),

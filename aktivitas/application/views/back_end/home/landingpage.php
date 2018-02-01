@@ -1,5 +1,5 @@
 <?php
-$pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) && array_key_exists("pegawai_nip", $active_user_detail) && !is_null($active_user_detail["pegawai_nip"]) ? $active_user_detail["pegawai_nip"] : "user_default_avatar";
+$pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) && array_key_exists("user_foto", $active_user_detail) && !is_null($active_user_detail["user_foto"]) ? $active_user_detail["user_foto"] : "user_default_avatar";
 $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
 $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
 ?>

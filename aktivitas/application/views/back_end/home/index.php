@@ -12,6 +12,7 @@ $total_tpp = isset($total_tpp) ? $total_tpp : 0;
 $total_aktivitas = isset($total_aktivitas) ? $total_aktivitas : 0;
 $total_ditolak = isset($total_ditolak) ? $total_ditolak : 0;
 //var_dump($records);
+//var_dump($active_user_detail);
 ?>
 <div class="page-content-wrap">
     <div class="row">

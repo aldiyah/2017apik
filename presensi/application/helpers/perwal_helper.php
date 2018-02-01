@@ -22,7 +22,7 @@ if (!function_exists('get_working_day_monthly')) {
         for ($d = 1; $d <= $days; $d++) {
             $date = mktime(0, 0, 0, $m, $d, $y);
             if (date('N', $date) < 6 && is_array($holidays) && !in_array(date('Y-m-d', $date), $holidays)) {
-                $arr_day[] = date('d-m-Y', $date);
+                $arr_day[] = date('Y-m-d', $date);
                 $wd++;
             }
         }

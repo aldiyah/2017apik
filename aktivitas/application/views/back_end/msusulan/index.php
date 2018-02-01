@@ -31,7 +31,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                         <thead>
                             <tr role="row">
                                 <th>NO</th>
-                                <th style="width: 50%;">NAMA</th>
+                                <th style="max-width: 50%;">NAMA</th>
                                 <th>OUTPUT</th>
                                 <th>WAKTU</th>
                                 <th>DARI</th>
@@ -66,7 +66,7 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                                                         <a class="btn btn-default" href="<?php echo base_url("back_end/" . $active_modul . "/validasi") . "/" . $record->usulan_id; ?>">Setujui</a>
                                                     <?php endif; ?>
                                                     <?php if ($access_rules[3][0] == 'allow'): ?>
-                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->usulan_id; ?>"><span class="fa fa-times-circle"></span></a>
+                                                        <a class="btn btn-default btn-hapus-row" href="javascript:void(0);" rel="<?php echo base_url("back_end/" . $active_modul . "/delete") . "/" . $record->usulan_id; ?>">Tolak</span></a>
                                                         <?php endif; ?>
                                                 </div>
                                             </td>

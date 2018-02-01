@@ -121,7 +121,6 @@ class Home extends Back_end {
         $holidays = array();
         $hari_kerja_efektif = get_working_day_monthly($holidays)->total;
         $tpp_harian = $data_tpp ? $data_tpp->tpp_beban_kerja * $this->config->item('perwal')['aktivitas']['bobot'] / $hari_kerja_efektif : 0;
-        $tpp_overtime = $data_tpp ? $data_tpp->tpp_beban_kerja * $this->config->item('perwal')['aktivitas']['overtime'] / $hari_kerja_efektif : 0;
         $bln = date('n');
         $thn = date('Y');
 
@@ -130,7 +129,7 @@ class Home extends Back_end {
         if ($aktifitas) {
             foreach ($aktifitas as $row) {
                 $waktu = $row->aktifitas_waktu * $row->tr_aktifitas_volume;
-                $total_tpp += ($waktu > 300 ? $tpp_harian + $tpp_overtime : $waktu / 300) * $tpp_harian;
+                $total_tpp += ($waktu / 300 * $tpp_harian);
             }
         }
         $this->set('total_tpp', $total_tpp);

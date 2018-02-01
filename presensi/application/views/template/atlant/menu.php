@@ -4,7 +4,6 @@ $active_modul = isset($active_modul) ? $active_modul : "";
 $current_user_profil_name = isset($current_user_profil_name) ? $current_user_profil_name : "-";
 $current_user_roles = isset($current_user_roles) ? $current_user_roles : "pengguna";
 $menu_item = isset($menu_item) ? build_atlant_menu($menu_item, $active_modul) : "";
-$pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) && array_key_exists("pegawai_nip", $active_user_detail) && !is_null($active_user_detail["pegawai_nip"]) ? $active_user_detail["pegawai_nip"] : "user_default_avatar";
 ?>
 
 <ul class="x-navigation">
@@ -16,8 +15,7 @@ $pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) &&
         <?php if ($is_authenticated): ?>
             <div class="profile">
                 <div class="profile-image" style="border:none;">
-                    <img style="border:none;" src="<?php echo (remote_file_exists(upload_location("images/users/" . $pegawai_avatar . ".jpg")) ? upload_location("images/users/" . $pegawai_avatar . ".jpg") : upload_location("images/users/user_default_avatar.jpg")) ?>" alt="<?php echo $current_user_profil_name ?>"/>
-                    <!--<img style="border:none;" src="http://lasik.tangerangselatankota.go.id/simpeg/assets/img/photo/157.jpg" alt="<?php echo $current_user_profil_name ?>"/>-->
+                    <img style="border:none;" src="<?php echo isset($active_user_detail['user_foto']) ? $active_user_detail['user_foto'] : upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name" style="font-weight: bold;"><?php echo $current_user_profil_name; ?></div>

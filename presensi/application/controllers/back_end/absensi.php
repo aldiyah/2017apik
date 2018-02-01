@@ -33,6 +33,8 @@ class Absensi extends Back_end {
             }
         }
         $hari_kerja_efektif = get_working_day_monthly($holy, $tahun, $bulan);
+//        var_dump($holidays, $holy, $hari_kerja_efektif);
+//        exit();
         $this->get_attention_message_from_session();
         $records = $this->model_tr_absensi->all($this->pegawai_id, $tahun, $bulan);
         $this->set('tanggal', $hari_kerja_efektif->dates);
@@ -61,7 +63,7 @@ class Absensi extends Back_end {
 
     public function mlapor($id = FALSE) {
         $this->load->model('model_tr_lapor_masuk');
-        $posted_data = array('abs_id', 'lm_lapor');
+        $posted_data = array('abs_id', 'lm_lapor', 'lm_approval_by_al', 'lm_approval_by_aa');
         if ($this->model_tr_lapor_masuk->get_data_post(FALSE, $posted_data)) {
             if ($this->model_tr_lapor_masuk->is_valid()) {
                 $saved_id = $this->model_tr_lapor_masuk->save();
@@ -72,7 +74,7 @@ class Absensi extends Back_end {
                 }
                 $this->upload_laporan_masuk_dokumen($id);
                 $this->attention_messages = "Data baru telah disimpan.";
-                redirect('back_end/' . $this->_name);
+                redirect($this->referer);
                 $this->attention_messages = "Terdapat Kesalahan, Periksa kembali isian anda.";
             } else {
                 $this->attention_messages = $this->model_tr_lapor_masuk->errors->get_html_errors("<br />", "line-wrap");
@@ -93,7 +95,7 @@ class Absensi extends Back_end {
 
     public function plapor($id = FALSE) {
         $this->load->model('model_tr_lapor_pulang');
-        $posted_data = array('abs_id', 'lp_lapor');
+        $posted_data = array('abs_id', 'lp_lapor', 'lp_approval_by_al', 'lp_approval_by_aa');
         if ($this->model_tr_lapor_pulang->get_data_post(FALSE, $posted_data)) {
             if ($this->model_tr_lapor_pulang->is_valid()) {
                 $saved_id = $this->model_tr_lapor_pulang->save();
@@ -125,7 +127,7 @@ class Absensi extends Back_end {
 
     public function lapor($id = FALSE) {
         $this->load->model('model_tr_lapor_absensi');
-        $posted_data = array('abs_id', 'la_lapor');
+        $posted_data = array('abs_id', 'la_lapor', 'la_approval_by_al', 'la_approval_by_aa');
         if ($this->model_tr_lapor_absensi->get_data_post(FALSE, $posted_data)) {
             if ($this->model_tr_lapor_absensi->is_valid()) {
                 $saved_id = $this->model_tr_lapor_absensi->save();

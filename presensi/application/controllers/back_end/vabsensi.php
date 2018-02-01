@@ -40,9 +40,7 @@ class Vabsensi extends Back_end {
 //            }
 //        }
 //        $this->load->model('model_tr_lapor_upacara');
-        $this->load->model('model_tr_lapor_masuk');
-        $this->load->model('model_tr_lapor_pulang');
-        $this->load->model('model_tr_lapor_absensi');
+        $this->load->model(array('model_tr_lapor_masuk', 'model_tr_lapor_pulang', 'model_tr_lapor_absensi'));
 //        $records = $arr_nip_bawahan ? $this->model_tr_absensi->get_validasi(implode("','", $arr_nip_bawahan), $tahun) : FALSE;
 //        $records = $this->model_tr_lapor_masuk->get_validasi_bawahan($this->pegawai_id);
 //        var_dump($records);
@@ -60,6 +58,30 @@ class Vabsensi extends Back_end {
         $this->set('bread_crumb', array(
             '#' => $this->_header_title
         ));
+    }
+
+    public function validasi($jenis, $id, $validasi) {
+        $validator = array(
+            'setuju' => 1,
+            'tolak' => 2
+        );
+        if (array_key_exists($validasi, $validator)) {
+            $this->load->model(array('model_tr_lapor_masuk', 'model_tr_lapor_pulang', 'model_tr_lapor_absensi'));
+            switch ($jenis) {
+                case 'm': $this->model_tr_lapor_masuk->validasi($id, $validator[$validasi]);
+                    break;
+                case 'p': $this->model_tr_lapor_pulang->validasi($id, $validator[$validasi]);
+                    break;
+                case 'a': $this->model_tr_lapor_absensi->validasi($id, $validator[$validasi]);
+                    break;
+                case 'u': $this->model_tr_lapor_upacara->validasi($id, $validator[$validasi]);
+                    break;
+            }
+            $this->attention_messages = "Sukses melakukan validasi absensi pegawai."; // PR nih
+        } else {
+            $this->attention_messages = "Terdapat Kesalahan, Periksa kembali isian anda.";
+        }
+        redirect('back_end/' . $this->_name);
     }
 
 }

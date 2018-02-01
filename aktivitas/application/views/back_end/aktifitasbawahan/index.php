@@ -21,13 +21,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                     <?php echo load_partial("back_end/shared/attention_message"); ?>
                     <form class="form-panel form-inline">
                         <label for="bulan" class="control-label">Pilih Bulan</label>
-                        <?php
-                        echo form_dropdown('bulan', array_month(), set_value('bulan', $bulan), 'class="form-control"');
-                        ?>
+                        <?php echo form_dropdown('bulan', array_month(), set_value('bulan', $bulan), 'class="form-control"'); ?>
                         <label for="tahun" class="control-label">Pilih Tahun</label>
-                        <?php
-                        echo dropdown_tahun('tahun', $tahun, 5, 'class="form-control"');
-                        ?>
+                        <?php echo dropdown_tahun('tahun', $tahun, 5, 'class="form-control"'); ?>
                         <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Cari</button>
                     </form>
                 </div>
@@ -39,8 +35,9 @@ $next_list_number = isset($next_list_number) ? $next_list_number : 1;
                 <div class="panel-body panel-body-table list-group list-group-contacts border-bottom">
                     <?php foreach ($records as $pegawai) : ?>
                         <div class="list-group-item">
-                            <img src="<?php echo assets() ?>uploads/images/users/pria.png" alt="<?php echo $pegawai->pegawai_nama; ?>"/>
-                            <span class="contacts-title"><?php echo beautify_str($pegawai->pegawai_nama); ?></span>
+                            <img src="<?php echo assets() ?>uploads/images/users/pria.png" alt="<?php echo $pegawai->pegawai_nama; ?>" style="float: left;"/>
+                            <span class="contacts-title"><?php echo beautify_str($pegawai->pegawai_nama); ?></span><br>
+                            NIP. <?php echo $pegawai->pegawai_nip; ?>
                             <div class="list-group-controls">
                                 <button class="btn btn-default" onclick="lihatAktifitas(this, <?php echo $pegawai->pegawai_id . "," . $tahun . "," . $bulan; ?>)">Lihat Aktivitas</button>
                             </div>

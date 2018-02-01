@@ -27,14 +27,13 @@ class Master_pegawai extends MY_Model {
         "pegawai_id" => array("pegawai_id", "ID Pegawai"),
         "id_profil" => array("id_profil", "ID Profil"),
         "pegawai_nip" => array("pegawai_nip", "NIP Pegawai"),
-        "pegawai_nama" => array("pegawai_nama", "Nama Pegawai")
+        "pegawai_nama" => array("pegawai_nama", "Nama Pegawai"),
+        "id_organisasi" => array("id_organisasi", "ID Organisasi")
     );
     protected $rules = array(
         array("pegawai_nip", "required|numeric|min_length[3]|max_length[20]"),
         array("pegawai_nama", "required|min_length[3]|max_length[50]"),
-        array("kode_jabatan", "required|is_natural_no_zero"),
-        array("kode_organisasi", "required|is_natural_no_zero"),
-        array("id_profil", "required|is_natural_no_zero")
+        array("id_organisasi", "required|is_natural_no_zero")
     );
     protected $related_tables = array();
     protected $attribute_types = array();

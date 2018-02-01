@@ -1,5 +1,4 @@
 <?php
-$pegawai_avatar = isset($active_user_detail) && is_array($active_user_detail) && array_key_exists("pegawai_nip", $active_user_detail) && !is_null($active_user_detail["pegawai_nip"]) ? $active_user_detail["pegawai_nip"] : "user_default_avatar";
 $tpp_pegawai = $tpp_presensi + $tpp_aktivitas + $tpp_ppk;
 $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
 ?>
@@ -9,8 +8,7 @@ $tpp_pegawai_top = $tpp_presensi_top + $tpp_aktivitas_top + $tpp_ppk_top;
             <div class="col-md-4">
                 <div class="profile xn-profile boxshadow">
                     <div class="profile-image" style="border:none;">
-                        <img style="border:none;" src="<?php echo remote_file_exists(upload_location("images/users/" . $pegawai_avatar . ".jpg")) ? upload_location("images/users/" . $pegawai_avatar . ".jpg") : upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
-                        <!--<img style="border:none;" src="http://lasik.tangerangselatankota.go.id/simpeg/assets/img/photo/157.jpg" alt="<?php echo $current_user_profil_name; ?>"/>-->
+                        <img style="border:none;" src="<?php echo isset($active_user_detail['user_foto'])? $active_user_detail['user_foto'] : upload_location("images/users/user_default_avatar.jpg"); ?>" alt="<?php echo $current_user_profil_name; ?>"/>
                     </div>
                     <div class="profile-data">
                         <div class="profile-data-name" style="font-size: 13px;font-weight: bold;color: #e0401d;"><?php echo $current_user_profil_name; ?></div>

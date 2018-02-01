@@ -28,20 +28,22 @@ $config['perwal'] = array(
     'presensi' => array(
         'bobot' => 0.3,
         'laporan' => 0,
+        'limit_input' => 1,
         'validasi_penilai' => 3,
         'validasi_atasan' => 3,
-        'absensi' => array('Hadir', 'Cuti', 'Dinas')
+//        'absensi' => array('Hadir', 'Cuti', 'Dinas')
     ),
     'aktivitas' => array(
-        'bobot' => 0.45,
-        'overtime' => 0.05,
+        'bobot' => 0.5,
         'laporan' => 2,
+        'limit_input' => 3,
         'validasi_penilai' => 3,
         'validasi_atasan' => 3
     ),
     'ppk' => array(
         'bobot' => 0.2,
         'laporan' => 2,
+        'limit_input' => 3,
         'validasi_penilai' => 3,
         'validasi_atasan' => 3
     )
