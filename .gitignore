@@ -9,6 +9,7 @@ aktivitas/index\.php
 aktivitas/application/config/application\.php
 aktivitas/application/logs/*\.php
 aktivitas/application/cache/
+aktivitas/_assets/uploads/aktifitas/
 
 presensi/index\.php
 presensi/application/config/application\.php
