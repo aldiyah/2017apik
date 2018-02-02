@@ -2,21 +2,8 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
-var_dump($detail, $active_user_detail);
-//$atasan_langsung = FALSE;
-//$atasan_atasan = FALSE;
-//if (isset($active_user_detail['atasan'][0])) {
-//    $a = array_map('trim', array_keys((array) $active_user_detail['atasan'][0]));
-//    $b = array_map('trim', (array) $active_user_detail['atasan'][0]);
-//    $atasan_langsung = array_combine($a, $b);
-////    var_dump($atasan_langsung);
-//}
-//if (isset($active_user_detail['atasan'][1])) {
-//    $a = array_map('trim', array_keys((array) $active_user_detail['atasan'][1]));
-//    $b = array_map('trim', (array) $active_user_detail['atasan'][1]);
-//    $atasan_atasan = array_combine($a, $b);
-////    var_dump($atasan_atasan);
-//}
+$atasan_langsung = $active_user_detail ? $active_user_detail['atasan_langsung'] : FALSE;
+$atasan_atasan = $active_user_detail ? $active_user_detail['atasan_atasan'] : FALSE;
 ?>
 
 <div class="row">

@@ -75,7 +75,7 @@ $status_upacara = array("Hadir", "Tidak");
                                 <?php foreach ($records as $key => $record): ?>
                                     <?php if (in_array($record->abs_tanggal, $tanggal)): ?>
                                         <?php
-                                        $pinalty = $record->abs_pinalty_masuk + $record->abs_pinalty_pulang; // Pilih yang lebih besar
+                                        $pinalty = $record->abs_pinalty_absensi;
                                         $pinalty_upacara += $record->upacara_pinalty;
                                         $total_pinalty += $pinalty;
                                         ?>

@@ -5,7 +5,7 @@
  *
  * @author Rinaldi
  */
-$online = FALSE;
+$online = TRUE;
 if ($online) {
     header('Location: http://' . $_SERVER['SERVER_NAME'] . '/' . 'aktivitas');
 }

@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /* custom setting */
 
 $config['appname'] = 'Aplikasi Penilaian Kinerja';
-$config['maintenance'] = TRUE;
+$config['maintenance'] = FALSE;
 $config['maintenance_url'] = 'http://' . $_SERVER['SERVER_NAME'];
 $config['copyright'] = 'Copyright CV. Mitra Indokomp Sejahtera &copy; 2017.';
 
