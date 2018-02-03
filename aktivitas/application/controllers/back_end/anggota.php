@@ -113,17 +113,20 @@ class Anggota extends Back_end {
             $this->go_to_session_location();
         }
 
+        $login_success = FALSE;
+        $this->attention_messages = "";
+
         $username = $this->input->post('username', TRUE);
         $password = $this->input->post('password', TRUE);
         if (!empty($username) && !empty($password)) {
             $data = array('u' => sha1($username), 'p' => sha1(md5($password)), 't' => sha1('apik'));
             $login = $this->_call_api('login', $data);
-//            var_dump($login['data']);
-//            exit();
             if ($login['status'] == 1) {
+                var_dump('Ada di simpeg');
                 $user = $login['data']->user;
                 $this->load->model(array('model_user', 'model_backbone_user', 'model_backbone_user_role', 'model_backbone_profil', 'model_master_pegawai'));
                 $ada = $this->model_user->get_user_detail_username($username);
+
                 if (!$ada) {
                     $user_data = array(
                         'username' => $username,
@@ -149,6 +152,13 @@ class Anggota extends Back_end {
                         $this->model_backbone_user_role->save($id_user, 4);
                     }
                 } else {
+                    var_dump('Ada di APIK');
+                    if (!empty($login['data']->bawahan)) {
+                        $roles_atasan = $this->model_backbone_user_role->get_where('id_user = ' . $ada->id_user . ' AND id_role = 4');
+                        if (!$roles_atasan) {
+                            $this->model_backbone_user_role->save($ada->id_user, 4);
+                        }
+                    }
                     if ($login['data']->data_akhir->id_organisasi != $ada->id_organisasi) {
                         $data_pegawai = array(
                             'id_organisasi' => $login['data']->data_akhir->id_organisasi
@@ -158,35 +168,32 @@ class Anggota extends Back_end {
                 }
                 $this->user_profil = $login['data'];
 
-                // Cek role
 
-                $roles = $this->model_backbone_user_role->get_roles_by_user($ada->id_user);
-//                var_dump($ada, $roles);
-//                exit();
-            }
-        }
-
-        $login_success = FALSE;
-        $this->attention_messages = "";
-        $this->model_user->set_login_rules();
-        if ($this->model_user->get_data_post()) {
-            if ($this->model_user->login($this->my_side)) {
-                $login_success = TRUE;
-            } else {
-                if ($ada && $login['status'] == 1) {
-                    $id_user = $ada->id_user;
-                    $user_data = array(
-                        'username' => $username,
-                        'password' => $this->lmanuser->generate_password($username, $password)
-                    );
-                    $this->model_backbone_user->data_update($user_data, 'id_user = ' . $id_user);
-                    $login_success = TRUE;
-                } else {
-                    $this->attention_messages = $this->model_user->errors->get_html_errors("<br />", "line-wrap");
-                    if (trim($this->attention_messages) == "<div id=\"model_error\" class=\"line-wrap\"></div>") {
-                        $this->attention_messages = "<div id=\"model_error\" class=\"line-wrap\">Username atau password tidak ditemukan.</div>";
+                $this->model_user->set_login_rules();
+                if ($this->model_user->get_data_post()) {
+                    if ($this->model_user->login($this->my_side)) {
+                        $login_success = TRUE;
+                    } else {
+                        if ($ada && $login['status'] == 1) {
+                            $id_user = $ada->id_user;
+                            $user_data = array(
+                                'username' => $username,
+                                'password' => $this->lmanuser->generate_password($username, $password)
+                            );
+                            $this->model_backbone_user->data_update($user_data, 'id_user = ' . $id_user);
+                            if ($this->model_user->login($this->my_side)) {
+                                $login_success = TRUE;
+                            }
+                        } else {
+                            $this->attention_messages = $this->model_user->errors->get_html_errors("<br />", "line-wrap");
+                            if (trim($this->attention_messages) == "<div id=\"model_error\" class=\"line-wrap\"></div>") {
+                                $this->attention_messages = "<div id=\"model_error\" class=\"line-wrap\">Username atau password tidak ditemukan.</div>";
+                            }
+                        }
                     }
                 }
+            } else {
+                $this->attention_messages = "Maaf, data tidak terdaftar di SIMPEG";
             }
         }
 

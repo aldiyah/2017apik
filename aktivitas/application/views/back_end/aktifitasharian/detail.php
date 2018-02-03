@@ -2,8 +2,8 @@
 $header_title = isset($header_title) ? $header_title : '';
 $active_modul = isset($active_modul) ? $active_modul : 'none';
 $detail = isset($detail) ? $detail : FALSE;
-$atasan_langsung = $active_user_detail ? $active_user_detail['atasan_langsung'] : FALSE;
-$atasan_atasan = $active_user_detail ? $active_user_detail['atasan_atasan'] : FALSE;
+$atasan_langsung = array_key_exists('atasan_langsung', $active_user_detail) ? $active_user_detail['atasan_langsung'] : FALSE;
+$atasan_atasan = array_key_exists('atasan_atasan', $active_user_detail) ? $active_user_detail['atasan_atasan'] : FALSE;
 ?>
 
 <div class="row">
